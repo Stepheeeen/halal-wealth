@@ -8,11 +8,14 @@ const AuthContainer = ({ src, children, title, text }: { src: StaticImageData | 
         <Image src={src} alt="authentication image" className='' />
       </div>
       <div className="w-[53%] flex justify-center items-center flex-col">
-        <h1 className='font-miliki text-[28px]'>{title}</h1>
-        <p>{text}</p>
-        <form>
+        <div className='w-[70%]'>
+        <h1 className='font-semibold text-[34px]'>{title}</h1>
+        <p className='font-medium leading-loose'>{text}</p>
+        <form className='mt-8'>
           {children}
         </form>
+
+        </div>
       </div>
     </div>
   );
