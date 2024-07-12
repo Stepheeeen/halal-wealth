@@ -1,8 +1,20 @@
+@font-face {
+    font-family: 'Miliki';
+    src: url('../../public/assets/fonts/Millik.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GeneralSans';
+    src: url('../../public/assets/fonts/GeneralSans-Variable.ttf');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
