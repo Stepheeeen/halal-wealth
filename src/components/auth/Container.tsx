@@ -3,7 +3,7 @@ import Image, { StaticImageData } from 'next/image';
 import { DefaultButton } from '../reusable/button/Button'
 import Link from 'next/link';
 
-const AuthContainer = ({ src, children, title, text, terms, path, link, underline }: { src: StaticImageData | string; children: ReactNode; title: string; text: string; terms: string; path: any; link: any; underline: string; }) => {
+const AuthContainer = ({ src, children, title, text, terms, path, link, underline, btnText, altText }: { src: StaticImageData | string; children: ReactNode; title: string; text: string; terms: string; path: any; link: any; underline: string; btnText: string; altText: string; }) => {
   return (
     <div className="w-[100%] flex items-center">
       <div className="w-[47%] flex items-center p-2">
@@ -23,8 +23,8 @@ const AuthContainer = ({ src, children, title, text, terms, path, link, underlin
             </Link>
             </p>
           </div>
-          <DefaultButton type='solid' text='Create account' customStyle=' bg-[#8046F2] text-white' />
-          <DefaultButton type='solid' text='Sign in if you already have an account' customStyle='mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium' />
+          <DefaultButton type='solid' text={btnText} customStyle='bg-[#8046F2] text-white font-medium' />
+          <DefaultButton type='solid' text={altText} customStyle='mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium' />
 
         </div>
       </div>

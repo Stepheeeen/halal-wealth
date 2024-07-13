@@ -14,9 +14,11 @@ const SignUp = () => {
     path='#'
     link='Privacy Policy, Terms of Use, and Investment Disclaimer.'
     underline='underline'
+    btnText='Create account'
+    altText='Sign in if you already have an account'
     >
-        <DefaultInput size='lg' value='placeholder' CustomStyle='mb-4' label='Email address' />
-        <IconInput value='000-000-0000' size='lg' type='tel' icon={<CountryIcon />} CustomStyle='' label='Phone number' />
+        <DefaultInput size='lg' value='placeholder' type='email' CustomStyle='mb-4' label='Email address' />
+        <IconInput value='000-000-0000' size='lg' type='tel' icon={<CountryIcon />} RighIcon={''} handleClick={''} CustomStyle='pl-[40px]' label='Phone number' />
     </AuthContainer>
   )
 }
