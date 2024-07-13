@@ -6,7 +6,15 @@ import { CountryIcon } from '../../../../public/assets/icons/index'
 
 const SignUp = () => {
   return (
-    <AuthContainer src={DefaultImage} title='Create a new account' text='Safe and Secure. We will never share your data.'>
+    <AuthContainer 
+    src={DefaultImage} 
+    title='Create a new account' 
+    text='Safe and Secure. We will never share your data.'
+    terms='By creating an account, you agree to Halal wealth’s'
+    path='#'
+    link='Privacy Policy, Terms of Use, and Investment Disclaimer.'
+    underline='underline'
+    >
         <DefaultInput size='lg' value='placeholder' CustomStyle='mb-4' label='Email address' />
         <IconInput value='000-000-0000' size='lg' type='tel' icon={<CountryIcon />} CustomStyle='' label='Phone number' />
     </AuthContainer>

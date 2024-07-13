@@ -1,11 +1,15 @@
 import React from 'react'
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
-const DefaultButton = () => {
+const DefaultButton = ({type, text, customStyle} : {type: string; text: string; customStyle: string;}) => {
   return (
-    <div>
-      
-    </div>
+    <Button 
+    variant={type}
+    className={`px-4 py-3 w-full rounded-lg ${customStyle}`}
+    >
+    {text}
+  </Button>
   )
 }
 
-export default {DefaultButton}
+export {DefaultButton}

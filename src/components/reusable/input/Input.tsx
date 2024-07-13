@@ -9,10 +9,16 @@ import {
     InputRightElement
 } from '@chakra-ui/react'
 
+const InputLabel = ({label}: {label: string;}) => {
+    return(
+    <p className='mb-[5px] font-medium text-[15px]'>{label}</p>
+    )
+}
+
 const DefaultInput = ({ value, size, CustomStyle, label }: { value: string; size: string; CustomStyle: string; label: string; }) => {
     return (
         <>
-        <p className='mb-[8px] font-medium text-[15px]'>{label}</p>
+        <InputLabel label={label} />
         <Input
             placeholder={value}
             size={size}
@@ -25,7 +31,7 @@ const DefaultInput = ({ value, size, CustomStyle, label }: { value: string; size
 const IconInput = ({ icon, type, value, size, CustomStyle, label }: { icon: any; type: string; value: string; size: string; CustomStyle: string; label: string; }) => {
     return (
         <>
-        <p className='mb-3 font-medium text-[15px]'>{label}</p>
+        <InputLabel label={label} />
         <InputGroup>
             <InputLeftElement pointerEvents="none" className="h-full flex items-center pl-3">
                 <span className="text-gray-500">{icon}</span>
@@ -42,4 +48,4 @@ const IconInput = ({ icon, type, value, size, CustomStyle, label }: { icon: any;
     )
 }
 
-export { DefaultInput, IconInput }
+export { DefaultInput, IconInput, InputLabel }
