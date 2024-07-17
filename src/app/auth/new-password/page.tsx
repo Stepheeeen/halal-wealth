@@ -1,7 +1,6 @@
 "use client"
 import React from "react";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
 import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
