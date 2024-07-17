@@ -1,14 +1,14 @@
 "use client"
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
-import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
+import { IconInput } from "@/components/reusable/input/Input";
 import { HideIcon, ShowIcon } from "../../../../public/assets/icons";
 
-const newPassword = () => {
+const NewPassword = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
   return (
     <AuthContainer
       src={DefaultImage}
@@ -49,4 +49,4 @@ const newPassword = () => {
   );
 };
 
-export default newPassword;
+export default NewPassword;
