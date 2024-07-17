@@ -20,6 +20,7 @@ const Welcome = () => {
       altText=""
       customStyle="hidden"
       display=""
+      href=""
     >
       <DefaultInput
         size="lg"

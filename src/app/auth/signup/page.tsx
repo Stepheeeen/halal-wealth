@@ -19,6 +19,7 @@ const SignUp = () => {
       altText="Sign in if you already have an account"
       customStyle=""
       display="hidden"
+      href=""
     >
       <DefaultInput
         size="lg"

@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -22,6 +23,7 @@ const newPassword = () => {
       altText=""
       customStyle="hidden"
       display=""
+      href=""
     >
       <IconInput
         value="password"

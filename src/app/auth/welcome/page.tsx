@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { useState } from "react";
 import AuthContainer from "@/components/auth/Container";
@@ -21,6 +22,7 @@ const Welcome = () => {
       altText="Switch Account"
       customStyle=""
       display="hidden"
+      href=""
     >
       <IconInput
         value="password"

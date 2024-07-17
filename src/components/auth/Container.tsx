@@ -17,6 +17,7 @@ const AuthContainer = ({
   altText,
   customStyle,
   display,
+  href,
 }: {
   src: StaticImageData | string;
   children: ReactNode;
@@ -30,6 +31,7 @@ const AuthContainer = ({
   altText: string;
   customStyle: string;
   display: string;
+  href: string;
 }) => {
   return (
     <div className="w-[100%] flex items-center">
@@ -38,7 +40,9 @@ const AuthContainer = ({
       </div>
       <div className="w-[53%] flex justify-center items-center flex-col">
         <div className="w-[70%]">
-        <Image src={Back} alt="authentication image" className={`h-[30px] w-[70px] ${display}`}/>
+          <Link href={href}>
+            <Image src={Back} alt="authentication image" className={`h-[30px] w-[70px] ${display}`} />
+          </Link>
           <h1 className="font-semibold text-[34px]">{title}</h1>
           <p className="font-medium leading-loose">{text}</p>
           <form className="mt-8">{children}</form>

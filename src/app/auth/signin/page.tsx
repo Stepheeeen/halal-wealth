@@ -23,6 +23,7 @@ const SignIn = () => {
       altText="Create an account if you don’t have one"
       customStyle=""
       display="hidden"
+      href=""
     >
       <DefaultInput
         size="lg"
