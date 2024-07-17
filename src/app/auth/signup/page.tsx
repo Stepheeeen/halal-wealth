@@ -1,3 +1,4 @@
+
 import React from "react";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
@@ -17,6 +18,7 @@ const SignUp = () => {
       btnText="Create account"
       altText="Sign in if you already have an account"
       customStyle=""
+      display="hidden"
     >
       <DefaultInput
         size="lg"

@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { useState } from "react";
 import AuthContainer from "@/components/auth/Container";
@@ -6,31 +5,23 @@ import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
 import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
 import { HideIcon, ShowIcon } from "../../../../public/assets/icons";
 
-const SignIn = () => {
+const Welcome = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-
   return (
     <AuthContainer
       src={DefaultImage}
-      title="Sign in to your account"
-      text="Securely sign in to your Halal wealth account"
+      title="Welcome back, Freeborn!"
+      text="Enter your password to continue to your password"
       terms=""
       path="#"
       link="I forgot my password"
       underline=""
       btnText="Sign In"
-      altText="Create an account if you don’t have one"
+      altText="Switch Account"
       customStyle=""
       display="hidden"
     >
-      <DefaultInput
-        size="lg"
-        value="placeholder"
-        type="email"
-        CustomStyle="mb-4"
-        label="Email address"
-      />
       <IconInput
         value="password"
         size="lg"
@@ -39,10 +30,10 @@ const SignIn = () => {
         icon={""}
         handleClick={handleClick}
         RighIcon={show ? <HideIcon /> : <ShowIcon />}
-        label="Phone number"
+        label="Password"
       />
     </AuthContainer>
   );
 };
 
-export default SignIn;
+export default Welcome;

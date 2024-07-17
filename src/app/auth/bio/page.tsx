@@ -1,3 +1,4 @@
+
 import React from "react";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
@@ -20,6 +21,7 @@ const bio = () => {
       btnText="Continue"
       altText=""
       customStyle="hidden"
+      display=""
     >
       <DefaultInput
         size="lg"

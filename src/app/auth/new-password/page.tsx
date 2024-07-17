@@ -1,36 +1,28 @@
-"use client";
 import React from "react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
 import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
 import { HideIcon, ShowIcon } from "../../../../public/assets/icons";
 
-const SignIn = () => {
+const newPassword = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-
   return (
     <AuthContainer
       src={DefaultImage}
-      title="Sign in to your account"
-      text="Securely sign in to your Halal wealth account"
+      title="Create a new password"
+      text="Create a new password and keep it safe"
       terms=""
       path="#"
-      link="I forgot my password"
+      link=""
       underline=""
-      btnText="Sign In"
-      altText="Create an account if you don’t have one"
-      customStyle=""
-      display="hidden"
+      btnText="Continue"
+      altText=""
+      customStyle="hidden"
+      display=""
     >
-      <DefaultInput
-        size="lg"
-        value="placeholder"
-        type="email"
-        CustomStyle="mb-4"
-        label="Email address"
-      />
       <IconInput
         value="password"
         size="lg"
@@ -39,10 +31,21 @@ const SignIn = () => {
         icon={""}
         handleClick={handleClick}
         RighIcon={show ? <HideIcon /> : <ShowIcon />}
-        label="Phone number"
+        label="Enter new password"
+      />
+
+      <IconInput
+        value="password"
+        size="lg"
+        CustomStyle=""
+        type={show ? "text" : "password"}
+        icon={""}
+        handleClick={handleClick}
+        RighIcon={show ? <HideIcon /> : <ShowIcon />}
+        label="Confirm new password"
       />
     </AuthContainer>
   );
 };
 
-export default SignIn;
+export default newPassword;
