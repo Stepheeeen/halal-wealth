@@ -4,7 +4,7 @@ import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
 import { DefaultPinInput } from "@/components/reusable/input/Input";
 
-const ConfirmEmailOTP = () => {
+const ForgotPasswordOTP = () => {
 
   return (
     <AuthContainer
@@ -29,4 +29,4 @@ const ConfirmEmailOTP = () => {
   );
 };
 
-export default ConfirmEmailOTP ;
+export default ForgotPasswordOTP ;
