@@ -20,6 +20,8 @@ const bvn = () => {
       customStyle=""
       display=""
       href=""
+      onClick={""}
+      altOnClick={""}
     >
       <DefaultInput
         size="lg"

@@ -23,6 +23,8 @@ const Welcome = () => {
       customStyle=""
       display="hidden"
       href=""
+      onClick={""}
+      altOnClick={""}
     >
       <IconInput
         value="password"

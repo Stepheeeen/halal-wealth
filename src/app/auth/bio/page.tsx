@@ -23,6 +23,8 @@ const bio = () => {
       customStyle="hidden"
       display=""
       href=""
+      onClick={""}
+      altOnClick={""}
     >
       <DefaultInput
         size="lg"

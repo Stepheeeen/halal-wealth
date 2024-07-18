@@ -21,6 +21,8 @@ const Welcome = () => {
       customStyle="hidden"
       display=""
       href=""
+      onClick={""}
+      altOnClick={""}
     >
       <DefaultInput
         size="lg"

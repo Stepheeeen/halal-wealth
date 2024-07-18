@@ -20,6 +20,8 @@ const SignUp = () => {
       customStyle=""
       display="hidden"
       href=""
+      onClick={""}
+      altOnClick={""}
     >
       <DefaultInput
         size="lg"

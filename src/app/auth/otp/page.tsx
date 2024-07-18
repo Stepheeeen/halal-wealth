@@ -20,6 +20,8 @@ const ConfirmEmailOTP = () => {
       customStyle="hidden"
       display=""
       href=""
+      onClick={""}
+      altOnClick={""}
     >
        <DefaultPinInput
         length={6}

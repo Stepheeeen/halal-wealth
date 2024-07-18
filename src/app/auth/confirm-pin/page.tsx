@@ -20,6 +20,8 @@ const CreatePin = () => {
             customStyle="hidden"
             display=""
             href=""
+            onClick = {""}
+            altOnClick = {""}
         >
             <DefaultPinInput
                 length={4}

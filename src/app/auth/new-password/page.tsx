@@ -23,6 +23,8 @@ const NewPassword = () => {
       customStyle="hidden"
       display=""
       href=""
+      onClick={""}
+      altOnClick={""}
     >
       <IconInput
         value="password"

@@ -18,6 +18,8 @@ const AuthContainer = ({
   customStyle,
   display,
   href,
+  onClick,
+  altOnClick,
 }: {
   src: StaticImageData | string;
   children: ReactNode;
@@ -32,6 +34,9 @@ const AuthContainer = ({
   customStyle: string;
   display: string;
   href: string;
+  onClick: any;
+  altOnClick: any;
+
 }) => {
   return (
     <div className="w-[100%] flex items-center">
@@ -58,12 +63,14 @@ const AuthContainer = ({
             type="solid"
             text={btnText}
             customStyle="bg-[#8046F2] text-white font-medium"
+            onClick={onClick}
           />
           <div className={customStyle}>
             <DefaultButton
               type="solid"
               text={altText}
               customStyle={`mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium`}
+              onClick={altOnClick}
             />
           </div>
         </div>
