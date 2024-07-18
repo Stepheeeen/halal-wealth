@@ -11,10 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { PinInput, PinInputField, PinInputProps } from "@chakra-ui/react";
 
-interface Option {
-  value: string;
-  text: string;
-}
+
 
 const InputLabel = ({ label }: { label: string }) => {
   return <p className="mb-[5px] font-medium text-[15px]">{label}</p>;
@@ -93,6 +90,10 @@ const IconInput = ({
   );
 };
 
+interface Option {
+  value: string;
+  text: string;
+}
 const OptionsSelect = ({
   label,
   options,
