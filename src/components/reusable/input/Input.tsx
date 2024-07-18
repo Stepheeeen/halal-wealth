@@ -9,6 +9,8 @@ import {
   InputRightElement,
   Select,
 } from "@chakra-ui/react";
+import { PinInput, PinInputField, PinInputProps } from "@chakra-ui/react";
+
 interface Option {
   value: string;
   text: string;
@@ -118,4 +120,18 @@ const OptionsSelect = ({
   );
 };
 
-export { DefaultInput, IconInput, InputLabel, OptionsSelect };
+
+type DefaultPinInputProps = PinInputProps & {
+  length: number;
+};
+const DefaultPinInput = ({ length, ...props }: DefaultPinInputProps) => {
+  return (
+    <PinInput {...props}>
+      {Array.from({ length }, (_, index) => (
+        <PinInputField key={index} />
+      ))}
+    </PinInput>
+  );
+};
+
+export { DefaultInput, IconInput, InputLabel, OptionsSelect, DefaultPinInput };
