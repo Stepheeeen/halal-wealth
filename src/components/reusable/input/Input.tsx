@@ -122,14 +122,14 @@ const OptionsSelect = ({
 };
 
 
-type DefaultPinInputProps = PinInputProps & {
+type DefaultPinInputProps = Omit<PinInputProps, 'children'> & {
   length: number;
 };
 const DefaultPinInput = ({ length, ...props }: DefaultPinInputProps) => {
   return (
     <PinInput {...props}>
       {Array.from({ length }, (_, index) => (
-        <PinInputField key={index} />
+        <PinInputField key={index} className="w-[60px] h-[60px] ml-[10px] rounded-lg text-center bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" />
       ))}
     </PinInput>
   );

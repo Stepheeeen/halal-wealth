@@ -9,7 +9,7 @@ const ConfirmEmailOTP = () => {
   return (
     <AuthContainer
       src={DefaultImage}
-      title="Confirm your email address"
+      title="Enter OTP"
       text="Please enter the 6-digit code sent to your email address"
       terms="Didn’t get the code?  "
       path="#"
