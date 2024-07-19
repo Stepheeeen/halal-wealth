@@ -5,7 +5,7 @@ import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
 import { DefaultInput} from "@/components/reusable/input/Input";
 import { DefaultModal } from "@/components/reusable/modal/modal";
 
-const bvn = () => {
+const BVN = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => setIsOpen(true);
@@ -49,4 +49,4 @@ const bvn = () => {
   );
 };
 
-export default bvn;
+export default BVN;
