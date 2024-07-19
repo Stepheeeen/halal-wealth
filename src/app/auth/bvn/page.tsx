@@ -1,12 +1,18 @@
-
-import React from "react";
+"use client"
+import React, {useState} from "react";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
-import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
-import { CountryIcon } from "../../../../public/assets/icons/index";
+import { DefaultInput} from "@/components/reusable/input/Input";
+import { DefaultModal } from "@/components/reusable/modal/modal";
 
 const bvn = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+
   return (
+    <>
     <AuthContainer
       src={DefaultImage}
       title="BVN Verification"
@@ -21,7 +27,7 @@ const bvn = () => {
       display=""
       href=""
       onClick={""}
-      altOnClick={""}
+      altOnClick={handleOpen}
     >
       <DefaultInput
         size="lg"
@@ -30,7 +36,16 @@ const bvn = () => {
         CustomStyle="mb-4"
         label="Bank verification number"
       />
+
+      
     </AuthContainer>
+    <DefaultModal 
+    isOpen={isOpen}
+    onClose={handleClose}
+    onOpen={handleOpen}
+    />
+
+    </>
   );
 };
 
