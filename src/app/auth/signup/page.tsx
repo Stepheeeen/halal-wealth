@@ -16,7 +16,7 @@ const SignUp = () => {
       link="Privacy Policy, Terms of Use, and Investment Disclaimer."
       underline="underline"
       btnText="Create account"
-      altText="Sign in if you already have an account"
+      altText="Already have an account?"
       customStyle=""
       display="hidden"
       href=""

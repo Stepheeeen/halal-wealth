@@ -20,7 +20,7 @@ const SignIn = () => {
       link="I forgot my password"
       underline=""
       btnText="Sign In"
-      altText="Create an account if you don’t have one"
+      altText="Don’t have an account?"
       customStyle=""
       display="hidden"
       href=""
