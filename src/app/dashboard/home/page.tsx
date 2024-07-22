@@ -3,7 +3,9 @@ import DashboardContainer from '@/components/dashboard/dashboardContainer';
 
 const Page = () => {
   return (
-    <DashboardContainer>
+    <DashboardContainer
+    PageTItle='Dashboard'
+    >
         Your content goes here.
     </DashboardContainer>
   );
