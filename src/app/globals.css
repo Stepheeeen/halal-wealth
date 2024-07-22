@@ -20,3 +20,14 @@
     box-sizing: border-box;
     font-family: 'GeneralSans', sans-serif;
 }
+
+.active::before{
+    content: '.';
+    height: 100%;
+    width: 4px;
+    background: #8046F2;
+    margin-left: -11px;
+    margin-right: 5px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
