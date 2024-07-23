@@ -6,7 +6,7 @@ const Page = () => {
     <DashboardContainer
     PageTItle='Dashboard'
     >
-        Your content goes here.
+        card
     </DashboardContainer>
   );
 };
