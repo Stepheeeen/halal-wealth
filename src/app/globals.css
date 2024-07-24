@@ -48,3 +48,16 @@
   font-size: 15px;
   margin-bottom: -4px;
 }
+.balanceDiv h1{
+  font-weight: 500;
+  font-size: 18px;
+}
+.savingsDiv h1{
+  margin-bottom: 0;
+}
+.savingsDiv {
+  text-wrap: wrap;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 400;
+}

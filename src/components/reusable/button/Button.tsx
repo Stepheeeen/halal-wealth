@@ -54,10 +54,12 @@ const CustomButton = ({
       {Context}
       <div className={`${ButtonStyling}`}>
         <div className={`${childDiv}`}>
-        <h1 className="dashboardH1">
-          {title}
-        </h1>
-        {text}
+          <h1 className="dashboardH1">
+            <p className="text-wrap">
+              {title}
+            </p>
+          </h1>
+          {text}
         </div>
 
         {icon}
