@@ -1,13 +1,13 @@
 @font-face {
-    font-family: 'Miliki';
-    src: url('../../public/assets/fonts/Millik.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Miliki';
+  src: url('/assets/fonts/Millik.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'GeneralSans';
-    src: url('../../public/assets/fonts/GeneralSans-Variable.ttf');
+  font-family: 'GeneralSans';
+  src: url('/assets/fonts/GeneralSans-Variable.ttf');
 }
 
 @tailwind base;
@@ -15,19 +15,31 @@
 @tailwind utilities;
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'GeneralSans', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'GeneralSans', sans-serif;
 }
 
-.active::before{
-    content: '.';
-    height: 100%;
-    width: 4px;
-    background: #8046F2;
-    margin-left: -11px;
-    margin-right: 5px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+.active::before {
+  content: '.';
+  height: 100%;
+  width: 4px;
+  background: #8046F2;
+  margin-left: -11px;
+  margin-right: 5px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.walletBg {
+  background-image: url('../../public/assets/images/walletOverlay.png');
+  background-size: cover;
+  background-position: contain;
+  background-repeat: no-repeat;
+  
+}
+
+::-webkit-scrollbar{
+  display: none;
 }
