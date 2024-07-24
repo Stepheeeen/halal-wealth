@@ -19,7 +19,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <div className='fixed h-[100vh] w-[20%] top-0 left-0 bg-white shadow-lg p-2'>
+    <div className='fixed h-[100vh] w-[20%] top-0 left-0 bg-white shadow-lg p-2 z-[10]'>
       <div className='mt-[-5px]'>
         <Image src={Logo} alt='logo' />
       </div>

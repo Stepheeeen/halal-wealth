@@ -43,3 +43,8 @@
 ::-webkit-scrollbar{
   display: none;
 }
+.dashboardH1 {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: -4px;
+}

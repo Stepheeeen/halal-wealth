@@ -1,9 +1,9 @@
 import React,{ReactNode} from 'react'
 import { Button, ButtonSpinner } from '@chakra-ui/react';
 
-const Card = ({children, cardStyle}:{children:ReactNode; cardStyle: string;}) => {
+const DefaultCard = ({children, cardStyle}:{children:ReactNode; cardStyle: string;}) => {
   return (
-    <div className={`${cardStyle}`}>
+    <div className={`rounded ${cardStyle}`}>
       {children}
     </div>
   )
@@ -11,7 +11,7 @@ const Card = ({children, cardStyle}:{children:ReactNode; cardStyle: string;}) =>
 
 const BalanceCard = ({customStyle, styleName, CardTitle, hideBalance, BalanceIcon, Balance, handleClick1, handleClick2, button1, button2, buttonIcon1, buttonIcon2, styling1, styling2}:{customStyle: any; styleName: string;CardTitle: string; hideBalance: any; BalanceIcon: any; Balance: string; handleClick1: any; handleClick2: any; button1: string; button2: string; buttonIcon1: any; buttonIcon2: any; styling1: string; styling2: string;}) => {
   return (
-    <div className={`w-[425px] rounded-lg h-[190px] p-5 text-[#fff] mr-[5px] ${customStyle} ${styleName}`}>
+    <div className={`w-[425px] rounded-lg h-[190px] p-5 text-[#fff] ${customStyle} ${styleName}`}>
       <div className='flex items-center'>
         <p>{CardTitle}</p>
         <Button onClick={hideBalance} className='ml-[15px]'>
@@ -33,5 +33,23 @@ const BalanceCard = ({customStyle, styleName, CardTitle, hideBalance, BalanceIco
   )
 }
 
+const ChildCard = ({CardTitle, cardStyle, children}: {CardTitle: string; cardStyle: string; children: ReactNode;}) => {
+  return(
+    <DefaultCard cardStyle={`bg-white p-3 shadow-sm ${cardStyle}`}>
+        <h1 className='text-[#5C556C] font-[500] mb-2 text-[16px]'>{CardTitle}</h1>
+        <div>
+          {children}
+        </div>
+    </DefaultCard>
+  )
+}
 
-export {Card, BalanceCard}
+const CustomCard = ({children}: {children: ReactNode;}) => {
+  return(
+    <div>
+      {children}
+    </div>
+  )
+}
+
+export {DefaultCard, BalanceCard, ChildCard, CustomCard}
