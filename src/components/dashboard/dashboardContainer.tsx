@@ -8,7 +8,7 @@ const DashboardContainer = ({ children, PageTItle }: { children: ReactNode; Page
     <div>
       <Sidebar />
       <Navbar PageTitle={PageTItle} />
-      <main className='ml-[20%] mt-[5%] bg-[#F9FAFB] p-4'>
+      <main className='ml-[20%] mt-[5%] bg-[#F9FAFB] p-4 pb-7'>
       {children}
       </main>
       <Footer />

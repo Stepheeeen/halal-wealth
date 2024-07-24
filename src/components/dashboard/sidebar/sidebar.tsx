@@ -24,9 +24,9 @@ const Sidebar = () => {
         <Image src={Logo} alt='logo' />
       </div>
       {sidebar.map((link, i) => (
-        <Link href={link.path} key={i} className={`flex mt-[10px] items-center p-3 rounded hover:bg-[#F5F1FE] ${pathname === link.path ? 'text-[#8046F2] bg-[#F5F1FE] active' : ''}`} style={{}}>
+        <Link href={link.path} key={i} className={`flex mt-[10px] items-center p-3 rounded hover:bg-[#F5F1FE] ${pathname === link.path ? 'text-[#8046F2] bg-[#F5F1FE] font-[600] active' : ''}`}>
           {pathname === link.path ? link.ActiveIcon : link.icon}
-          <h1 className='ml-[5px] font-[500]'>{link.name}</h1>
+          <h1 className='ml-[5px] font-[400] text-[17px]'>{link.name}</h1>
         </Link>
       ))}
       <Button className='text-[#FF4159] mt-[10px] p-3 rounded hover:bg-[#ff415a14] w-full'>
