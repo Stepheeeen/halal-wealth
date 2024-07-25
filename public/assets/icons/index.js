@@ -207,5 +207,19 @@ export const SettingIconActive = () => (
     </svg>
 )
 
-
-// images
+export const BackIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="12" fill="#F5F1FE" />
+        <mask id="mask0_3072_53544" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="20">
+            <rect x="2" y="2" width="20" height="20" fill="#D9D9D9" />
+        </mask>
+        <g mask="url(#mask0_3072_53544)">
+            <path d="M12.0002 18.3548L5.646 12.0007L12.0002 5.64648L12.896 6.54232L8.04183 11.3757H18.3543V12.6257H8.04183L12.896 17.459L12.0002 18.3548Z" fill="#14013A" />
+        </g>
+    </svg>
+)
+export const NotificationIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.9932 7.042C17.4802 3.017 14.0542 0 9.99621 0C5.93821 0 2.50621 3.021 1.99721 7.051L0.866211 16H5.10021C5.56321 18.282 7.58121 20 10.0002 20C12.4192 20 14.4372 18.282 14.9002 16H19.1362L17.9932 7.042ZM10.0002 18C8.69421 18 7.58321 17.165 7.17121 16H12.8292C12.4172 17.165 11.3062 18 10.0002 18ZM3.13421 14L3.98121 7.302C4.36421 4.272 6.94121 2 9.99621 2C13.0512 2 15.6232 4.268 16.0092 7.295L16.8642 14H3.13421Z" fill="#14013A" />
+    </svg>
+)
