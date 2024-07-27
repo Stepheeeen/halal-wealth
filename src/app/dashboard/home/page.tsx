@@ -53,6 +53,18 @@ const Page = () => {
   const ElectricityOpen = () => setElectricity(true);
   const ElectricityClose = () => setElectricity(false);
 
+  // Bank Transfer modal function
+  const [Transfer, setTransfer] = useState(false);
+  // const TransferOpen = () => setTransfer(true);
+  const TransferClose = () => setTransfer(false);
+
+  // Handle secondary modal
+  const HandleTransferOpen = () => {
+    setFund(false);
+    setTransfer(true);
+
+  }
+
   return (
     <DashboardContainer
       PageTItle='Dashboard'
@@ -204,7 +216,10 @@ const Page = () => {
       {/* modal contents */}
       {/* fund wallet modal*/}
       <CustomModal ModalStyling='' isOpen={fund} modalTitle='Fund wallet' onClose={FundClose}>
-        <FundWallet />
+        <FundWallet TransferOpen={HandleTransferOpen}/>
+      </CustomModal>
+        <CustomModal ModalStyling='' isOpen={Transfer} modalTitle='Bank Transfer' onClose={TransferClose}>
+        content
       </CustomModal>
 
       {/* withdraw modal*/}
