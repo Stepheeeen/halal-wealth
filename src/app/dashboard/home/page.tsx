@@ -17,7 +17,7 @@ import eid from '../../../../public/assets/images/eid.png'
 import noTransaction from '../../../../public/assets/images/noTransaction.png'
 import Link from 'next/link';
 import { CustomModal } from '@/components/reusable/modal/modal';
-import { FundWallet } from '@/components/dashboard/content/modalContent';
+import { BankTransfer, FundWallet } from '@/components/dashboard/content/modalContent';
 
 const Page = () => {
   const [show, setShow] = useState(false);
@@ -219,7 +219,7 @@ const Page = () => {
         <FundWallet TransferOpen={HandleTransferOpen}/>
       </CustomModal>
         <CustomModal ModalStyling='' isOpen={Transfer} modalTitle='Bank Transfer' onClose={TransferClose}>
-        content
+        <BankTransfer/>
       </CustomModal>
 
       {/* withdraw modal*/}

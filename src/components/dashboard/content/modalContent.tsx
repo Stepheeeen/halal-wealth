@@ -1,6 +1,10 @@
-import React from 'react'
+"use client"
+import React,{useRef, useState, useEffect} from 'react'
 import { CustomButton } from '@/components/reusable/button/Button'
-import { BankIcon, CardIcon } from '../../../../public/assets/icons'
+import ClipboardJS from 'clipboard';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { BankIcon, BankIconLg, CardIcon, CopyIcon } from '../../../../public/assets/icons'
 
 export const FundWallet = ({TransferOpen}:{TransferOpen: any;}) => {
 
@@ -18,9 +22,53 @@ export const FundWallet = ({TransferOpen}:{TransferOpen: any;}) => {
 }
 
 export const BankTransfer = () => {
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      const clipboard = new ClipboardJS(buttonRef.current);
+
+      clipboard.on('success', () => {
+        toast.success('Copied to clipboard!');
+      });
+
+      clipboard.on('error', () => {
+        toast.error('Failed to copy.');
+      });
+
+      return () => {
+        clipboard.destroy();
+      };
+    }
+  }, []);
+
   return (
-    <div className=''>
-      transfer
+    <div className='w-full grid place-items-center h-[50%]'>
+      <div className='w-full grid place-items-center'>
+        <BankIconLg />
+        <h1>Via bank transfer</h1>
+        <p>Money transfers sent to this bank account number will automatically fund your Halal wealth.</p>
+      </div>
+
+      <div>
+        <div className='flex items-center'>
+          <h1 id='accountNumber' className='mr-2'>7238290200</h1>
+          <button
+            ref={buttonRef}
+            data-clipboard-text="7238290200"
+            className='p-2'
+            aria-label="Copy Account Number"
+          >
+            <CopyIcon />
+          </button>
+        </div>
+        <p>
+          <span>Halal Wealth</span>
+          /EBOSELE FREEBORN EHIRHERE
+        </p>
+      </div>
+
+      <ToastContainer />
     </div>
-  )
-}
+  );
+};
