@@ -27,6 +27,7 @@ const Welcome = () => {
       altOnClick={""}
     >
       <IconInput
+        onChange={''}
         value="password"
         size="lg"
         CustomStyle="mb-4"
