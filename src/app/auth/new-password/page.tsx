@@ -27,6 +27,7 @@ const NewPassword = () => {
       altOnClick={""}
     >
       <IconInput
+        onChange={''}
         value="password"
         size="lg"
         CustomStyle="mb-4"
@@ -38,6 +39,7 @@ const NewPassword = () => {
       />
 
       <IconInput
+        onChange={''}
         value="password"
         size="lg"
         CustomStyle=""

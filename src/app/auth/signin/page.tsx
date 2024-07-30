@@ -35,6 +35,7 @@ const SignIn = () => {
         label="Email address"
       />
       <IconInput
+        onChange={''}
         value="password"
         size="lg"
         CustomStyle="mb-4"

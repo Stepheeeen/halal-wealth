@@ -31,6 +31,7 @@ const SignUp = () => {
         label="Email address"
       />
       <IconInput
+        onChange={''}
         value="000-000-0000"
         size="lg"
         type="tel"
