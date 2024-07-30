@@ -102,40 +102,13 @@ export const FundWithCard = () => {
   )
 }
 
-export const Withdrawal = () => {
-  const [amount, setAmount] = useState('')
-
-  const [selectBank, setSelectBank] = useState(false);
-  const SelectBankOpen = () => setSelectBank(true);
-  const SelectBankClose = () => setSelectBank(false);
-
-  const [pin, setPin] = useState(false);
-  const PinOpen = () => setPin(true);
-  const PinClose = () => setPin(false);
-
-
-  const [success, setSucess] = useState(false);
-  const SucessOpen = () => setSucess(true);
-  const SucessClose = () => setSucess(false);
-
-  // Handle secondary modal
-  const HandleInputPinOpen = () => {
-    setSelectBank(false);
-    setPin(true);
-  }
-
-  // Handle success secondary modal
-  const HandleSucessOpen = () => {
-    // setSelectBank(false);
-    setPin(false);
-    setSucess(true);
-  }
+export const Withdrawal = ({onChange, SelectBankOpen, SelectBankClose, selectBank, HandleInputPinOpen, amount}: {onChange: any;selectBank: boolean, SelectBankClose: any; SelectBankOpen: any; HandleInputPinOpen: any; amount: any;}) => {
 
   return (
     <div className='mt-[20px]'>
       <IconInput
         value={amount}
-        onChange={(e: any,) => setAmount(e.target.value)}
+        onChange={onChange}
         size="lg"
         type="text"
         icon={<NairaIcon />}
@@ -178,37 +151,6 @@ export const Withdrawal = () => {
             customStyle="bg-[#8046F2] text-white font-medium"
             onClick={HandleInputPinOpen}
           />
-
-          <CustomModal ModalStyling='' isOpen={pin} modalTitle='' onClose={PinClose}>
-            <div className=''>
-              <h1 className='text-[16px] font-[550] '>Enter PIN</h1>
-              <p className='text-[13px] font-[430]'>Please enter your transaction PIN</p>
-              <div className='w-full grid place-items-center mt-6'>
-                <div>
-                  <DefaultPinInput
-                    length={4}
-                    otp
-                  />
-                </div>
-                <p className="text-center text-[13px] font-[500] my-12">
-
-                  Forgot your PIN?
-                  <Link href={''} className={`text-[#8046F2] ml-1`}>
-                    Reset PIN
-                  </Link>
-                </p>
-              </div>
-
-              <DefaultButton
-                type="solid"
-                text='Continue'
-                customStyle="bg-[#8046F2] text-white font-medium"
-                onClick={HandleSucessOpen}
-              />
-            </div>
-          </CustomModal>
-
-          <SuccessModal amount={amount} isOpen={success} onClose={SucessClose}/>
         </div>
       </CustomModal>
     </div>

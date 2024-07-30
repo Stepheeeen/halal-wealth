@@ -16,13 +16,22 @@ import couple from '../../../../public/assets/images/couple.png'
 import eid from '../../../../public/assets/images/eid.png'
 import noTransaction from '../../../../public/assets/images/noTransaction.png'
 import Link from 'next/link';
-import { CustomModal } from '@/components/reusable/modal/modal';
+import { CustomModal, SuccessModal } from '@/components/reusable/modal/modal';
 import { BankTransfer, FundWallet, FundWithCard, Withdrawal } from '@/components/dashboard/content/modalContent';
 import { DefaultPinInput } from '@/components/reusable/input/Input';
 
 const Page = () => {
+  // see amount function
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
+  // get amount function
+  const [amount, setAmount] = useState('')
+
+  // select bank modal function
+  const [selectBank, setSelectBank] = useState(false);
+  const SelectBankOpen = () => setSelectBank(true);
+  const SelectBankClose = () => setSelectBank(false);
 
   // fund wallet modal function
   const [fund, setFund] = useState(false);
@@ -69,6 +78,11 @@ const Page = () => {
   const PinOpen = () => setPin(true);
   const PinClose = () => setPin(false);
 
+  // Success modal function
+  const [success, setSucess] = useState(false);
+  const SucessOpen = () => setSucess(true);
+  const SucessClose = () => setSucess(false);
+
   // Handle bank transfer secondary modal
   const HandleTransferOpen = () => {
     setFund(false);
@@ -81,6 +95,22 @@ const Page = () => {
     setFundWithCard(true);
   }
 
+    // Handle success secondary modal
+    const HandleSucessOpen = () => {
+      // setSelectBank(false);
+      setPin(false);
+      setSucess(true);
+    }
+
+    const HandleInputPinOpen = () => {
+      setSelectBank(false);
+      setPin(true)
+    }
+
+    const HandleSucessClose = () => {
+      setSucess(false);
+      setWithdraw(false);
+    }
 
   return (
     <DashboardContainer
@@ -244,7 +274,7 @@ const Page = () => {
 
       {/* withdraw modal*/}
       <CustomModal ModalStyling='' isOpen={withdraw} modalTitle='Enter withdrawal amount' onClose={WithdrawClose}>
-        <Withdrawal />
+        <Withdrawal onChange={(e: any,) => setAmount(e.target.value)} SelectBankClose={SelectBankClose} SelectBankOpen={SelectBankOpen} selectBank={selectBank} HandleInputPinOpen={HandleInputPinOpen} amount={amount}/>
       </CustomModal>
 
       {/* airtime and data modal */}
@@ -294,10 +324,13 @@ const Page = () => {
             type="solid"
             text='Continue'
             customStyle="bg-[#8046F2] text-white font-medium"
-            onClick={''}
+            onClick={HandleSucessOpen}
           />
         </div>
       </CustomModal>
+
+      {/* Success modal */}
+      <SuccessModal amount={amount} isOpen={success} onClose={HandleSucessClose}/>
     </DashboardContainer>
   );
 };
