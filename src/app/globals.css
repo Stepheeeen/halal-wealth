@@ -61,3 +61,11 @@
   font-size: 12px;
   font-weight: 400;
 }
+
+.custom h1{
+  font-weight: 500;
+  font-size: 15px;
+}
+.custom{
+  font-weight: 470;
+}

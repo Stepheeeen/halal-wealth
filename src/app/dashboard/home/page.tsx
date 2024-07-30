@@ -17,7 +17,7 @@ import eid from '../../../../public/assets/images/eid.png'
 import noTransaction from '../../../../public/assets/images/noTransaction.png'
 import Link from 'next/link';
 import { CustomModal } from '@/components/reusable/modal/modal';
-import { BankTransfer, FundWallet } from '@/components/dashboard/content/modalContent';
+import { BankTransfer, FundWallet, FundWithCard, Withdrawal } from '@/components/dashboard/content/modalContent';
 
 const Page = () => {
   const [show, setShow] = useState(false);
@@ -53,6 +53,11 @@ const Page = () => {
   const ElectricityOpen = () => setElectricity(true);
   const ElectricityClose = () => setElectricity(false);
 
+  // Fund with card modal function
+  const [fundWithCard, setFundWithCard] = useState(false);
+  // const FundWithCardOpen = () => setFundWithCard(true);
+  const FundWithCardClose = () => setFundWithCard(false);
+
   // Bank Transfer modal function
   const [Transfer, setTransfer] = useState(false);
   // const TransferOpen = () => setTransfer(true);
@@ -62,7 +67,12 @@ const Page = () => {
   const HandleTransferOpen = () => {
     setFund(false);
     setTransfer(true);
+  }
 
+  // Handle secondary modal
+  const HandleFundWithCardOpen = () => {
+    setFund(false);
+    setFundWithCard(true);
   }
 
   return (
@@ -216,15 +226,18 @@ const Page = () => {
       {/* modal contents */}
       {/* fund wallet modal*/}
       <CustomModal ModalStyling='' isOpen={fund} modalTitle='Fund wallet' onClose={FundClose}>
-        <FundWallet TransferOpen={HandleTransferOpen}/>
+        <FundWallet TransferOpen={HandleTransferOpen} CardOpen={HandleFundWithCardOpen}/>
       </CustomModal>
         <CustomModal ModalStyling='' isOpen={Transfer} modalTitle='Bank Transfer' onClose={TransferClose}>
         <BankTransfer/>
       </CustomModal>
+      <CustomModal ModalStyling='' isOpen={fundWithCard} modalTitle='Fund with Card' onClose={FundWithCardClose}>
+        <FundWithCard/>
+      </CustomModal>
 
       {/* withdraw modal*/}
       <CustomModal ModalStyling='' isOpen={withdraw} modalTitle='Enter withdrawal amount' onClose={WithdrawClose}>
-        content
+        <Withdrawal/>
       </CustomModal>
 
       {/* airtime and data modal */}
