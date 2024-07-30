@@ -62,7 +62,29 @@ export const PurpleFundWalletIcon = () => (
             <path d="M11.25 18.75V12.75H5.25V11.25H11.25V5.25H12.75V11.25H18.75V12.75H12.75V18.75H11.25Z" fill="#8046F2" />
         </g>
     </svg>
+)
 
+export const SuccessIcon = () => (
+    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="50" fill="#1AC821" fillOpacity="0.05" />
+        <rect x="17.4032" y="16.8505" width="65.7459" height="65.7459" rx="32.8729" fill="#1AC821" fillOpacity="0.1" />
+        <rect x="17.4032" y="16.8505" width="65.7459" height="65.7459" rx="32.8729" stroke="#17B26A" strokeWidth="0.552486" />
+        <g filter="url(#filter0_d_3072_57434)">
+            <path d="M34.8613 49.7229L46.4221 61.2837L65.6901 38.1621" stroke="#1AC821" strokeWidth="3.85359" strokeLinecap="round" strokeLinejoin="round" shapeRendering="crispEdges" />
+        </g>
+        <defs>
+            <filter id="filter0_d_3072_57434" x="29.4707" y="36.2344" width="41.6104" height="33.9044" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset dy="3.4639" />
+                <feGaussianBlur stdDeviation="1.73195" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3072_57434" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_3072_57434" result="shape" />
+            </filter>
+        </defs>
+    </svg>
 )
 
 export const NairaIcon = () => (

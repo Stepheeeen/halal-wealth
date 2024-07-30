@@ -52,6 +52,7 @@ const IconInput = ({
   label,
   RighIcon,
   handleClick,
+  onChange,
 }: {
   icon: any;
   type: string;
@@ -61,6 +62,7 @@ const IconInput = ({
   label: string;
   RighIcon: any;
   handleClick: any;
+  onChange: any;
 }) => {
   return (
     <>
@@ -77,6 +79,7 @@ const IconInput = ({
           size={size}
           variant="filled"
           type={type}
+          onChange={onChange}
           className={` px-4 py-2 w-full rounded-md bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-blue-500 h-[50px] ${CustomStyle}`}
         />
         <InputRightElement

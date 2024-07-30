@@ -7,7 +7,7 @@ import {
 import { DefaultButton } from '../button/Button';
 import Image from 'next/image';
 import Home from '../../../../public/assets/images/home.png'
-import { BackIcon } from '../../../../public/assets/icons';
+import { BackIcon, SuccessIcon } from '../../../../public/assets/icons';
 
 interface DefaultModalProps {
   isOpen: boolean;
@@ -94,4 +94,18 @@ const CustomModal = ({ isOpen, onClose, ModalStyling, children, modalTitle }: Cu
   )
 }
 
-export { DefaultModal, CustomModal };
+const SuccessModal = ({isOpen, onClose, amount}: {isOpen: boolean; onClose: any; amount: string; }) => {
+  return(
+    <CustomModal ModalStyling='' isOpen={isOpen} onClose={onClose} modalTitle='Close'>
+      <div className='w-full h-[60vh] grid place-items-center'>
+        <div className='w-full grid place-items-center'>
+          <SuccessIcon/>
+          <h1 className='font-[550] text-xl text-center my-2 mt-5'>NGN {amount} withdrawal successful</h1>
+          <p className='text-center text-[14px] font-[450]'>Your withdrawal of {amount} was successful and is processing. Thank you</p>
+        </div>
+      </div>
+    </CustomModal>
+  )
+}
+
+export { DefaultModal, CustomModal, SuccessModal };

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import DashboardContainer from '@/components/dashboard/dashboardContainer';
 import { BalanceCard, ChildCard, CustomCard, DefaultCard } from '@/components/reusable/card/Card';
 import { CableIcon, ElectricIcon, FundWalletIcon, HideIconWhite, InternetIcon, NetworkIcon, NextIcon, NextIconPurple, ShowIconWhite, WithdrawIcon } from '../../../../public/assets/icons';
-import { CustomButton } from '@/components/reusable/button/Button';
+import { CustomButton, DefaultButton } from '@/components/reusable/button/Button';
 import Image from 'next/image';
 import PieChartImage from '../../../../public/assets/images/pieChartImage.png'
 import Chart from '../../../../public/assets/images/chart.png'
@@ -18,6 +18,7 @@ import noTransaction from '../../../../public/assets/images/noTransaction.png'
 import Link from 'next/link';
 import { CustomModal } from '@/components/reusable/modal/modal';
 import { BankTransfer, FundWallet, FundWithCard, Withdrawal } from '@/components/dashboard/content/modalContent';
+import { DefaultPinInput } from '@/components/reusable/input/Input';
 
 const Page = () => {
   const [show, setShow] = useState(false);
@@ -28,10 +29,10 @@ const Page = () => {
   const FundOpen = () => setFund(true);
   const FundClose = () => setFund(false);
 
-    // airtime and data modal function
-    const [airtime, setAirtime] = useState(false);
-    const AirtimeOpen = () => setAirtime(true);
-    const AirtimeClose = () => setAirtime(false);
+  // airtime and data modal function
+  const [airtime, setAirtime] = useState(false);
+  const AirtimeOpen = () => setAirtime(true);
+  const AirtimeClose = () => setAirtime(false);
 
   // withdraw funds modal function
   const [withdraw, setWithdraw] = useState(false);
@@ -63,17 +64,23 @@ const Page = () => {
   // const TransferOpen = () => setTransfer(true);
   const TransferClose = () => setTransfer(false);
 
-  // Handle secondary modal
+  // PIN modal function
+  const [pin, setPin] = useState(false);
+  const PinOpen = () => setPin(true);
+  const PinClose = () => setPin(false);
+
+  // Handle bank transfer secondary modal
   const HandleTransferOpen = () => {
     setFund(false);
     setTransfer(true);
   }
 
-  // Handle secondary modal
+  // Handle fund with card secondary modal
   const HandleFundWithCardOpen = () => {
     setFund(false);
     setFundWithCard(true);
   }
+
 
   return (
     <DashboardContainer
@@ -226,18 +233,18 @@ const Page = () => {
       {/* modal contents */}
       {/* fund wallet modal*/}
       <CustomModal ModalStyling='' isOpen={fund} modalTitle='Fund wallet' onClose={FundClose}>
-        <FundWallet TransferOpen={HandleTransferOpen} CardOpen={HandleFundWithCardOpen}/>
+        <FundWallet TransferOpen={HandleTransferOpen} CardOpen={HandleFundWithCardOpen} />
       </CustomModal>
-        <CustomModal ModalStyling='' isOpen={Transfer} modalTitle='Bank Transfer' onClose={TransferClose}>
-        <BankTransfer/>
+      <CustomModal ModalStyling='' isOpen={Transfer} modalTitle='Bank Transfer' onClose={TransferClose}>
+        <BankTransfer />
       </CustomModal>
       <CustomModal ModalStyling='' isOpen={fundWithCard} modalTitle='Fund with Card' onClose={FundWithCardClose}>
-        <FundWithCard/>
+        <FundWithCard />
       </CustomModal>
 
       {/* withdraw modal*/}
       <CustomModal ModalStyling='' isOpen={withdraw} modalTitle='Enter withdrawal amount' onClose={WithdrawClose}>
-        <Withdrawal/>
+        <Withdrawal />
       </CustomModal>
 
       {/* airtime and data modal */}
@@ -258,6 +265,38 @@ const Page = () => {
       {/* Electricity modal */}
       <CustomModal ModalStyling='' isOpen={electricity} modalTitle='Electricity' onClose={ElectricityClose}>
         content
+      </CustomModal>
+
+      {/* PIN modal */}
+      <CustomModal ModalStyling='' isOpen={pin} modalTitle='' onClose={PinClose}>
+        <div className=''>
+          <h1 className='text-[16px] font-[550] '>Enter PIN</h1>
+          <p className='text-[13px] font-[430]'>Please enter your transaction PIN</p>
+          <div className='w-full grid place-items-center mt-6'>
+            <div>
+              <DefaultPinInput
+                length={4}
+                otp
+              />
+              
+            </div>
+            <p className="text-center text-[13px] font-[500] my-12">
+
+              Forgot your PIN?
+              <Link href={''} className={`text-[#8046F2] ml-1`}>
+                Reset PIN
+              </Link>
+            </p>
+          </div>
+
+
+          <DefaultButton
+            type="solid"
+            text='Continue'
+            customStyle="bg-[#8046F2] text-white font-medium"
+            onClick={''}
+          />
+        </div>
       </CustomModal>
     </DashboardContainer>
   );
