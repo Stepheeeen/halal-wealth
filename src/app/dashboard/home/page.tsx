@@ -17,7 +17,7 @@ import eid from '../../../../public/assets/images/eid.png'
 import noTransaction from '../../../../public/assets/images/noTransaction.png'
 import Link from 'next/link';
 import { CustomModal, SuccessModal } from '@/components/reusable/modal/modal';
-import { AirtimeAndData, BankTransfer, FundWallet, FundWithCard, Withdrawal } from '@/components/dashboard/content/modalContent';
+import { AirtimeAndData, BankTransfer, CableTV, Electricity, FundWallet, FundWithCard, Internet, Withdrawal } from '@/components/dashboard/content/modalContent';
 import { DefaultPinInput } from '@/components/reusable/input/Input';
 
 const Page = () => {
@@ -283,18 +283,18 @@ const Page = () => {
       </CustomModal>
 
       {/* cable TV modal */}
-      <CustomModal ModalStyling='' isOpen={cable} modalTitle='Airtime & Data' onClose={CableClose}>
-        content
+      <CustomModal ModalStyling='' isOpen={cable} modalTitle='Cable TV' onClose={CableClose}>
+        <CableTV/>
       </CustomModal>
 
       {/* Internet modal */}
       <CustomModal ModalStyling='' isOpen={internet} modalTitle='Internet' onClose={InternetClose}>
-        content
+        <Internet/>
       </CustomModal>
 
       {/* Electricity modal */}
       <CustomModal ModalStyling='' isOpen={electricity} modalTitle='Electricity' onClose={ElectricityClose}>
-        content
+        <Electricity/>
       </CustomModal>
 
       {/* PIN modal */}

@@ -5,10 +5,11 @@ import Link from "next/link";
 import ClipboardJS from 'clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BankIcon, BankIconLg, CardIcon, CopyIcon, NairaIcon, PurpleFundWalletIcon, WalletIcon } from '../../../../public/assets/icons'
-import { DefaultPinInput, IconInput, OptionsSelect } from '@/components/reusable/input/Input';
+import { BankIcon, BankIconLg, CardIcon, CopyIcon, NairaIcon, NumberIcon, PurpleFundWalletIcon, WalletIcon } from '../../../../public/assets/icons'
+import { DefaultInput, DefaultPinInput, IconInput, OptionsSelect } from '@/components/reusable/input/Input';
 import { CustomModal, SuccessModal } from '@/components/reusable/modal/modal';
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Button } from '@chakra-ui/react'
+import Select from '../../reusable/input/MuiSelect';
 
 export const FundWallet = ({ TransferOpen, CardOpen }: { TransferOpen: any; CardOpen: any; }) => {
 
@@ -163,9 +164,23 @@ export const AirtimeAndData = () => {
   const handleTabsChange = (index: any) => {
     setSelectedIndex(index);
   };
-  const options = [
-    { value: "Male", text: "Male" },
-    { value: "Female", text: "Female" },
+  const selectBillers = [
+    {
+      value: "USD",
+      label: "IKEDC",
+    },
+    {
+      value: "EUR",
+      label: "Gotv",
+    },
+    {
+      value: "BTC",
+      label: "Startimes",
+    },
+    {
+      value: "JPY",
+      label: "Strong",
+    },
   ];
 
   return (
@@ -180,19 +195,17 @@ export const AirtimeAndData = () => {
         </TabList>
 
         <TabPanels className='w-full p-3'>
-          <TabPanel>
-
-          <OptionsSelect CustomStyle="mb-4" label="Select network provider" options={options} />
-          <OptionsSelect CustomStyle="mb-4" label="Select plan" options={options} />
+          <TabPanel className='font-[400] text-[15px]'>
+            <Select selectText='Select Network' selectProviders={selectBillers} MuiCss='' />
             <IconInput
               value={''}
               onChange={''}
               size="lg"
               type="text"
-              icon={<NairaIcon />}
+              icon={<div className='mt-[-10px]'><NumberIcon /></div>}
               RighIcon={""}
               handleClick={""}
-              CustomStyle="pl-[55px] bg-[#F9FAFB]"
+              CustomStyle="pl-[55px] bg-[#F9FAFB] font-[400] mb-3"
               label="Phone number"
             />
             <IconInput
@@ -206,12 +219,188 @@ export const AirtimeAndData = () => {
               CustomStyle="pl-[55px] bg-[#F9FAFB]"
               label="Amount"
             />
+            <DefaultButton
+              type="solid"
+              text='Continue'
+              customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[47%]"
+              onClick={''}
+            />
+
           </TabPanel>
-          <TabPanel>
-            <p>two!</p>
+          <TabPanel className='font-[400] text-[15px]'>
+
+            <Select selectText='Select Network' selectProviders={selectBillers} MuiCss='' />
+            <Select selectText='Select Network' selectProviders={selectBillers} MuiCss='mt-5' />
+            <IconInput
+              value={''}
+              onChange={''}
+              size="lg"
+              type="text"
+              icon={<div className='mt-[-10px]'><NumberIcon /></div>}
+              RighIcon={""}
+              handleClick={""}
+              CustomStyle="pl-[55px] bg-[#F9FAFB] font-[400] mb-3"
+              label="Phone number"
+            />
+            <IconInput
+              value={''}
+              onChange={''}
+              size="lg"
+              type="text"
+              icon={<NairaIcon />}
+              RighIcon={""}
+              handleClick={""}
+              CustomStyle="pl-[55px] bg-[#F9FAFB]"
+              label="Amount"
+            />
+
+            <DefaultButton
+              type="solid"
+              text='Continue'
+              customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[25%]"
+              onClick={''}
+            />
           </TabPanel>
         </TabPanels>
       </Tabs>
+    </div>
+  )
+}
+
+export const Internet = () => {
+  const selectBillers = [
+    {
+      value: "USD",
+      label: "IKEDC",
+    },
+    {
+      value: "EUR",
+      label: "Gotv",
+    },
+    {
+      value: "BTC",
+      label: "Startimes",
+    },
+    {
+      value: "JPY",
+      label: "Strong",
+    },
+  ];
+  return (
+    <div className='w-full h-[100vh] mt-[-10px]'>
+      <Select selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
+      <Select selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
+      <DefaultInput CustomStyle='mb-3' label='Smile account number' size='' type='solid' value='Placeholder' />
+      <IconInput
+        value={''}
+        onChange={''}
+        size="lg"
+        type="text"
+        icon={<NairaIcon />}
+        RighIcon={""}
+        handleClick={""}
+        CustomStyle="pl-[55px] bg-[#F9FAFB]"
+        label="Amount"
+      />
+
+      <DefaultButton
+        type="solid"
+        text='Continue'
+        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
+        onClick={''}
+      />
+    </div>
+  )
+}
+
+export const CableTV = () => {
+  const selectBillers = [
+    {
+      value: "USD",
+      label: "IKEDC",
+    },
+    {
+      value: "EUR",
+      label: "Gotv",
+    },
+    {
+      value: "BTC",
+      label: "Startimes",
+    },
+    {
+      value: "JPY",
+      label: "Strong",
+    },
+  ];
+  return (
+    <div className='w-full h-[100vh] mt-[-10px]'>
+      <Select selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
+      <Select selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
+      <DefaultInput CustomStyle='mb-3' label='Decoder number' size='' type='solid' value='Placeholder' />
+      <IconInput
+        value={''}
+        onChange={''}
+        size="lg"
+        type="text"
+        icon={<NairaIcon />}
+        RighIcon={""}
+        handleClick={""}
+        CustomStyle="pl-[55px] bg-[#F9FAFB]"
+        label="Amount"
+      />
+
+      <DefaultButton
+        type="solid"
+        text='Continue'
+        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
+        onClick={''}
+      />
+    </div>
+  )
+}
+
+export const Electricity = () => {
+  const selectBillers = [
+    {
+      value: "USD",
+      label: "IKEDC",
+    },
+    {
+      value: "EUR",
+      label: "Gotv",
+    },
+    {
+      value: "BTC",
+      label: "Startimes",
+    },
+    {
+      value: "JPY",
+      label: "Strong",
+    },
+  ];
+  return (
+    <div className='w-full h-[100vh] mt-[-10px]'>
+      <Select selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
+      <Select selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
+      <DefaultInput CustomStyle='mb-3' label='Meter number' size='' type='solid' value='Placeholder' />
+      <IconInput
+        value={''}
+        onChange={''}
+        size="lg"
+        type="text"
+        icon={<NairaIcon />}
+        RighIcon={""}
+        handleClick={""}
+        CustomStyle="pl-[55px] bg-[#F9FAFB]"
+        label="Amount"
+      />
+
+      <DefaultButton
+        type="solid"
+        text='Continue'
+        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
+        onClick={''}
+      />
     </div>
   )
 }
