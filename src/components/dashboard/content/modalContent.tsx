@@ -6,9 +6,9 @@ import ClipboardJS from 'clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BankIcon, BankIconLg, CardIcon, CopyIcon, NairaIcon, PurpleFundWalletIcon, WalletIcon } from '../../../../public/assets/icons'
-import { Button } from '@chakra-ui/react';
-import { DefaultPinInput, IconInput } from '@/components/reusable/input/Input';
+import { DefaultPinInput, IconInput, OptionsSelect } from '@/components/reusable/input/Input';
 import { CustomModal, SuccessModal } from '@/components/reusable/modal/modal';
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Button } from '@chakra-ui/react'
 
 export const FundWallet = ({ TransferOpen, CardOpen }: { TransferOpen: any; CardOpen: any; }) => {
 
@@ -102,7 +102,7 @@ export const FundWithCard = () => {
   )
 }
 
-export const Withdrawal = ({onChange, SelectBankOpen, SelectBankClose, selectBank, HandleInputPinOpen, amount}: {onChange: any;selectBank: boolean, SelectBankClose: any; SelectBankOpen: any; HandleInputPinOpen: any; amount: any;}) => {
+export const Withdrawal = ({ onChange, SelectBankOpen, SelectBankClose, selectBank, HandleInputPinOpen, amount }: { onChange: any; selectBank: boolean, SelectBankClose: any; SelectBankOpen: any; HandleInputPinOpen: any; amount: any; }) => {
 
   return (
     <div className='mt-[20px]'>
@@ -153,6 +153,65 @@ export const Withdrawal = ({onChange, SelectBankOpen, SelectBankClose, selectBan
           />
         </div>
       </CustomModal>
+    </div>
+  )
+}
+
+export const AirtimeAndData = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleTabsChange = (index: any) => {
+    setSelectedIndex(index);
+  };
+  const options = [
+    { value: "Male", text: "Male" },
+    { value: "Female", text: "Female" },
+  ];
+
+  return (
+    <div className='w-full h-[100vh]'>
+      <Tabs className='w-full' onChange={handleTabsChange}>
+        <TabList className='text-[14px] font-[450] text-[#5C5F84] pt-[20px] border-b-2 border-[#1018280D]'>
+          <Tab className={`w-1/2 pb-[10px] border-b-2 ${selectedIndex === 0 ? 'text-[#8046F2] border-[#8046F2]' : 'border-white hover:text-black'}`}
+          >AIRTIME</Tab>
+          <Tab className={`w-1/2 pb-[10px] border-b-2 ${selectedIndex === 1 ? 'text-[#8046F2] border-[#8046F2]' : 'border-white hover:text-black'
+            }`}
+          >DATA BUNDLES</Tab>
+        </TabList>
+
+        <TabPanels className='w-full p-3'>
+          <TabPanel>
+
+          <OptionsSelect CustomStyle="mb-4" label="Select network provider" options={options} />
+          <OptionsSelect CustomStyle="mb-4" label="Select plan" options={options} />
+            <IconInput
+              value={''}
+              onChange={''}
+              size="lg"
+              type="text"
+              icon={<NairaIcon />}
+              RighIcon={""}
+              handleClick={""}
+              CustomStyle="pl-[55px] bg-[#F9FAFB]"
+              label="Phone number"
+            />
+            <IconInput
+              value={''}
+              onChange={''}
+              size="lg"
+              type="text"
+              icon={<NairaIcon />}
+              RighIcon={""}
+              handleClick={""}
+              CustomStyle="pl-[55px] bg-[#F9FAFB]"
+              label="Amount"
+            />
+          </TabPanel>
+          <TabPanel>
+            <p>two!</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </div>
   )
 }

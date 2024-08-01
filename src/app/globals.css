@@ -70,3 +70,9 @@
 .custom{
   font-weight: 470;
 }
+.pad_0 section{
+  padding: 0;
+}
+.pad_0 header{
+  box-shadow: none;
+}

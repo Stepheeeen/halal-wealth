@@ -17,7 +17,7 @@ import eid from '../../../../public/assets/images/eid.png'
 import noTransaction from '../../../../public/assets/images/noTransaction.png'
 import Link from 'next/link';
 import { CustomModal, SuccessModal } from '@/components/reusable/modal/modal';
-import { BankTransfer, FundWallet, FundWithCard, Withdrawal } from '@/components/dashboard/content/modalContent';
+import { AirtimeAndData, BankTransfer, FundWallet, FundWithCard, Withdrawal } from '@/components/dashboard/content/modalContent';
 import { DefaultPinInput } from '@/components/reusable/input/Input';
 
 const Page = () => {
@@ -278,8 +278,8 @@ const Page = () => {
       </CustomModal>
 
       {/* airtime and data modal */}
-      <CustomModal ModalStyling='' isOpen={airtime} modalTitle='Airtime & Data' onClose={AirtimeClose}>
-        content
+      <CustomModal ModalStyling='pad_0' isOpen={airtime} modalTitle='Airtime & Data' onClose={AirtimeClose}>
+        <AirtimeAndData/>
       </CustomModal>
 
       {/* cable TV modal */}
