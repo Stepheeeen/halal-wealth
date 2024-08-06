@@ -12,7 +12,7 @@ const Sidebar = () => {
 
   const sidebar: { name: string, path: string, icon: ReactNode, ActiveIcon: ReactNode }[] = [
     { path: '/dashboard/home', name: 'Dashboard', icon: <DashboardIcon />, ActiveIcon: <DashboardIconActive /> },
-    { path: '/dashboard/invest', name: 'Invest', icon: <InvestIcon/>, ActiveIcon: <InvestIconActive /> },
+    { path: '/dashboard/invest/balance', name: 'Invest', icon: <InvestIcon/>, ActiveIcon: <InvestIconActive /> },
     { path: '/dashboard/savings', name: 'Savings', icon: <SavingsIcon />, ActiveIcon: <SavingsIconActive /> },
     { path: '/dashboard/asset-financing', name: 'Asset financing', icon: <FinancingIcon/>, ActiveIcon: <FinancingIconActive /> },
     { path: '/dashboard/setting', name: 'Settings', icon: <SettingIcon />, ActiveIcon: <SettingIconActive/> },
