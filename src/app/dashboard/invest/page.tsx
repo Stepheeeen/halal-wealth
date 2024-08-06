@@ -4,7 +4,9 @@ import React from 'react'
 const page = () => {
   return (
     <DashboardContainer PageTItle='Invest'>
-       new
+      <div className="w-full overflow-x-auto mt-2 whitespace-nowrap bg-white shadow-sm rounded-lg p-3">
+        
+      </div>
     </DashboardContainer>
   )
 }
