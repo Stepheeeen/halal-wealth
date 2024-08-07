@@ -36,7 +36,7 @@ const CustomButton = ({
   title,
 }: {
   type: string;
-  text: string;
+  text: any;
   customStyle: string;
   onClick: any;
   Context: any;
@@ -54,11 +54,11 @@ const CustomButton = ({
       {Context}
       <div className={`${ButtonStyling}`}>
         <div className={`${childDiv}`}>
-          <h1 className="dashboardH1">
+          <div className="dashboardH1">
             <p className="text-wrap">
               {title}
             </p>
-          </h1>
+          </div>
           {text}
         </div>
 

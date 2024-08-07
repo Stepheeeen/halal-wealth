@@ -44,7 +44,7 @@
   display: none;
 }
 .dashboardH1 {
-  font-weight: 600;
+  font-weight: 550;
   font-size: 15px;
   margin-bottom: -4px;
 }
@@ -78,4 +78,17 @@
 }
 .remove-shadow{
   box-shadow: none;
+}
+.defaultCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.defaultCard .buttonChild:nth-child(2) {
+  margin: 0 18px;
+  margin-bottom: -13px;
+}
+
+.defaultCard .buttonChild p::after{
+
 }
