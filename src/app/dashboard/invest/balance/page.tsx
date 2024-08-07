@@ -21,8 +21,16 @@ const Page = () => {
       <div className="w-full overflow-x-auto mt-2 whitespace-nowrap bg-white shadow-sm rounded-lg p-3">
         <BalanceCard customStyle='text-black p-0 ml-[-10px]' styleName='' CardTitle='Investment Total' hideBalance={handleClick} BalanceIcon={show ? <HideIcon /> : <ShowIcon />} Balance={show ? '₦ 100,000' : '****'} handleClick1={''} handleClick2={''} button1='' button2='' buttonIcon1={''} buttonIcon2={''} styling1='' styling2='' />
 
-        <ChildCard CardTitle='My Investments' cardStyle='mt-[-7%]'>
-          {/* <h1 className='font-[620] text-[50px] mb-3'>₦ 100,000</h1> */}      another useless card
+        <ChildCard CardTitle='My Investments' cardStyle='mt-[-7%] remove-shadow'>
+          <div>
+
+          </div>
+        </ChildCard>
+
+        <ChildCard CardTitle='Crete a new investment' cardStyle=' remove-shadow'>
+          <div>
+            
+          </div>
         </ChildCard>
       </div>
     </DashboardContainer>

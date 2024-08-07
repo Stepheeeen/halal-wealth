@@ -76,3 +76,7 @@
 .pad_0 header{
   box-shadow: none;
 }
+
+.remove-shadow{
+  box-shadow: none;
+}
