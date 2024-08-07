@@ -4,7 +4,7 @@ import InvestContainer from '../page'
 import { CableIcon, ElectricIcon, FundWalletIcon, HideIcon, InternetIcon, NetworkIcon, NextIcon, NextIconPurple, ShowIcon, WithdrawIcon } from '../../../../../public/assets/icons';
 import { BalanceCard, ChildCard } from '@/components/reusable/card/Card'
 
-const page = () => {
+const Page = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   return (
@@ -19,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
