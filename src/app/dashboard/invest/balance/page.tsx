@@ -41,7 +41,7 @@ const Page = () => {
           <div className='w-full flex items-start defaultCard'>
             {investmentPlan.map((card, key) => (
               <div className='w-[32%]'>
-                <CustomButton ButtonStyling='w-full flex items-center justify-between text-start ml-2 text-[14px]' Context={<Image alt='' className='w-[55px] rounded-full mb-1 ml-[-79%]' src={cash} />} customStyle={`shadow-sm border-1 border rounded-[8px] mt-3 w-[30%] items-start flex-col text-wrap buttonChild ${card.color}`} icon={''} onClick={''} text={card.text} type='solid' childDiv='text-wrap w-full' title={card.title} key={key} />
+                <CustomButton ButtonStyling='w-full flex items-center justify-between text-start ml-2 text-[14px]' Context={<Image alt='' className='w-[55px] rounded-full mb-1 ml-[-79%]' src={cash} />} customStyle={`shadow-sm border-1 border rounded-[8px] mt-3 w-[30%] items-start flex-col text-wrap buttonChild ${card.color}`} icon={''} onClick={''} text={card.text} type='solid' childDiv='text-wrap w-full' title={card.title} key={key} /> 
               </div>
             ))}
           </div>
