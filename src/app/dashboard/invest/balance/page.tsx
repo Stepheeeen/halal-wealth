@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import InvestContainer from '../page'
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import cash from '../../../../../public/assets/images/cash.png'
 import { CableIcon, ElectricIcon, FundWalletIcon, HideIcon, InternetIcon, NetworkIcon, NextIcon, NextIconPurple, ShowIcon, WithdrawIcon } from '../../../../../public/assets/icons';
 import { BalanceCard, ChildCard, DefaultCard } from '@/components/reusable/card/Card'
@@ -11,6 +12,7 @@ import { CustomButton } from '@/components/reusable/button/Button';
 const Page = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+  const router = useRouter()
 
   const investmentCard = [
     { title: 'Sukuk bonds', },
@@ -32,7 +34,7 @@ const Page = () => {
         <ChildCard CardTitle='My Investments' cardStyle='mt-[-7%] remove-shadow'>
           <div className='w-full defaultCard'>
             {investmentCard.map((card, key) => (
-              <CustomButton ButtonStyling='w-full flex items-center justify-between text-start ml-2 text-[14px]' Context={<Image alt='' className='w-[45px]' src={cash} />} customStyle='shadow-sm border-1 border rounded-[8px] mt-3 w-[30%] buttonChild' icon={<NextIcon />} onClick={''} text={<div className='flex items-center mt-1'>Balance <span className='w-[4px] h-[4px] rounded-full bg-[#14013A] mx-1'></span> <p className='text-[#17B26A] font-[570]'>NGN 175,000</p></div>} type='solid' childDiv='' title={card.title} key={key} />
+              <CustomButton ButtonStyling='w-full flex items-center justify-between text-start ml-2 text-[14px]' Context={<Image alt='' className='w-[45px]' src={cash} />} customStyle='shadow-sm border-1 border rounded-[8px] mt-3 w-[30%] buttonChild' icon={<NextIcon />} onClick={()=> {router.push('/dashboard/invest/balance/id')}} text={<div className='flex items-center mt-1'>Balance <span className='w-[4px] h-[4px] rounded-full bg-[#14013A] mx-1'></span> <p className='text-[#17B26A] font-[570]'>NGN 175,000</p></div>} type='solid' childDiv='' title={card.title} key={key} />
             ))}
           </div>
         </ChildCard>
