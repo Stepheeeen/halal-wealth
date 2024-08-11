@@ -60,7 +60,7 @@ const DefaultModal = ({ isOpen, onClose, onOpen }: DefaultModalProps) => {
 
 interface CustomModalProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: any;
   ModalStyling: string;
   children: ReactNode;
   modalTitle: string;
