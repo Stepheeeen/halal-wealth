@@ -195,7 +195,7 @@ const Page = () => {
 
           <Image alt='' src={ChartLg} className='mt-[20px]' />
 
-          <ChildCard CardTitle="Recent activities" cardStyle="mt-3 shadow">
+          <ChildCard CardTitle="Recent activities" cardStyle="mt-5 shadow">
             <ul>
               {history.map((card, i) => (
                   <li key={i} className="flex justify-between items-center mt-2">
@@ -203,7 +203,7 @@ const Page = () => {
                       {card.status}
 
                     <div className="ml-2 grid">
-                      <p className="text-[#14013A] font-[500] text-[18px]">NGN {card.amount}</p>
+                      <p className="text-[#14013A] font-[500] text-[16px]">NGN {card.amount}</p>
                       <p className="text-[#17B26A] font-[450] text-[14px]">Success</p>
                     </div>
 
