@@ -37,7 +37,11 @@
   background-size: cover;
   background-position: contain;
   background-repeat: no-repeat;
-  
+}
+
+.width{
+  width: 350px;
+  height: 170px
 }
 
 ::-webkit-scrollbar{
@@ -89,6 +93,6 @@
   margin-bottom: -13px;
 }
 
-.defaultCard .buttonChild p::after{
-
+.dashboardH1{
+  margin: 5px 0;
 }

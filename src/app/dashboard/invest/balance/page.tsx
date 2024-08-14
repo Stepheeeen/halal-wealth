@@ -8,6 +8,7 @@ import { CableIcon, ElectricIcon, FundWalletIcon, HideIcon, InternetIcon, Networ
 import { BalanceCard, ChildCard, DefaultCard } from '@/components/reusable/card/Card'
 // import { useNavigate } from 'react-router-dom';
 import { CustomButton } from '@/components/reusable/button/Button';
+import { CustomModal } from '@/components/reusable/modal/modal';
 
 const Page = () => {
   const [show, setShow] = useState(false);
@@ -34,7 +35,7 @@ const Page = () => {
         <ChildCard CardTitle='My Investments' cardStyle='mt-[-7%] remove-shadow'>
           <div className='w-full defaultCard'>
             {investmentCard.map((card, key) => (
-              <CustomButton ButtonStyling='w-full flex items-center justify-between text-start ml-2 text-[14px]' Context={<Image alt='' className='w-[45px]' src={cash} />} customStyle='shadow-sm border-1 border rounded-[8px] mt-3 w-[30%] buttonChild' icon={<NextIcon />} onClick={()=> {router.push('/dashboard/invest/balance/id')}} text={<div className='flex items-center mt-1'>Balance <span className='w-[4px] h-[4px] rounded-full bg-[#14013A] mx-1'></span> <p className='text-[#17B26A] font-[570]'>NGN 175,000</p></div>} type='solid' childDiv='' title={card.title} key={key} />
+              <CustomButton ButtonStyling='w-full flex items-center justify-between text-start ml-2 text-[14px]' Context={<Image alt='' className='w-[45px]' src={cash} />} customStyle='shadow-sm border-1 border rounded-[8px] mt-3 w-[30%] buttonChild' icon={<NextIcon />} text={<div className='flex items-center mt-1'>Balance <span className='w-[4px] h-[4px] rounded-full bg-[#14013A] mx-1'></span> <p className='text-[#17B26A] font-[570]'>NGN 175,000</p></div>} type='solid' childDiv='' onClick={''} title={card.title} key={key} />
             ))}
           </div>
         </ChildCard>
@@ -43,7 +44,7 @@ const Page = () => {
           <div className='w-full flex items-start defaultCard'>
             {investmentPlan.map((card, key) => (
               <div className='w-[32%]'>
-                <CustomButton ButtonStyling='w-full flex items-center justify-between text-start ml-2 text-[14px]' Context={<Image alt='' className='w-[55px] rounded-full mb-1 ml-[-79%]' src={cash} />} customStyle={`shadow-sm border-1 border rounded-[8px] mt-3 w-[30%] items-start flex-col text-wrap buttonChild ${card.color}`} icon={''} onClick={''} text={card.text} type='solid' childDiv='text-wrap w-full' title={card.title} key={key} /> 
+                <CustomButton ButtonStyling='w-full flex items-center justify-between text-start ml-2 text-[14px]' Context={<Image alt='' className='w-[55px] mb-1 ml-[-79%]' src={cash} />} customStyle={`shadow-sm border-1 border rounded-[8px] mt-3 w-[30%] items-start flex-col text-wrap buttonChild ${card.color}`} icon={''} onClick={()=> {router.push('/dashboard/invest/balance/id')}} text={card.text} type='solid' childDiv='text-wrap w-full h1' title={card.title} key={key} /> 
               </div>
             ))}
           </div>
