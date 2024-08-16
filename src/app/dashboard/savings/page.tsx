@@ -98,11 +98,11 @@ const Page = () => {
       />
 
       <ChildCard CardTitle="My Investments" cardStyle="mt-[-7%] remove-shadow">
-        <div className="w-full defaultCard grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="w-full defaultCard grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {investmentCard.map((card, key) => (
             <CustomButton
               key={key}
-              ButtonStyling="w-full flex items-center justify-between text-start ml-2 text-[14px]"
+              ButtonStyling="w-full flex items-center justify-between text-start text-[14px]"
               Context={<Image alt="" className="w-[45px]" src={card.src} />}
               customStyle="shadow-sm border-1 border rounded-[8px] mt-3 w-full buttonChild py-8"
               icon={<NextIconPurple />}
