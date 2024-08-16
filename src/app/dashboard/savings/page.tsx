@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import DashboardContainer from "@/components/dashboard/dashboardContainer";
-import { FundWalletIcon, HideIcon, HideIconWhite, NextIcon, NextIconPurple, ShowIcon, ShowIconWhite, WarningIcon, WithdrawIcon } from "../../../../public/assets/icons";
+import { FundWalletIcon, HideIcon, HideIconWhite, NextIcon, NextIconPurple, ShowIcon, ShowIconWhite, TransactionStatus, WarningIcon, WithdrawIcon } from "../../../../public/assets/icons";
 import { BalanceCard, ChildCard } from "@/components/reusable/card/Card";
 import cash from "../../../../public/assets/images/cash.png";
 import hajj from "../../../../public/assets/images/hajj.png";
@@ -71,6 +71,12 @@ const Page = () => {
       src: woman,
     },
   ];
+
+  const history = [
+    {status: <TransactionStatus/> , amount: '100', date: '18 March 2022'},
+    {status: <TransactionStatus/> , amount: '100', date: '18 March 2022'},
+    {status: <TransactionStatus/> , amount: '100', date: '18 March 2022'},
+  ]
 
   return (
     <DashboardContainer PageTItle="Save">
@@ -168,8 +174,8 @@ const Page = () => {
       </CustomModal>
 
 
-      <CustomModal ModalStyling='' isOpen={balance} modalTitle='[Plan name]' onClose={BalanceClose}>
-        <div className="w-full">
+      <CustomModal ModalStyling='overflow-scroll' isOpen={balance} modalTitle='[Plan name]' onClose={BalanceClose}>
+        <div className="w-full overflow-scroll">
           <BalanceCard customStyle='bg-[#4E05DC] grid place-items-center' styleName='walletBg width' CardTitle='Wallet Balance' hideBalance={handleClick} BalanceIcon={show ? <HideIconWhite /> : <ShowIconWhite />} Balance={show ? '₦ 100,000' : '****'} handleClick1={''} handleClick2={''} button1='Fund wallet' button2='Withdraw' buttonIcon1={<FundWalletIcon />} buttonIcon2={<WithdrawIcon />} styling1='bg-[#14013A] mt-[-5px]' styling2='bg-[#fff] text-[#8046F2] mt-[-5px]' />
 
           <ProgressBar progress={100000} target={500000} CustomStyle="mt-3" />
@@ -188,6 +194,27 @@ const Page = () => {
           </div>
 
           <Image alt='' src={ChartLg} className='mt-[20px]' />
+
+          <ChildCard CardTitle="Recent activities" cardStyle="mt-3 shadow">
+            <ul>
+              {history.map((card, i) => (
+                  <li key={i} className="flex justify-between items-center mt-2">
+                    <div className="flex items-center">
+                      {card.status}
+
+                    <div className="ml-2 grid">
+                      <p className="text-[#14013A] font-[500] text-[18px]">NGN {card.amount}</p>
+                      <p className="text-[#17B26A] font-[450] text-[14px]">Success</p>
+                    </div>
+
+                    </div>
+
+                    <p className="text-[#5C556C] text-[14px] font-[470]">{card.date}</p>
+                  </li>
+                ))  
+              }
+              </ul>
+          </ChildCard>
         </div>
       </CustomModal>
     </DashboardContainer>
