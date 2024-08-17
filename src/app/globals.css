@@ -33,7 +33,7 @@
 }
 
 .walletBg {
-  background-image: url('../../public/assets/images/walletOverlay.png');
+  background-image: url('../../public/assets/images/walletOverlay.png'); 
   background-size: cover;
   background-position: contain;
   background-repeat: no-repeat;
