@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import DashboardContainer from '@/components/dashboard/dashboardContainer'
-import { Button, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import { Button, Select, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import { LikedIcon, NotificationIcon } from '../../../../public/assets/icons'
 import { CustomModal } from '@/components/reusable/modal/modal'
 import Image from 'next/image'
@@ -39,7 +39,7 @@ const page = () => {
 
             <TabPanels className='w-full p-3'>
               <TabPanel className='font-[400] text-[15px]'>
-
+                  SHOPS
               </TabPanel>
               <TabPanel className='font-[400] text-[15px]'>
 
