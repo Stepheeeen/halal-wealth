@@ -6,8 +6,8 @@ import ClipboardJS from 'clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BankIcon, BankIconLg, CardIcon, CopyIcon, NairaIcon, NumberIcon, PurpleFundWalletIcon, WalletIcon } from '../../../../public/assets/icons'
-import { DefaultInput, DefaultPinInput, IconInput, OptionsSelect } from '@/components/reusable/input/Input';
-import { CustomModal, SuccessModal } from '@/components/reusable/modal/modal';
+import { DefaultInput,  IconInput, } from '@/components/reusable/input/Input';
+import { CustomModal, } from '@/components/reusable/modal/modal';
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Button } from '@chakra-ui/react'
 import Select from '../../reusable/input/MuiSelect';
 
@@ -196,7 +196,7 @@ export const AirtimeAndData = () => {
 
         <TabPanels className='w-full p-3'>
           <TabPanel className='font-[400] text-[15px]'>
-            <Select selectText='Select Network' selectProviders={selectBillers} MuiCss='' />
+            <Select selectText='Select Network' MuiBg='#F9FAFB' selectProviders={selectBillers} MuiCss='' />
             <IconInput
               value={''}
               onChange={''}
@@ -229,8 +229,8 @@ export const AirtimeAndData = () => {
           </TabPanel>
           <TabPanel className='font-[400] text-[15px]'>
 
-            <Select selectText='Select Network' selectProviders={selectBillers} MuiCss='' />
-            <Select selectText='Select Network' selectProviders={selectBillers} MuiCss='mt-5' />
+            <Select selectText='Select Network' MuiBg='#F9FAFB' selectProviders={selectBillers} MuiCss='' />
+            <Select selectText='Select Network' MuiBg='#F9FAFB' selectProviders={selectBillers} MuiCss='mt-5' />
             <IconInput
               value={''}
               onChange={''}
@@ -288,8 +288,8 @@ export const Internet = () => {
   ];
   return (
     <div className='w-full h-[100vh] mt-[-10px]'>
-      <Select selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
-      <Select selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
+      <Select MuiBg='#F9FAFB' selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
+      <Select MuiBg='#F9FAFB' selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
       <DefaultInput CustomStyle='mb-3' label='Smile account number' size='' type='solid' value='Placeholder' />
       <IconInput
         value={''}
@@ -334,8 +334,8 @@ export const CableTV = () => {
   ];
   return (
     <div className='w-full h-[100vh] mt-[-10px]'>
-      <Select selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
-      <Select selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
+      <Select MuiBg='#F9FAFB' selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
+      <Select MuiBg='#F9FAFB' selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
       <DefaultInput CustomStyle='mb-3' label='Decoder number' size='' type='solid' value='Placeholder' />
       <IconInput
         value={''}
@@ -380,8 +380,8 @@ export const Electricity = () => {
   ];
   return (
     <div className='w-full h-[100vh] mt-[-10px]'>
-      <Select selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
-      <Select selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
+      <Select MuiBg='#F9FAFB' selectText='Select Biller' selectProviders={selectBillers} MuiCss='mb-4' />
+      <Select MuiBg='#F9FAFB' selectText='Select Plan' selectProviders={selectBillers} MuiCss='my-3' />
       <DefaultInput CustomStyle='mb-3' label='Meter number' size='' type='solid' value='Placeholder' />
       <IconInput
         value={''}

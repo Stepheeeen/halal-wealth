@@ -14,12 +14,14 @@ interface SelectProps {
     selectProviders?: Option[];
     selectText: string;
     MuiCss: string;
+    MuiBg: string;
 }
 
 const Select: React.FC<SelectProps> = ({
     selectProviders = [],
     selectText,
     MuiCss,
+    MuiBg,
 }) => {
     return (
         <div className={`w-full my-3 ${MuiCss}`}>
@@ -30,7 +32,7 @@ const Select: React.FC<SelectProps> = ({
                 fullWidth
                 sx={{
                     '& .MuiInputBase-root': {
-                        backgroundColor: '#F9FAFB', // Set background color
+                        backgroundColor: {MuiBg}, // Set background color
                         borderRadius: '4px', // Optional: Add border radius
                     },
                     '& .MuiOutlinedInput-notchedOutline': {
