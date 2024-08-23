@@ -74,6 +74,7 @@ const page = () => {
 
                 <div className='grid grid-cols-4 gap-1 ml-2 py-2'>
                   {favourite.map((card, i) => (
+                    <div>
                     <DefaultCard cardStyle='bg-[#F2F4F7] w-[220px] h-[245px] p-2 rounded-xl relative grid place-items-center mb-2' key={i}>
                       <div className='absolute top-2 right-2 cursor-pointer' onClick={() => toggleLike(i)}>
                         {liked[i] ?
@@ -84,6 +85,7 @@ const page = () => {
                       </div>
                       <Image alt='asset categories' src={card.Src} className='w-[150px] h-[160px]'/>
                     </DefaultCard>
+                    </div>
                   ))}
 
                 </div>
