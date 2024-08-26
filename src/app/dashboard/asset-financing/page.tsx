@@ -125,7 +125,7 @@ const page = () => {
                 </div>
               </TabPanel>
               <TabPanel className='font-[400] text-[15px]'>
-
+                          
               </TabPanel>
             </TabPanels>
           </Tabs>
