@@ -2,13 +2,14 @@
 import React, { useState } from 'react'
 import DashboardContainer from '@/components/dashboard/dashboardContainer'
 import { Button, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import { LikedIcon, LikedIconPurple } from '../../../../public/assets/icons'
+import { BackIcon, FrontIcon, LikedIcon, LikedIconPurple, NextIcon, WarningIcon, WarningIconRed } from '../../../../public/assets/icons'
 import { CustomModal } from '@/components/reusable/modal/modal'
 import Image from 'next/image'
 import Select from '@/components/reusable/input/MuiSelect'
 import { DefaultCard } from '@/components/reusable/card/Card'
 import PesLight from '../../../../public/assets/images/PES-light.png'
 import PesBlack from '../../../../public/assets/images/PES-black.png'
+import { CustomButton, DefaultButton } from '@/components/reusable/button/Button'
 
 const page = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -48,11 +49,31 @@ const page = () => {
     { Src: PesBlack, productName: 'Xbox-Series-X-Black-Edition', productDownPrice: '100,000', price: '500,000', },
   ]
 
+  const images = [
+    PesLight,
+    PesBlack,
+    PesLight,
+  ];
+
   const [liked, setLiked] = useState<boolean[]>(Array(favourite.length).fill(false));
   const toggleLike = (index: number) => {
     // Toggle the liked state for the specific card
     const updatedLikedStates = liked.map((liked, i) => (i === index ? !liked : liked));
     setLiked(updatedLikedStates);
+  };
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
@@ -84,7 +105,7 @@ const page = () => {
 
                 <div className='grid grid-cols-4 gap-1 ml-2 py-2'>
                   {favourite.map((card, i) => (
-                    <div onClick={handleDetailsOpen} key={i} className='mb-3'>
+                    <div key={i} className='mb-3'>
                       <DefaultCard cardStyle='bg-[#F2F4F7] w-[220px] h-[245px] p-2 rounded-xl relative grid place-items-center mb-2'>
                         <div className='absolute top-2 right-2 cursor-pointer' onClick={() => toggleLike(i)}>
                           {liked[i] ?
@@ -93,7 +114,7 @@ const page = () => {
                             <LikedIcon />
                           }
                         </div>
-                        <Image alt='asset categories' src={card.Src} className='w-[150px] h-[160px]' />
+                        <Image alt='asset categories' src={card.Src} className='w-[150px] h-[160px] cursor-pointer' onClick={handleDetailsOpen} />
                       </DefaultCard>
                       <h1 className='text-[#14013A] font-[500] text-[16px]'>{card.productName}</h1>
                       <p className='text-[#5C556C] font-[470] text-[15px]'>Down payment: NGN {card.productDownPrice}</p>
@@ -134,8 +155,78 @@ const page = () => {
         </div>
       </CustomModal>
 
-      <CustomModal ModalStyling='' modalTitle='Details' isOpen={Details} onClose={handleDetailsClose} >
-        hello
+      <CustomModal ModalStyling='overflow-y-scroll overflow-x-hidden' modalTitle='Details' isOpen={Details} onClose={handleDetailsClose} >
+        <div className="relative w-full h-[250px] grid place-content-center max-w-md mx-auto p-2">
+          <Image
+            src={images[currentIndex]}
+            alt={`Slide ${currentIndex}`}
+            className="w-full h-full rounded-lg transform transition-transform duration-500 ease-in-out"
+          />
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-2 transform -translate-y-1/2"
+          >
+            <BackIcon />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-2 transform -translate-y-1/2"
+          >
+            <FrontIcon />
+          </button>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center mt-4">
+            {images.map((_, index) => (
+              <div
+                key={index}
+                className={`h-[5px] w-2 mx-[3px] rounded-full ${currentIndex === index ? 'bg-purple-600 w-6' : 'bg-gray-300'
+                  }`}
+              ></div>
+            ))}
+          </div>
+        </div>
+        <hr className='w-[400px] ml-[-11px] shadow' />
+        <div className='w-full relative py-3'>
+          {favourite.length > 0 && (
+            <div>
+              <h1 className='text-[#14013A] font-[550] text-[18px]'>{favourite[0].productName}</h1>
+              <h1 className='text-[#8046F2] font-[570] my-1 text-[18px]'>NGN {favourite[0].price}</h1>
+              <p className='text-[#5C556C] font-[450] text-[14px]'>Down payment: NGN {favourite[0].productDownPrice} <span className='text-[#5C556C]'>(6 months installment)</span></p>
+              <div className='absolute top-3 right-2 cursor-pointer'>
+                <LikedIconPurple />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className='p-2 rounded-sm bg-[#F9FAFB] my-3 text-wrap'>
+          <h1 className='text-[16px] font-[500] text-[#14013A]'>Description</h1>
+
+          <p className='text-[#5C556C] text-[14px] font-[450] mt-1'>
+            Lorem ipsum sit amet dolor relictum expurgartionis isssisisiisis isiinferalis, Lorem ipsum sit amet dolor relictum expurgartionis inferalis Lorem ipsum sit amet
+          </p>
+        </div>
+        <div className='bg-[#F7E4E7] p-1 mt-3'>
+          <div className='border border-[#D7808F] bg-[#F7E4E7] rounded-sm flex px-1 py-2'>
+            <div className="flex-shrink-0 p-2">
+              <WarningIconRed />
+            </div>
+            <div className="ml-2">
+              <h3 className="text-sm font-semibold text-gray-800">Sorry, you’re not eligible yet</h3>
+              <p className="text-sm text-gray-600">To unlock this feature, simply engage in more transactions on our app.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <DefaultButton
+          type="solid"
+          text='Request asset'
+          customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-6"
+          onClick={''}
+        />
       </CustomModal>
     </DashboardContainer>
   )

@@ -28,8 +28,8 @@ const Page = () => {
 
             <div className='w-[95%] flex items-start justify-between p-4'>
                 <h1 className='text-[54px] w-[45%] text-wrap font-[480]'>
-                Review Savings
-                plan details
+                    Review Savings
+                    plan details
                 </h1>
 
                 <div className='mt-[20px] ml-3 w-[48%] bg-[#F9FAFB] p-3 rounded-lg'>
