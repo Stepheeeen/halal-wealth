@@ -14,12 +14,21 @@ import { CustomButton, DefaultButton } from '@/components/reusable/button/Button
 const page = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState('3 months');
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
   const [Details, setDetails] = useState(false);
   const handleDetailsOpen = () => setDetails(true);
   const handleDetailsClose = () => setDetails(false);
+
+  const [plan, setPlan] = useState(false);
+
+  const handlePlanOpen = () => {
+    setDetails(false)
+    setPlan(true);
+  }
+  const handlePlanClose = () => setPlan(false);
 
 
   const handleTabsChange = (index: any) => {
@@ -76,6 +85,7 @@ const page = () => {
     );
   };
 
+
   return (
     <DashboardContainer PageTItle='Asset financing'>
       <div className='bg-[#F9FAFB]'>
@@ -124,8 +134,9 @@ const page = () => {
 
                 </div>
               </TabPanel>
+
               <TabPanel className='font-[400] text-[15px]'>
-                          
+
               </TabPanel>
             </TabPanels>
           </Tabs>
@@ -225,8 +236,85 @@ const page = () => {
           type="solid"
           text='Request asset'
           customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-6"
-          onClick={''}
+          onClick={handlePlanOpen}
         />
+      </CustomModal>
+
+      <CustomModal ModalStyling='' modalTitle='' isOpen={plan} onClose={handlePlanClose}>
+        <div className='w-full'>
+          <p>Great</p>
+          <h1 className='font-[550] mb-4'>How would you like to pay back <br />
+            for this asset?</h1>
+          <div className='rounded font-[500]'>
+            <div className="w-full max-w-md">
+              <div
+                onClick={() => setSelected('3 months')}
+                className={`p-4 mb-4 border rounded-lg cursor-pointer ${selected === '3 months' ? 'bg-[#F5F1FE] border-[#D5C1FB]' : 'bg-white'}`}
+              >
+                <div className="flex justify-between items-center">
+                  <span>
+                    <div>
+                      <h1>3 months repayment plan</h1>
+                      <p className='font-[400] text-[14px]'>You pay <strong className='font-[500] text-[15px]'>NGN 5,000</strong> per month</p>
+                    </div>
+                  </span>
+
+                  <span
+                    className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${selected === '3 months' ? 'border-[#8046F2]' : 'border-gray-400'}`}
+                  >
+                    {selected === '3 months' && <span className="w-2 h-2 bg-[#8046F2] rounded-full"></span>}
+                  </span>
+                </div>
+              </div>
+
+              <div
+                onClick={() => setSelected('6 months')}
+                className={`p-4 mb-4 border rounded-lg cursor-pointer ${selected === '6 months' ? 'bg-[#F5F1FE] border-[#D5C1FB]' : 'bg-white'}`}
+              >
+                <div className="flex justify-between items-center">
+                  <span>
+                    <div>
+                      <h1>6 months repayment plan</h1>
+                      <p className='font-[400] text-[14px]'>You pay <strong className='font-[500] text-[15px]'>NGN 3,000</strong> per month</p>
+                    </div>
+                  </span>
+                  <span
+                    className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${selected === '6 months' ? 'border-[#8046F2]' : 'border-gray-400'}`}
+                  >
+                    {selected === '6 months' && <span className="w-2 h-2 bg-[#8046F2] rounded-full"></span>}
+                  </span>
+                </div>
+              </div>
+
+              <div
+                onClick={() => setSelected('1 year')}
+                className={`p-4 mb-8 border rounded-lg cursor-pointer ${selected === '1 year' ? 'bg-[#F5F1FE] border-[#D5C1FB]' : 'bg-white'}`}
+              >
+                <div className="flex justify-between items-center">
+                  <span>
+                    <div>
+                      <h1>1 year repayment plan</h1>
+                      <p className='font-[400] text-[14px]'>You pay <strong className='font-[500] text-[15px]'>NGN 1,500</strong> per month</p>
+                    </div>
+                  </span>
+                  <span
+                    className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${selected === '1 year' ? 'border-[#8046F2]' : 'border-gray-400'}`}
+                  >
+                    {selected === '1 year' && <span className="w-2 h-2 bg-[#8046F2] rounded-full"></span>}
+                  </span>
+                </div>
+              </div>
+
+
+              <DefaultButton
+                type="solid"
+                text='Continue'
+                customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
+                onClick={handleOpen}
+              />
+            </div>
+          </div>
+        </div>
       </CustomModal>
     </DashboardContainer>
   )
