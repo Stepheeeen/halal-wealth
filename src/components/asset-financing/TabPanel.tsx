@@ -1,44 +1,71 @@
 import React from 'react'
 import Image from 'next/image'
+import PesLight from '../../../public/assets/images/PES-light.png'
 import { CustomButton, DefaultButton } from '../reusable/button/Button'
 
 const MyAssets = () => {
     const myAsset = [
-        {AssetName: 'Name of asset', Amount: '500,000', ProductImage: 'image', AmountPaid: '5000'},
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 70000, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 90000, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 5000, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 25000, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 205000, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 5000, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 87700, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 450000, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 250000, value: 73, },
+        { AssetName: 'Name of asset', Amount: 500000, ProductImage: PesLight, AmountPaid: 350000, value: 73, },
     ]
-  return (
-    <div className='grid grid-cols-3 place-content-between'>
-        {myAsset.map((card, i) => (
-            <div key={i} className='p-2 shadow'>
-                <div className='flex justify-between items-center'>
-                    <Image alt='' src={card.ProductImage} className='w-[100px]'/>
 
-                    <div>
-                        <p>{card.AssetName}</p>
+    const formatNumber = (number: number) => {
+        return number.toLocaleString();
+      };
 
-                        <h1>
-                            Amount payable
+    return (
+        <div className='grid grid-cols-3 gap-3'>
+            {myAsset.map((card, i) => {
+                const percentage = Math.floor((card.AmountPaid / card.Amount) * 100);
+                return (
+                    <div key={i} className='p-3 shadow w-[] bg-[#FFFFFF] flex flex-col justify-center rounded' >
+                        <div className='flex justify-between items-center py-2'>
+                            <Image src={card.ProductImage} alt='' className='w-[44px] h-[44px]' width={0} height={0} />
 
-                            <span></span>
+                            <div className='w-[85%] mx-1'>
+                                <p className='text-[#5C556C] font-[400] text-[12px]'>{card.AssetName}</p>
 
-                            <span>NGN {card.Amount}</span>
-                        </h1>
+                                <h1 className='text-[#5C556C] font-[450] text-[13px] flex items-center'>
+                                    Amount
+
+                                    <span className='w-[4px] h-[4px] rounded-full bg-[#14013A] mx-1'></span>
+
+                                    <p className='text-[#17B26A] font-[600]'>NGN {formatNumber(card.Amount)}</p>
+                                </h1>
+                            </div>
+
+                            <p className='font-[500] text-[#14013A] text-[18px]'>
+                                {percentage}%
+                            </p>
+                        </div>
+                        <div className="relative h-1 w-full rounded-full bg-[#E6DAFC]">
+                            <div
+                                className="absolute h-full bg-[#8046F2] rounded-full"
+                                style={{ width: `${percentage}%` }}
+                            />
+                        </div>
+                        <div className='flex justify-between items-center py-2'>
+                            <div>
+                                <p className='text-[#030517] font-[450] text-[14px]'>Amount paid</p>
+                                <h1 className='text-[#14013A] font-[550] text-[16px]'>NGN {formatNumber(card.AmountPaid)}</h1>
+                            </div>
+
+                            <DefaultButton customStyle='bg-[#8046F2] text-white w-[80px] h-[37px] rounded-[3px] font-[450]' onClick={''} text='Pay' type='solid' />
+                        </div>
+
                     </div>
-                </div>
-                    <hr />
-                <div className='flex justify-between items-center'>
-                    <div>
-                        <p>Amount paid</p>
-                        <h1>NGN {card.AmountPaid}</h1>
-                    </div>
-
-                    <DefaultButton customStyle='bg-[#8046F2] text-white' onClick={''} text='Pay' type='solid'/>
-                </div>
-
-            </div>
-        ))}
-    </div>
-  )
+                )
+            })}
+        </div >
+    )
 }
 
-export {MyAssets}
+export { MyAssets }
