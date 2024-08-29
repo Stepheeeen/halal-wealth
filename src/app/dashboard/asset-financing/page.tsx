@@ -10,6 +10,7 @@ import { DefaultCard } from '@/components/reusable/card/Card'
 import PesLight from '../../../../public/assets/images/PES-light.png'
 import PesBlack from '../../../../public/assets/images/PES-black.png'
 import { CustomButton, DefaultButton } from '@/components/reusable/button/Button'
+import { MyAssets } from '@/components/asset-financing/TabPanel'
 
 const page = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -142,7 +143,7 @@ const page = () => {
               </TabPanel>
 
               <TabPanel className='font-[400] text-[15px]'>
-
+                  <MyAssets/>
               </TabPanel>
             </TabPanels>
           </Tabs>
