@@ -22,13 +22,19 @@ const page = () => {
   const handleDetailsOpen = () => setDetails(true);
   const handleDetailsClose = () => setDetails(false);
 
+  const [Delivery, setDelivery] = useState(false);
+  const handleDeliveryClose = () => setDelivery(false);
+
   const [plan, setPlan] = useState(false);
 
   const handlePlanOpen = () => {
     setDetails(false)
     setPlan(true);
   }
-  const handlePlanClose = () => setPlan(false);
+  const handleDeliveryOpen = () => {
+    setPlan(false);
+    setDelivery(true)
+  }
 
 
   const handleTabsChange = (index: any) => {
@@ -240,7 +246,7 @@ const page = () => {
         />
       </CustomModal>
 
-      <CustomModal ModalStyling='' modalTitle='' isOpen={plan} onClose={handlePlanClose}>
+      <CustomModal ModalStyling='' modalTitle='' isOpen={plan} onClose={()=>{setPlan(false);}}>
         <div className='w-full'>
           <p>Great</p>
           <h1 className='font-[550] mb-4'>How would you like to pay back <br />
@@ -310,9 +316,19 @@ const page = () => {
                 type="solid"
                 text='Continue'
                 customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
-                onClick={handleOpen}
+                onClick={handleDeliveryOpen}
               />
             </div>
+          </div>
+        </div>
+      </CustomModal>
+
+      <CustomModal ModalStyling='' modalTitle='' isOpen={Delivery} onClose={handleDeliveryClose}>
+      <div className='w-full'>
+          <p>How can we contact you?</p>
+          <h1 className='font-[550] mb-4'>Please enter your delivery address</h1>
+          <div>
+
           </div>
         </div>
       </CustomModal>
