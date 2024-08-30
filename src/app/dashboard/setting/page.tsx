@@ -1,10 +1,11 @@
+import DashboardContainer from '@/components/dashboard/dashboardContainer'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      
-    </div>
+    <DashboardContainer PageTItle='Settings'>
+      settings
+    </DashboardContainer>
   )
 }
 

@@ -52,13 +52,13 @@ const MyAssets = () => {
                                 style={{ width: `${percentage}%` }}
                             />
                         </div>
-                        <div className='flex justify-between items-center py-2'>
-                            <div>
+                        <div className='flex justify-between items-center py-2 w-full'>
+                            <div className='W-[80%]'>
                                 <p className='text-[#030517] font-[450] text-[14px]'>Amount paid</p>
                                 <h1 className='text-[#14013A] font-[550] text-[16px]'>NGN {formatNumber(card.AmountPaid)}</h1>
                             </div>
 
-                            <DefaultButton customStyle='bg-[#8046F2] text-white w-[80px] h-[37px] rounded-[3px] font-[450]' onClick={''} text='Pay' type='solid' />
+                            <DefaultButton customStyle='bg-[#8046F2] text-white w-[16%] h-[37px] rounded-[3px] font-[450]' onClick={''} text='Pay' type='solid' />
                         </div>
 
                     </div>
