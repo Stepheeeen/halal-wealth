@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
-const modalContent = () => {
+const ModalContent = () => {
   return (
     <div>modalContent</div>
   )
 }
 
-export default modalContent
+const Card = ({Title, children}: {Title: string, children: ReactNode}) => {
+  return(
+    <div>
+    <h1 className='text-[17px] font-[550] mb-2 text-[#14013A]'>{Title}</h1>
+    <div className='bg-white shadow-sm rounded-sm mb-3 h-[315px] p-2'>
+      {children}
+    </div>
+    </div>
+  )
+}
+
+export {ModalContent, Card}
