@@ -6,11 +6,11 @@ const ModalContent = () => {
   )
 }
 
-const Card = ({Title, children}: {Title: string, children: ReactNode}) => {
+const Card = ({Title, children, height}: {Title: string, children: ReactNode, height: string}) => {
   return(
     <div>
     <h1 className='text-[17px] font-[550] mb-2 text-[#14013A]'>{Title}</h1>
-    <div className='bg-white shadow-sm rounded-sm mb-3 h-[315px] p-2'>
+    <div className={`bg-white shadow-sm rounded-sm mb-3 p-2 h-[${height}] `}>
       {children}
     </div>
     </div>
