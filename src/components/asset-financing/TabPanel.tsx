@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import PesLight from '../../../public/assets/images/PES-light.png'
-import { CustomButton, DefaultButton } from '../reusable/button/Button'
+import { DefaultButton } from '../reusable/button/Button'
 
 const MyAssets = () => {
     const myAsset = [
