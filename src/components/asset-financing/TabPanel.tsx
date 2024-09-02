@@ -22,11 +22,11 @@ const MyAssets = () => {
       };
 
     return (
-        <div className='grid grid-cols-3 gap-3'>
+        <div className='grid grid-cols-3 gap-3 bg-[#F9FAFB] py-3'>
             {myAsset.map((card, i) => {
                 const percentage = Math.floor((card.AmountPaid / card.Amount) * 100);
                 return (
-                    <div key={i} className='p-3 shadow w-[] bg-[#FFFFFF] flex flex-col justify-center rounded' >
+                    <div key={i} className='p-3 shadow bg-[#FFFFFF] flex flex-col justify-center rounded' >
                         <div className='flex justify-between items-center py-2'>
                             <Image src={card.ProductImage} alt='' className='w-[44px] h-[44px]' width={0} height={0} />
 
@@ -53,12 +53,14 @@ const MyAssets = () => {
                             />
                         </div>
                         <div className='flex justify-between items-center py-2 w-full'>
-                            <div className='W-[80%]'>
+                            <div className='W-[70%]'>
                                 <p className='text-[#030517] font-[450] text-[14px]'>Amount paid</p>
                                 <h1 className='text-[#14013A] font-[550] text-[16px]'>NGN {formatNumber(card.AmountPaid)}</h1>
                             </div>
 
-                            <DefaultButton customStyle='bg-[#8046F2] text-white w-[16%] h-[37px] rounded-[3px] font-[450]' onClick={''} text='Pay' type='solid' />
+                            <div className='w-[30%]'>
+                            <DefaultButton customStyle='bg-[#8046F2] text-white w-auto h-[37px] rounded-[3px] font-[450]' onClick={''} text='Pay' type='solid' />
+                            </div>
                         </div>
 
                     </div>
