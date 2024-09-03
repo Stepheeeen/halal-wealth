@@ -471,3 +471,41 @@ export const LockIcon = () => (
         </g>
     </svg>
 )
+export const Credit = () => (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="12" fill="white" />
+        <mask id="mask0_3072_50363" maskUnits="userSpaceOnUse" x="8" y="8" width="24" height="24">
+            <rect x="32" y="32" width="24" height="24" transform="rotate(180 32 32)" fill="#D9D9D9" />
+        </mask>
+        <g mask="url(#mask0_3072_50363)">
+            <path d="M25.7058 14.3558L26.75 15.4L16.9096 25.25H25.8558V26.75H14.3558V15.25H15.8558V24.1962L25.7058 14.3558Z" fill="#17B26A" />
+        </g>
+    </svg>
+)
+export const Debit = () => (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="12" fill="white" />
+        <mask id="mask0_3072_50372" maskUnits="userSpaceOnUse" x="8" y="8" width="24" height="24">
+            <rect x="8" y="8" width="24" height="24" fill="#D9D9D9" />
+        </mask>
+        <g mask="url(#mask0_3072_50372)">
+            <path d="M14.2942 25.6442L13.25 24.6L23.0904 14.75H14.1442V13.25H25.6442V24.75H24.1442V15.8038L14.2942 25.6442Z" fill="#FF4159" />
+        </g>
+    </svg>
+
+)
+export const CalenderIcon = () => (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="12" fill="white" />
+        <path d="M15.5 10.3047V13.3047" stroke="#8046F2" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M23.5 10.3047V13.3047" stroke="#8046F2" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M11 17.3945H28" stroke="#8046F2" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" stroke-linejoin="round" />
+        <path d="M28.5 16.8047V25.3047C28.5 28.3047 27 30.3047 23.5 30.3047H15.5C12 30.3047 10.5 28.3047 10.5 25.3047V16.8047C10.5 13.8047 12 11.8047 15.5 11.8047H23.5C27 11.8047 28.5 13.8047 28.5 16.8047Z" stroke="#8046F2" strokeWidth="1.5" strokeMiterlimit="10" strokestrokeLinecapinecap="round" strokestrokeLinecapinejoin="round" />
+        <path d="M23.1947 22.0039H23.2037" stroke="#8046F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M23.1947 25.0039H23.2037" stroke="#8046F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M19.4955 22.0039H19.5045" stroke="#8046F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M19.4955 25.0039H19.5045" stroke="#8046F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M15.7943 22.0039H15.8033" stroke="#8046F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M15.7943 25.0039H15.8033" stroke="#8046F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+)
