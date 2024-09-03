@@ -1,32 +1,42 @@
 "use client"
-import React from 'react'
+import React, {useState} from 'react'
 import Image from 'next/image'
 import { Card } from '@/components/settings/modalContent'
 import profile from '../../../../public/assets/images/profileImage.svg'
 import DashboardContainer from '@/components/dashboard/dashboardContainer'
 import { DefaultButton } from '@/components/reusable/button/Button'
 import { BankBuilding, CreditCard, FAQIcon, GreenProfile, LockIcon, NextIcon, OutlinedProfile, P2P, PINIcon, PrivacyIcon } from '../../../../public/assets/icons'
+import { CustomModal } from '@/components/reusable/modal/modal'
 
 const page = () => {
+  const [editProfile, setEditProfile] = useState(false)
+  const [identityVerification, setIdentityVerification] = useState(false)
+  const [manageBank, setManageBank] = useState(false)
+  const [nextOfKin, setNextOfKin] = useState(false)
+  const [changePassword, setChangePassword] = useState(false)
+  const [changePIN, setChangePIN] = useState(false)
   const progress = 20;
   const handleOpenModal = () => {
     alert('i am a modal')
   }
   const Account = [
-    {icon:<OutlinedProfile/>, listText:'Identity verification', onClick: handleOpenModal,},
-    {icon:<BankBuilding/>, listText:'Manage bank', onClick: handleOpenModal,},
+    {icon:<OutlinedProfile/>, listText:'Identity verification', onClick: ()=>{setIdentityVerification(true)},},
+    {icon:<BankBuilding/>, listText:'Manage bank', onClick: ()=>{setManageBank(true)},},
     {icon:<CreditCard/>, listText:'Manage cards', onClick: handleOpenModal,},
-    {icon:<P2P/>, listText:'Next of Kin', onClick: handleOpenModal,},
+    {icon:<P2P/>, listText:'Next of Kin', onClick: ()=>{setNextOfKin(true)},},
   ]
   const Security = [
-    {icon:<LockIcon/>, listText:'Change password', onClick: handleOpenModal,},
-    {icon:<PINIcon/>, listText:'Change PIN', onClick: handleOpenModal,},
+    {icon:<LockIcon/>, listText:'Change password', onClick: ()=>{setChangePassword(true)},},
+    {icon:<PINIcon/>, listText:'Change PIN', onClick: ()=>{setChangePIN(true)},},
   ]
   const Legal = [
     {icon:<PrivacyIcon/>, listText:'Privacy policy', onClick: handleOpenModal,},
     {icon:<PrivacyIcon/>, listText:'Terms', onClick: handleOpenModal,},
     {icon:<FAQIcon/>, listText:'FAQ', onClick: handleOpenModal,},
   ]
+
+  // modals
+
 
   return (
     <DashboardContainer PageTItle='Settings'>
@@ -36,7 +46,10 @@ const page = () => {
             <Image alt='' src={profile} className='w-[60px] mb-4' />
             <p className='font-[500] mb-[3px]'>Freeborn Ebosele</p>
             <p className='text-[#5C556C] font-[450]'>@freebornehirhere@gmail.com</p>
-            <DefaultButton customStyle='bg-[#F5F1FE] border border-[#E6DAFC] w-[100px] text-[#8046F2] font-[550] text-[14px] mt-2' onClick={''} text='Edit Profile' type='solid' />
+
+            <div className='w-[30%]'>
+            <DefaultButton customStyle='bg-[#F5F1FE] border border-[#E6DAFC] w-[100px] text-[#8046F2] font-[550] text-[14px] mt-2' onClick={()=>{setEditProfile(true)}} text='Edit Profile' type='solid' />
+            </div>
           </div>
 
           <div className='bg-[#ECF9F3] rounded px-2 py-4 flex items-center justify-between mt-2'>
@@ -106,6 +119,30 @@ const page = () => {
           </div>
         </Card>
       </div>
+
+      <CustomModal ModalStyling='' isOpen={editProfile} modalTitle='Edit profile' onClose={()=>{setEditProfile(false)}}>
+            hello
+      </CustomModal>
+
+      <CustomModal ModalStyling='' isOpen={identityVerification} modalTitle='Identity verification' onClose={()=>{setIdentityVerification(false)}}>
+            hello
+      </CustomModal>
+
+      <CustomModal ModalStyling='' isOpen={manageBank} modalTitle='Manage Bank' onClose={()=>{setManageBank(false)}}>
+            hello
+      </CustomModal>
+
+      <CustomModal ModalStyling='' isOpen={nextOfKin} modalTitle='Next if Kin' onClose={()=>{setNextOfKin(false)}}>
+            hello
+      </CustomModal>
+      
+      <CustomModal ModalStyling='' isOpen={changePassword} modalTitle='Change Password' onClose={()=>{setChangePassword(false)}}>
+            hello
+      </CustomModal>
+
+      <CustomModal ModalStyling='' isOpen={changePIN} modalTitle='Change PIN' onClose={()=>{setChangePIN(false)}}>
+            hello
+      </CustomModal>
     </DashboardContainer>
   )
 }

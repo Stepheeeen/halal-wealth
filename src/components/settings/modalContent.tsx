@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
 
-const ModalContent = () => {
+export const ModalContent = () => {
   return (
     <div>modalContent</div>
   )
 }
 
-const Card = ({Title, children, height}: {Title: string, children: ReactNode, height: string}) => {
+export const Card = ({Title, children, height}: {Title: string, children: ReactNode, height: string}) => {
   return(
     <div>
     <h1 className='text-[17px] font-[550] mb-2 text-[#14013A]'>{Title}</h1>
@@ -17,4 +17,10 @@ const Card = ({Title, children, height}: {Title: string, children: ReactNode, he
   )
 }
 
-export {ModalContent, Card}
+export const EditProfile = () => {
+  return(
+    <div>
+      
+    </div>
+  );
+}
