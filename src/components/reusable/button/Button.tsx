@@ -68,5 +68,27 @@ const CustomButton = ({
   );
 };
 
+const BadgeButton = () => {
+  return(
+    <p className="p-1 rounded-full border-[1.5px] border-[#f2f4f7] bg-[#F9FAFB] text-[#5C556C] text-[12px] grid place-items-center font-[500]">
+      Non submitted
+    </p>
+  )
+}
 
-export { DefaultButton, CustomButton };
+const BadgeButtonPending = () => {
+  return(
+    <p className="p-1 rounded-full border-[1.5px] border-[#FDE9CE] bg-[#FEF4E6] text-[#F79009] text-[12px] grid place-items-center font-[500]">
+      Submitted
+    </p>
+  )
+}
+const BadgeButtonSuccess = () => {
+  return(
+    <p className="p-1 rounded-full border-[1.5px] border-[#D1F0E1] bg-[#ECF9F3] text-[#17B26A] text-[12px] grid place-items-center font-[500]">
+      Verified
+    </p>
+  )
+}
+
+export { DefaultButton, CustomButton, BadgeButton, BadgeButtonPending, BadgeButtonSuccess };

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { BackIcon } from '../../../../../public/assets/icons';
 import { DefaultButton } from '@/components/reusable/button/Button';
-import { DefaultInput} from '@/components/reusable/input/Input';
+import { DefaultInput } from '@/components/reusable/input/Input';
 import InvestContainer from '../../invest/page';
 
 const Page = () => {
@@ -22,18 +22,18 @@ const Page = () => {
 
             <div className='w-[95%] flex items-center justify-between p-4'>
                 <h1 className='text-[45px] w-[45%] text-wrap font-[480]'>
-                Set a date you want to acheive your savings target
+                    Set a date you want to acheive your savings target
                 </h1>
 
                 <div className='mt-[20px] ml-3 w-[45%]'>
-                <h1 className='text-[18px] font-[600] text-[#14013A] w-[95%] mb-3'>Specifiy your saving goals</h1>
+                    <h1 className='text-[18px] font-[600] text-[#14013A] w-[95%] mb-3'>Specifiy your saving goals</h1>
 
                     <DefaultInput
-                    CustomStyle=''
-                    label='Target date'
-                    size='md'
-                    type='date'
-                    value='Placeholder'
+                        CustomStyle=''
+                        label='Target date'
+                        size='md'
+                        type='date'
+                        value='Placeholder'
                     />
 
                     <p className='text-[14px] font-[500] text-[#5C556C] w-[95%] mt-3'></p>

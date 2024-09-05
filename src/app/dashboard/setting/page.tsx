@@ -1,7 +1,7 @@
 "use client"
 import React, {useState} from 'react'
 import Image from 'next/image'
-import { Card } from '@/components/settings/modalContent'
+import { Card, EditProfile, IdentityVerification } from '@/components/settings/modalContent'
 import profile from '../../../../public/assets/images/profileImage.svg'
 import DashboardContainer from '@/components/dashboard/dashboardContainer'
 import { DefaultButton } from '@/components/reusable/button/Button'
@@ -120,27 +120,27 @@ const page = () => {
         </Card>
       </div>
 
-      <CustomModal ModalStyling='' isOpen={editProfile} modalTitle='Edit profile' onClose={()=>{setEditProfile(false)}}>
+      <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={editProfile} modalTitle='Edit profile' onClose={()=>{setEditProfile(false)}}>
+            <EditProfile/>
+      </CustomModal>
+
+      <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={identityVerification} modalTitle='Identity verification' onClose={()=>{setIdentityVerification(false)}}>
+            <IdentityVerification onClick={''}/>
+      </CustomModal>
+
+      <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={manageBank} modalTitle='Manage Bank' onClose={()=>{setManageBank(false)}}>
             hello
       </CustomModal>
 
-      <CustomModal ModalStyling='' isOpen={identityVerification} modalTitle='Identity verification' onClose={()=>{setIdentityVerification(false)}}>
-            hello
-      </CustomModal>
-
-      <CustomModal ModalStyling='' isOpen={manageBank} modalTitle='Manage Bank' onClose={()=>{setManageBank(false)}}>
-            hello
-      </CustomModal>
-
-      <CustomModal ModalStyling='' isOpen={nextOfKin} modalTitle='Next if Kin' onClose={()=>{setNextOfKin(false)}}>
+      <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={nextOfKin} modalTitle='Next if Kin' onClose={()=>{setNextOfKin(false)}}>
             hello
       </CustomModal>
       
-      <CustomModal ModalStyling='' isOpen={changePassword} modalTitle='Change Password' onClose={()=>{setChangePassword(false)}}>
+      <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={changePassword} modalTitle='Change Password' onClose={()=>{setChangePassword(false)}}>
             hello
       </CustomModal>
 
-      <CustomModal ModalStyling='' isOpen={changePIN} modalTitle='Change PIN' onClose={()=>{setChangePIN(false)}}>
+      <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={changePIN} modalTitle='Change PIN' onClose={()=>{setChangePIN(false)}}>
             hello
       </CustomModal>
     </DashboardContainer>

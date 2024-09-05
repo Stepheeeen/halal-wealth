@@ -95,22 +95,22 @@ const Page = () => {
     setFundWithCard(true);
   }
 
-    // Handle success secondary modal
-    const HandleSucessOpen = () => {
-      // setSelectBank(false);
-      setPin(false);
-      setSucess(true);
-    }
+  // Handle success secondary modal
+  const HandleSucessOpen = () => {
+    // setSelectBank(false);
+    setPin(false);
+    setSucess(true);
+  }
 
-    const HandleInputPinOpen = () => {
-      setSelectBank(false);
-      setPin(true)
-    }
+  const HandleInputPinOpen = () => {
+    setSelectBank(false);
+    setPin(true)
+  }
 
-    const HandleSucessClose = () => {
-      setSucess(false);
-      setWithdraw(false);
-    }
+  const HandleSucessClose = () => {
+    setSucess(false);
+    setWithdraw(false);
+  }
 
   return (
     <DashboardContainer
@@ -274,27 +274,27 @@ const Page = () => {
 
       {/* withdraw modal*/}
       <CustomModal ModalStyling='' isOpen={withdraw} modalTitle='Enter withdrawal amount' onClose={WithdrawClose}>
-        <Withdrawal onChange={(e: any,) => setAmount(e.target.value)} SelectBankClose={SelectBankClose} SelectBankOpen={SelectBankOpen} selectBank={selectBank} HandleInputPinOpen={HandleInputPinOpen} amount={amount}/>
+        <Withdrawal onChange={(e: any,) => setAmount(e.target.value)} SelectBankClose={SelectBankClose} SelectBankOpen={SelectBankOpen} selectBank={selectBank} HandleInputPinOpen={HandleInputPinOpen} amount={amount} />
       </CustomModal>
 
       {/* airtime and data modal */}
       <CustomModal ModalStyling='pad_0' isOpen={airtime} modalTitle='Airtime & Data' onClose={AirtimeClose}>
-        <AirtimeAndData/>
+        <AirtimeAndData />
       </CustomModal>
 
       {/* cable TV modal */}
       <CustomModal ModalStyling='' isOpen={cable} modalTitle='Cable TV' onClose={CableClose}>
-        <CableTV/>
+        <CableTV />
       </CustomModal>
 
       {/* Internet modal */}
       <CustomModal ModalStyling='' isOpen={internet} modalTitle='Internet' onClose={InternetClose}>
-        <Internet/>
+        <Internet />
       </CustomModal>
 
       {/* Electricity modal */}
       <CustomModal ModalStyling='' isOpen={electricity} modalTitle='Electricity' onClose={ElectricityClose}>
-        <Electricity/>
+        <Electricity />
       </CustomModal>
 
       {/* PIN modal */}
@@ -308,7 +308,7 @@ const Page = () => {
                 length={4}
                 otp
               />
-              
+
             </div>
             <p className="text-center text-[13px] font-[500] my-12">
 
@@ -330,7 +330,7 @@ const Page = () => {
       </CustomModal>
 
       {/* Success modal */}
-      <SuccessModal amount={amount} isOpen={success} onClose={HandleSucessClose}/>
+      <SuccessModal amount={amount} isOpen={success} onClose={HandleSucessClose} />
     </DashboardContainer>
   );
 };
