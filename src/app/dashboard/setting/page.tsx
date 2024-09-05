@@ -122,7 +122,7 @@ const page = () => {
 
       <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={editProfile} modalTitle='Edit profile' onClose={()=>{setEditProfile(false)}}>
             <EditProfile/>
-      </CustomModal>
+      </CustomModal> 
 
       <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={identityVerification} modalTitle='Identity verification' onClose={()=>{setIdentityVerification(false)}}>
             <IdentityVerification onClick={''}/>
