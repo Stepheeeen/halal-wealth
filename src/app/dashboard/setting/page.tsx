@@ -7,9 +7,9 @@ import NIN from '../../../../public/assets/images/NIN.png'
 import License from '../../../../public/assets/images/License.png'
 import DashboardContainer from '@/components/dashboard/dashboardContainer'
 import { DefaultButton } from '@/components/reusable/button/Button'
-import { BankBuilding, CreditCard, FAQIcon, GreenProfile, LockIcon, NextIcon, OutlinedProfile, P2P, PINIcon, PrivacyIcon } from '../../../../public/assets/icons'
+import { BankBuilding, CountryIcon, CreditCard, FAQIcon, GreenProfile, LockIcon, NextIcon, OutlinedProfile, P2P, PINIcon, PrivacyIcon } from '../../../../public/assets/icons'
 import { CustomModal } from '@/components/reusable/modal/modal'
-import { DefaultInput } from '@/components/reusable/input/Input'
+import { DefaultInput, IconInput, OptionsSelect } from '@/components/reusable/input/Input'
 
 const page = () => {
   const [editProfile, setEditProfile] = useState(false)
@@ -38,6 +38,16 @@ const page = () => {
     { icon: <PrivacyIcon />, listText: 'Terms', onClick: handleOpenModal, },
     { icon: <FAQIcon />, listText: 'FAQ', onClick: handleOpenModal, },
   ]
+  const options = [
+    { value: "Male", text: "Male" },
+    { value: "Female", text: "Female" },
+  ];
+  const relationship = [
+    { value: "Single", text: "Single" },
+    { value: "Married", text: "Married" },
+    { value: "Divorced", text: "Divorced" },
+    { value: "Abandoned", text: "Abandoned" },
+  ];
 
   // modals
   const [open, setOpen] = useState(false);
@@ -241,7 +251,67 @@ const page = () => {
       </CustomModal>
 
       <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={nextOfKin} modalTitle='Next if Kin' onClose={() => { setNextOfKin(false) }}>
-        hello
+        <div className='grid place-items-center pb-4'>
+
+          <div className='py-9'>
+            <div className='rounded-full p-2 bg-[#F5F1FE]'>
+              <P2P />
+            </div>
+
+          </div>
+
+          <div className='w-full mt-2'>
+            <DefaultInput
+              size="lg"
+              value="placeholder"
+              type="text"
+              CustomStyle="mb-4 border"
+              label="First name"
+            />
+            <DefaultInput
+              size="lg"
+              value="placeholder"
+              type="text"
+              CustomStyle="mb-4 border"
+              label="Last name"
+            />
+            <IconInput
+              onChange={''}
+              value="000-000-0000"
+              size="lg"
+              type="tel"
+              icon={<CountryIcon />}
+              RighIcon={""}
+              handleClick={""}
+              CustomStyle="pl-[40px] border"
+              label="Phone number"
+            />
+            <DefaultInput
+              size="lg"
+              value="placeholder"
+              type="text"
+              CustomStyle="mb-4 border"
+              label="Email Address"
+            />
+            <OptionsSelect
+              CustomStyle="mb-4 border"
+              label="Relationship"
+              options={relationship}
+            />
+            <OptionsSelect
+              CustomStyle="mb-4 border"
+              label="Gender"
+              options={options}
+            />
+          </div>
+
+          <DefaultButton
+            type="solid"
+            text='Save Changes'
+            customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
+            onClick={''}
+          />
+        </div>
       </CustomModal>
 
       <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={changePassword} modalTitle='Change Password' onClose={() => { setChangePassword(false) }}>
