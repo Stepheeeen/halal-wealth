@@ -63,7 +63,7 @@ interface CustomModalProps {
   onClose: any;
   ModalStyling: string;
   children: ReactNode;
-  modalTitle: string;
+  modalTitle: any;
 }
 
 const CustomModal = ({ isOpen, onClose, ModalStyling, children, modalTitle }: CustomModalProps) => {
