@@ -125,7 +125,7 @@ const page = () => {
       </CustomModal> 
 
       <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={identityVerification} modalTitle='Identity verification' onClose={()=>{setIdentityVerification(false)}}>
-            <IdentityVerification onClick={''}/>
+            <IdentityVerification onClick3={()=>{setIdentityVerification(false); }}/>
       </CustomModal>
 
       <CustomModal ModalStyling='overflow-x-hidden overflow-y-scroll' isOpen={manageBank} modalTitle='Manage Bank' onClose={()=>{setManageBank(false)}}>

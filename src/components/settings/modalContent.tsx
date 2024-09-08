@@ -91,11 +91,11 @@ export const EditProfile = () => {
   );
 }
 
-export const IdentityVerification = ({ onClick }: { onClick: any }) => {
+export const IdentityVerification = ({onClick3} : {onClick3: any}) => {
   const Identity = [
-    { text: 'Email Address', badge: <BadgeButton />, },
-    { text: 'Bank verification Number(BVN)', badge: <BadgeButtonPending />, style: 'w-[30%]' },
-    { text: 'Upload Government issued ID', badge: <BadgeButtonSuccess />, style: 'w-[30%]' },
+    { text: 'Email Address', badge: <BadgeButton />, onClick: '',},
+    { text: 'Bank verification Number(BVN)', badge: <BadgeButtonPending />, style: 'w-[30%]', onClick: '',},
+    { text: 'Upload Government issued ID', badge: <BadgeButtonSuccess />, style: 'w-[30%]', onClick: onClick3, },
   ]
   return (
     <div>
@@ -104,7 +104,7 @@ export const IdentityVerification = ({ onClick }: { onClick: any }) => {
       </h1>
 
       {Identity.map((link, i) => (
-        <div onClick={onClick} className='w-full flex items-center justify-between border border-[#F2F4F7] cursor-pointer px-3 py-5 rounded-lg mb-2' key={i}>
+        <div onClick={link.onClick} className='w-full flex items-center justify-between border border-[#F2F4F7] cursor-pointer px-3 py-5 rounded-lg mb-2' key={i}>
           <div>
             <h1 className='font-[500] mb-[8px] text-[18px]'>
               {link.text}
