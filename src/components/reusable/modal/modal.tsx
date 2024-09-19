@@ -75,7 +75,7 @@ const CustomModal = ({ isOpen, onClose, ModalStyling, children, modalTitle }: Cu
       size={""}
     >
       <ModalOverlay className="bg-black bg-opacity-50 z-20"/>
-      <div className={`w-[30%] h-[100vh] bg-white shadow-lg fixed top-0 right-0 z-30 ${ModalStyling}`}>
+      <div className={`w-[30%] h-[100vh] bg-white shadow-lg overflow-y-scroll fixed top-0 right-0 z-30 ${ModalStyling}`}>
         <header className='px-3 h-[70px] shadow-sm flex items-center'>
           <div className='flex items-center'>
             <Button variant={'ghost'} onClick={onClose}>
