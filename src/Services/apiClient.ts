@@ -10,8 +10,8 @@ const ApiClient = axios.create({
 })
 
 ApiClient.interceptors.request.use(
-    async (config) => {
-        const token = await getToken;
+    (config) => {
+        const token = getToken;
 
         if(token) {
             config.headers.Authorization = token;

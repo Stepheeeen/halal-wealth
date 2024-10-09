@@ -17,6 +17,7 @@
     "axios": "^1.7.7",
     "clipboard": "^2.0.11",
     "framer-motion": "^11.3.2",
+    "http-proxy-middleware": "^3.0.3",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",

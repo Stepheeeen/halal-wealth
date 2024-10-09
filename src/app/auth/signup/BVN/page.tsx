@@ -1,69 +1,50 @@
-// import React from "react";
-// import AuthContainer from "@/components/auth/Container";
-// import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
-// import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
-// import { CountryIcon } from "../../../../public/assets/icons/index";
-
-// const SignUp = () => {
-//   return (
-//     <AuthContainer
-//       src={DefaultImage}
-//       title="Create a new account"
-//       text="Safe and Secure. We will never share your data."
-//       terms="By creating an account, you agree to Halal wealth’s"
-//       path="#"
-//       link="Privacy Policy, Terms of Use, and Investment Disclaimer."
-//       underline="underline"
-//       btnText="Create account"
-//       altText="Already have an account?"
-//       customStyle=""
-//       display="hidden"
-//       href=""
-//       onClick={""}
-//       altOnClick={""}
-//     >
-//       <DefaultInput
-//         size="lg"
-//         value="placeholder"
-//         type="email"
-//         CustomStyle="mb-4"
-//         label="Email address"
-//       />
-//       <IconInput
-//         onChange={''}
-//         value="000-000-0000"
-//         size="lg"
-//         type="tel"
-//         icon={<CountryIcon />}
-//         RighIcon={""}
-//         handleClick={""}
-//         CustomStyle="pl-[40px]"
-//         label="Phone number"
-//       />
-//     </AuthContainer>
-//   );
-// };
-
-// export default SignUp;
-
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../../public/assets/images/DefaultImage.png";
 import {
   DefaultInput,
   IconInput,
-  OptionsSelect,
 } from "@/components/reusable/input/Input";
 import { CountryIcon, HideIcon, ShowIcon } from "../../../../../public/assets/icons";
 
 const SignUp = () => {
-  const options = [
-    { value: "Male", text: "Male" },
-    { value: "Female", text: "Female" },
-  ];
   const [show, setShow] = useState(false);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [bvn, setBvn] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleClick = () => setShow(!show);
+
+  // Handle form submission
+  const handleSubmit = async (e: any) => {
+    e.preventDefault(); // Prevent default form submission
+    setIsLoading(true);
+    setError(null);
+
+    try {
+
+      console.log('I was fired')
+      const response = await axios.post("/api/onboarding/verify-email-signup", {
+        bvn: bvn,
+        emailAddress: email,
+        phoneNumber: phone,
+        password: password,
+      }); // Replace with your API endpoint
+      console.log("Form submitted successfully:", response.data);
+      // Handle success, maybe redirect or display success message
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      // setError("Failed to create account. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <AuthContainer
       src={DefaultImage}
@@ -73,41 +54,48 @@ const SignUp = () => {
       path="#"
       link="Privacy Policy, Terms of Use, and Investment Disclaimer."
       underline="underline"
-      btnText="Create account"
+      btnText={isLoading ? "Creating account..." : "Create account"}
       altText="Already have an account?"
       customStyle=""
       display="hidden"
       href=""
-      onClick={""}
+      onClick={handleSubmit} // Form submission handler
       altOnClick={""}
     >
       <DefaultInput
         size="lg"
-        value="placeholder"
+        value={bvn}
         type="text"
+        name="bvn"
         CustomStyle="mb-4"
-        label="Bvn"
+        label="BVN"
+        onChange={(e: any) => setBvn(e.target.value)}
       />
 
       <DefaultInput
         size="lg"
-        value="placeholder"
+        value={email}
         type="email"
+        name="email"
         CustomStyle="mb-4"
         label="Email address"
+        onChange={(e: any) => setEmail(e.target.value)}
       />
 
       <DefaultInput
         size="lg"
-        value="placeholder"
+        value={phone}
         type="tel"
+        name="phone"
         CustomStyle="mb-4"
         label="Phone number"
+        onChange={(e: any) => setPhone(e.target.value)}
       />
 
       <IconInput
-        onChange={""}
-        value="password"
+        onChange={(e: any) => setPassword(e.target.value)}
+        value={password}
+        name="password"
         size="lg"
         CustomStyle="mb-4"
         type={show ? "text" : "password"}
@@ -116,6 +104,8 @@ const SignUp = () => {
         RighIcon={show ? <HideIcon /> : <ShowIcon />}
         label="Password"
       />
+
+      {error && <p className="text-red-500 mt-4">{error}</p>}
     </AuthContainer>
   );
 };

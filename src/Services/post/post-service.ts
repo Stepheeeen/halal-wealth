@@ -31,13 +31,16 @@ interface postrequest_data {
 }
 
 // signup interface data
-interface signup_data {
-  accountNumber: string;
-  bankCode: string;
+interface signupbvn_data {
   bvn: string;
   emailAddress: string;
-  firstName: string;
-  lastName: string;
+  password: string;
+  phoneNumber: string;
+}
+interface signupacct_data {
+  accountNumber: string;
+  bankCode: string;
+  emailAddress: string;
   password: string;
   phoneNumber: string;
 }
@@ -49,8 +52,14 @@ interface signin_data {
 }
 
 // Authentication
-export const signup = async (data: signup_data) => {
-  const response = await ApiClient.post("", data);
+export const signupbvn = async (data: signupbvn_data) => {
+  const response = await ApiClient.post("/api/onboarding/verify-email-signup", data);
+
+  return response.data;
+};
+
+export const signupacct = async (data: signupacct_data) => {
+  const response = await ApiClient.post("/services/onboarding/verify-email-signup", data);
 
   return response.data;
 };

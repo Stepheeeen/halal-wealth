@@ -23,21 +23,28 @@ const DefaultInput = ({
   CustomStyle,
   label,
   type,
+  onChange,
+  name,
 }: {
   value: string;
   size: string;
   CustomStyle: string;
   label: string;
   type: string;
+  onChange: any;
+  name: string;
 }) => {
   return (
     <>
       <InputLabel label={label} />
       <Input
-        placeholder={value}
+        placeholder='placeholder'
+        value={value}
         type={type}
         size={size}
+        name={name}
         variant="filled"
+        onChange={onChange}
         className={`px-4 py-2 w-full rounded-md bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-blue-500 h-[50px] ${CustomStyle}`}
       />
     </>
@@ -53,6 +60,7 @@ const IconInput = ({
   RighIcon,
   handleClick,
   onChange,
+  name,
 }: {
   icon: any;
   type: string;
@@ -63,6 +71,7 @@ const IconInput = ({
   RighIcon: any;
   handleClick: any;
   onChange: any;
+  name: string;
 }) => {
   return (
     <>
@@ -79,6 +88,7 @@ const IconInput = ({
           size={size}
           variant="filled"
           type={type}
+          name={name}
           onChange={onChange}
           className={` px-4 py-2 w-full rounded-md bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-blue-500 h-[50px] ${CustomStyle}`}
         />
@@ -101,10 +111,14 @@ const OptionsSelect = ({
   label,
   options,
   CustomStyle,
+  onChange,
+  name,
 }: {
   label: string;
   options: Option[];
   CustomStyle: string;
+  onChange: any;
+  name: any;
 }) => {
   return (
     <>
@@ -112,6 +126,8 @@ const OptionsSelect = ({
       <Select
         placeholder="Placeholder"
         size="lg"
+        onChange={onChange}
+        name={name}
         className={` px-4 py-2 w-full rounded-md bg-[#F9FAFB] focus:outline-none focus:ring-1 focus:ring-blue-500 h-[50px] ${CustomStyle}`}
       >
         {options.map((opt: Option) => (
