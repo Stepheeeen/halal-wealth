@@ -141,14 +141,25 @@ const OptionsSelect = ({
 };
 
 
-type DefaultPinInputProps = Omit<PinInputProps, 'children'> & {
+type DefaultPinInputProps = Omit<PinInputProps, 'children' | 'onChange'> & {
   length: number;
+  onChange?: (value: string) => void; // Define the onChange prop type
 };
-const DefaultPinInput = ({ length, ...props }: DefaultPinInputProps) => {
+
+const DefaultPinInput = ({ length, onChange, ...props }: DefaultPinInputProps) => {
+  const handleChange = (value: string) => {
+    if (onChange) {
+      onChange(value);
+    }
+  };
+
   return (
-    <PinInput {...props}>
+    <PinInput onChange={handleChange} {...props}>
       {Array.from({ length }, (_, index) => (
-        <PinInputField key={index} className="w-[60px] h-[60px] mr-[10px] rounded-lg text-center bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <PinInputField 
+          key={index} 
+          className="w-[60px] h-[60px] mr-[10px] rounded-lg text-center bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-blue-500" 
+        />
       ))}
     </PinInput>
   );

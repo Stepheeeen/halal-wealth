@@ -5,46 +5,45 @@ import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../../public/assets/images/DefaultImage.png";
 import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
 import { HideIcon, ShowIcon } from "../../../../../public/assets/icons";
+import { toast } from "react-toastify"; // Notifications
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
-  const [accountNumber, setAccountNumber] = useState("");
-  const [bankCode, setBankCode] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [accountNumber, setAccountNumber] = useState<string>("");
+  const [bankCode, setBankCode] = useState<string>("");
+  const [emailAddress, setEmailAddress] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [banks, setBanks] = useState<{ bankCode: string; bankName: string }[]>(
     []
   );
+  const router = useRouter();
 
-  // Fetch banks from the API
+  // Fetch banks from API
   useEffect(() => {
-    const getBanks = async () => {
+    const fetchBanks = async () => {
       try {
         const response = await axios.get("/api/onboarding/get-banks");
-        console.log("Banks response:", response.data); // Log the response to check its structure
-        // Access the 'data' property from the response
-        setBanks(Array.isArray(response.data.data) ? response.data.data : []);
+        setBanks(response.data.data ?? []);
       } catch (err) {
         console.error("Failed to fetch banks:", err);
       }
     };
-    getBanks();
+    fetchBanks();
   }, []);
 
-  const handleClick = () => setShow(!show);
+  const handleClick = () => setShow((prevShow) => !prevShow);
 
   const handleSignup = async () => {
-    if (
-      !accountNumber ||
-      !bankCode ||
-      !emailAddress ||
-      !password ||
-      !phoneNumber
-    ) {
-      setError("Please fill out all fields.");
+    if (!accountNumber || !bankCode || !emailAddress || !password || !phoneNumber) {
+      toast.error("Please fill out all fields and ensure the account number is valid.");
+      return;
+    }
+
+    if (accountNumber.length < 10) {
+      toast.error("Account number is not valid.");
       return;
     }
 
@@ -56,18 +55,19 @@ const SignUp = () => {
       phoneNumber,
     };
 
-    setError(null);
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        "/api/onboarding/verify-email-signup",
-        signupData
-      );
-      alert("Signup successful!");
-      console.log("Signup response:", response.data);
+      const response = await axios.post("/api/onboarding/verify-email-signup", signupData);
+
+      if (response.data.description === 'successful') {
+        toast.success(response.data.description);
+        router.push("/auth/otp");
+      } else {
+        toast.error(response.data.description);
+      }
     } catch (err) {
-      setError("Signup failed. Please try again.");
+      toast.error("Signup failed. Please try again.");
       console.error("Signup failed:", err);
     } finally {
       setIsLoading(false);
@@ -94,23 +94,24 @@ const SignUp = () => {
       <DefaultInput
         size="lg"
         value={accountNumber}
-        onChange={(e: any) => setAccountNumber(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setAccountNumber(e.target.value)
+        }
         type="text"
         CustomStyle="mb-4"
         name="accountNumber"
         label="Account Number"
       />
 
-      <label
-        htmlFor="bankCode"
-        className="mb-2 block text-sm font-medium text-gray-700"
-      >
+      <label htmlFor="bankCode" className="mb-2 block text-sm font-medium text-gray-700">
         Select Bank
       </label>
       <select
         id="bankCode"
         value={bankCode}
-        onChange={(e: any) => setBankCode(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+          setBankCode(e.target.value)
+        }
         className="mb-4 block w-full p-3 border border-gray-300 rounded-lg"
       >
         <option value="" disabled>
@@ -126,7 +127,9 @@ const SignUp = () => {
       <DefaultInput
         size="lg"
         value={emailAddress}
-        onChange={(e: any) => setEmailAddress(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setEmailAddress(e.target.value)
+        }
         type="email"
         CustomStyle="mb-4"
         name="emailAddress"
@@ -136,27 +139,29 @@ const SignUp = () => {
       <DefaultInput
         size="lg"
         value={phoneNumber}
-        onChange={(e: any) => setPhoneNumber(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setPhoneNumber(e.target.value)
+        }
         type="tel"
-        name="phoneNumber"
         CustomStyle="mb-4"
+        name="phoneNumber"
         label="Phone number"
       />
 
       <IconInput
-        icon={""}
-        onChange={(e: any) => setPassword(e.target.value)}
+        icon=""
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setPassword(e.target.value)
+        }
         value={password}
         size="lg"
-        name="password"
         CustomStyle="mb-4"
+        name="password"
         type={show ? "text" : "password"}
         handleClick={handleClick}
         RighIcon={show ? <HideIcon /> : <ShowIcon />}
         label="Password"
       />
-
-      {error && <p className="text-red-500 mt-4">{error}</p>}
     </AuthContainer>
   );
 };

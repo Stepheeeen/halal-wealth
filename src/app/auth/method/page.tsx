@@ -39,7 +39,7 @@ const BVN = () => {
         onClick={handleRoute}
         altOnClick={""}
       >
-        <div className="w-full max-w-lg py-4">
+        <div className="w-full py-4">
           <div
             onClick={() => setSelected("BVN")}
             className={`px-3 py-6 mb-4 border rounded-lg cursor-pointer ${
