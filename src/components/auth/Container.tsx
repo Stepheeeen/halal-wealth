@@ -1,7 +1,8 @@
-import React, { ReactNode, } from "react";
+import React, { ReactNode } from "react";
 import Image, { StaticImageData } from "next/image";
 import { DefaultButton } from "../reusable/button/Button";
-import Back from "../../../public/assets/images/Back.png"
+import Back from "../../../public/assets/images/Back.png";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const AuthContainer = ({
@@ -26,7 +27,7 @@ const AuthContainer = ({
   title: string;
   text: string;
   terms: string;
-  path: any;
+  path: string;
   link: any;
   underline: string;
   btnText: string;
@@ -36,8 +37,9 @@ const AuthContainer = ({
   href: string;
   onClick: any;
   altOnClick: any;
-
 }) => {
+  const router = useRouter(); // Declare router correctly
+
   return (
     <div className="w-[100%] flex items-center">
       <div className="w-[47%] flex items-center p-2">
@@ -45,9 +47,14 @@ const AuthContainer = ({
       </div>
       <div className="w-[53%] flex justify-center items-center flex-col">
         <div className="w-[70%]">
-          <Link href={href}>
-            <Image src={Back} alt="authentication image" className={`h-[30px] w-[70px] ${display}`} />
-          </Link>
+          {/* Replacing Link with onClick for back navigation */}
+          <button onClick={() => router.back()}>
+            <Image
+              src={Back}
+              alt="Go back"
+              className={`h-[30px] w-[70px] ${display}`}
+            />
+          </button>
           <h1 className="font-semibold text-[34px]">{title}</h1>
           <p className="font-medium leading-loose">{text}</p>
           <form className="mt-8">{children}</form>

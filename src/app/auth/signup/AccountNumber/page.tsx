@@ -37,8 +37,16 @@ const SignUp = () => {
   const handleClick = () => setShow((prevShow) => !prevShow);
 
   const handleSignup = async () => {
-    if (!accountNumber || !bankCode || !emailAddress || !password || !phoneNumber) {
-      toast.error("Please fill out all fields and ensure the account number is valid.");
+    if (
+      !accountNumber ||
+      !bankCode ||
+      !emailAddress ||
+      !password ||
+      !phoneNumber
+    ) {
+      toast.error(
+        "Please fill out all fields and ensure the account number is valid."
+      );
       return;
     }
 
@@ -58,16 +66,21 @@ const SignUp = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("/api/onboarding/verify-email-signup", signupData);
+      const response = await axios.post(
+        "/api/onboarding/verify-email-signup",
+        signupData,
+        {
+          headers: {
+            AnonymousId: "web",
+          },
+        }
+      );
 
-      if (response.data.description === 'successful') {
-        toast.success(response.data.description);
-        router.push("/auth/otp");
-      } else {
-        toast.error(response.data.description);
-      }
-    } catch (err) {
-      toast.error("Signup failed. Please try again.");
+      toast.success(response.data.description);
+      router.push("/auth/otp");
+      localStorage.setItem("userEmail", emailAddress);
+    } catch (err: any) {
+      toast.error(err.response.data.description);
       console.error("Signup failed:", err);
     } finally {
       setIsLoading(false);
@@ -89,7 +102,9 @@ const SignUp = () => {
       display="hidden"
       href=""
       onClick={handleSignup}
-      altOnClick=""
+      altOnClick={() => {
+        router.push("/auth/signin");
+      }}
     >
       <DefaultInput
         size="lg"
@@ -103,7 +118,10 @@ const SignUp = () => {
         label="Account Number"
       />
 
-      <label htmlFor="bankCode" className="mb-2 block text-sm font-medium text-gray-700">
+      <label
+        htmlFor="bankCode"
+        className="mb-2 block text-sm font-medium text-gray-700"
+      >
         Select Bank
       </label>
       <select

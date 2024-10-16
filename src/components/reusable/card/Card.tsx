@@ -9,7 +9,7 @@ const DefaultCard = ({children, cardStyle}:{children:ReactNode; cardStyle: strin
   )
 }
 
-const BalanceCard = ({customStyle, styleName, CardTitle, hideBalance, BalanceIcon, Balance, handleClick1, handleClick2, button1, button2, buttonIcon1, buttonIcon2, styling1, styling2}:{customStyle: any; styleName: string;CardTitle: string; hideBalance: any; BalanceIcon: any; Balance: string; handleClick1: any; handleClick2: any; button1: string; button2: string; buttonIcon1: any; buttonIcon2: any; styling1: string; styling2: string;}) => {
+const BalanceCard = ({customStyle, styleName, CardTitle, hideBalance, BalanceIcon, Balance, handleClick1, handleClick2, button1, button2, buttonIcon1, buttonIcon2, styling1, styling2}:{customStyle: any; styleName: string;CardTitle: string; hideBalance: any; BalanceIcon: any; Balance: any; handleClick1: any; handleClick2: any; button1: string; button2: string; buttonIcon1: any; buttonIcon2: any; styling1: string; styling2: string;}) => {
   return (
     <div className={`w-[425px] rounded-lg h-[190px] p-5 text-[#fff] ${customStyle} ${styleName}`}>
       <div className='flex items-center'>

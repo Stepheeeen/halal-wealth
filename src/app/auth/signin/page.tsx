@@ -30,7 +30,7 @@ const SignIn = () => {
         // Uncomment to redirect to the dashboard or OTP page after success
         router.push("/dashboard/home");
       } else {
-        toast.error(`Login failed: ${res.data.description}`);
+        toast.error(`${res.data.description}`);
       }
     } catch (error: any) {
       const errorMessage =
@@ -45,7 +45,7 @@ const SignIn = () => {
       title="Sign in to your account"
       text="Securely sign in to your Halal wealth account"
       terms=""
-      path="#"
+      path="/auth/forgot-password"
       link="I forgot my password"
       underline=""
       btnText="Sign In"
@@ -54,7 +54,9 @@ const SignIn = () => {
       display="hidden"
       href=""
       onClick={handleSignIn} // Updated to call handleSignIn on form submission
-      altOnClick={""}
+      altOnClick={() => {
+        router.push("/auth/method");
+      }}
     >
       <DefaultInput
         size="lg"

@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../../public/assets/images/DefaultImage.png";
+import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
 import {
-  DefaultInput,
-  IconInput,
-} from "@/components/reusable/input/Input";
-import { CountryIcon, HideIcon, ShowIcon } from "../../../../../public/assets/icons";
+  CountryIcon,
+  HideIcon,
+  ShowIcon,
+} from "../../../../../public/assets/icons";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -17,6 +20,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleClick = () => setShow(!show);
 
@@ -27,19 +31,19 @@ const SignUp = () => {
     setError(null);
 
     try {
-
-      console.log('I was fired')
+      console.log("I was fired");
       const response = await axios.post("/api/onboarding/verify-email-signup", {
         bvn: bvn,
         emailAddress: email,
         phoneNumber: phone,
         password: password,
       }); // Replace with your API endpoint
-      console.log("Form submitted successfully:", response.data);
+      console.log(response.data);
+      toast.success(response.data.description);
+      localStorage.setItem("userEmail", email);
       // Handle success, maybe redirect or display success message
-    } catch (err) {
-      console.error("Error submitting form:", err);
-      // setError("Failed to create account. Please try again.");
+    } catch (err: any) {
+      toast.error(err.response.data.description);
     } finally {
       setIsLoading(false);
     }
@@ -60,7 +64,9 @@ const SignUp = () => {
       display="hidden"
       href=""
       onClick={handleSubmit} // Form submission handler
-      altOnClick={""}
+      altOnClick={() => {
+        router.push("/auth/signin");
+      }}
     >
       <DefaultInput
         size="lg"

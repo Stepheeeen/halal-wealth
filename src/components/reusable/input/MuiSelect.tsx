@@ -15,6 +15,8 @@ interface SelectProps {
     selectText: string;
     MuiCss: string;
     MuiBg: string;
+    value: string;              // Add value prop to handle the selected value
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;  // Add onChange prop
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -22,6 +24,8 @@ const Select: React.FC<SelectProps> = ({
     selectText,
     MuiCss,
     MuiBg,
+    value,
+    onChange
 }) => {
     return (
         <div className={`w-full my-3 ${MuiCss}`}>
@@ -30,9 +34,11 @@ const Select: React.FC<SelectProps> = ({
                 select
                 label={selectText}
                 fullWidth
+                value={value} // Bind the value prop to TextField
+                onChange={onChange} // Attach the onChange handler
                 sx={{
                     '& .MuiInputBase-root': {
-                        backgroundColor: {MuiBg}, // Set background color
+                        backgroundColor: MuiBg, // Directly set background color
                         borderRadius: '4px', // Optional: Add border radius
                     },
                     '& .MuiOutlinedInput-notchedOutline': {
@@ -60,21 +66,3 @@ const Select: React.FC<SelectProps> = ({
 };
 
 export default Select;
-
-
-//     <Box
-// component="form"
-// sx={{
-//   "& .MuiTextField-root": {
-//     marginTop: marginTop,
-//     marginBottom: marginBottom,
-//     width: width,
-//   },
-// }}
-// noValidate
-// autoComplete="off"
-//   className='h-[40px]'
-// >
-// marginTop,
-// marginBottom,
-// width,
