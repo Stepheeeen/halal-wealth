@@ -5,10 +5,12 @@ import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
 import { DefaultInput } from "@/components/reusable/input/Input";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Welcome = () => {
-  const [email, setEmail] = useState(""); // State for managing the email input
-  const [loading, setLoading] = useState(false); // Loading state for button
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +20,7 @@ const Welcome = () => {
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!email) {
       toast.error("Please enter a valid email address");
       return;
@@ -26,25 +29,26 @@ const Welcome = () => {
     setLoading(true);
 
     try {
-      // Make API request to reset password
+      // API request to reset password
       const res = await axios.get(
         `/api/onboarding/forgot-password?email=${email}`
       );
-      console.log(res);
 
-      // Check if response status is 2000, otherwise handle error
       if (res.data.status === "2000") {
-        toast.success(res.data.description); // Show success message
+        toast.success(res.data.description);
+        localStorage.setItem("resetRequestId", res.data.data.requestId);
+        localStorage.setItem("resetEmail", email);
+        router.push("/auth/forgot-password-otp");
       } else {
-        toast.error(res.data.description); // Show error message from response
+        toast.error(res.data.description);
       }
     } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.description || "Failed to send reset email";
+      toast.error(errorMessage);
       console.error(error.response);
-      toast.error(
-        error.response?.data?.description || "Failed to send reset email"
-      ); // Show error message
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
 
@@ -67,11 +71,10 @@ const Welcome = () => {
     >
       <DefaultInput
         name="email"
-        onChange={handleChange} // Update email state on input change
+        onChange={handleChange}
         size="lg"
         value={email}
         type="email"
-        CustomStyle=""
         label="Email address"
       />
     </AuthContainer>

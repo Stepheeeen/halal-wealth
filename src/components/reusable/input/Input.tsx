@@ -166,7 +166,7 @@ const DefaultPinInput = ({ length, onChange, ...props }: DefaultPinInputProps) =
       {Array.from({ length }, (_, index) => (
         <PinInputField 
           key={index} 
-          className="w-[60px] h-[60px] mr-[10px] rounded-lg text-center bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-blue-500" 
+          className="w-[60px] h-[60px] mr-[10px] rounded-lg text-center bg-[#babcbe]/50 focus:outline-none focus:ring-2 focus:ring-blue-500" 
         />
       ))}
     </PinInput>

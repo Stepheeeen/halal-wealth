@@ -1,13 +1,43 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
 import { IconInput } from "@/components/reusable/input/Input";
 import { HideIcon, ShowIcon } from "../../../../public/assets/icons";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const NewPassword = () => {
   const [show, setShow] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const handleClick = () => setShow(!show);
+  const router = useRouter()
+
+  const handleSubmit = async () => {
+    if (password !== confirmPassword) {
+      toast.error("passwords do not match");
+    }
+    try {
+      const response = await axios.post("/api/onboarding/reset-password", {
+        emailAddress: localStorage.getItem("resetEmail"),
+        otp: localStorage.getItem("resetPin"),
+        password,
+        requestId: localStorage.getItem("resetRequestId"),
+      });
+      console.log(response.data);
+      if (response.data.status === "2000") {
+        toast.success(response.data.description);
+        localStorage.removeItem("resetEmail");
+        localStorage.removeItem("resetPin");
+        localStorage.removeItem("resetRequestId");
+        router.push("/auth/signin")
+      } else {
+        toast.error(response.data.description);
+      }
+    } catch (error) {}
+  };
 
   return (
     <AuthContainer
@@ -23,12 +53,15 @@ const NewPassword = () => {
       customStyle="hidden"
       display=""
       href=""
-      onClick={""}
+      onClick={handleSubmit}
       altOnClick={""}
     >
       <IconInput
-        onChange={''}
-        value="password"
+        value={password}
+        onChange={(e: any) => {
+          setPassword(e.target.value);
+        }}
+        placeholder="password"
         size="lg"
         CustomStyle="mb-4"
         type={show ? "text" : "password"}
@@ -39,8 +72,11 @@ const NewPassword = () => {
       />
 
       <IconInput
-        onChange={''}
-        value="password"
+        value={confirmPassword}
+        onChange={(e: any) => {
+          setConfirmPassword(e.target.value);
+        }}
+        placeholder="password"
         size="lg"
         CustomStyle=""
         type={show ? "text" : "password"}

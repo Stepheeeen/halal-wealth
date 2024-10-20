@@ -49,26 +49,33 @@ import {
 import { DefaultPinInput } from "@/components/reusable/input/Input";
 import axios from "axios";
 import { userInfo } from "@/app/constants";
+import TransactionsCard from "@/components/dashboard/TransactionCard";
 
 const Page = () => {
-  // const [walletBalance, setWalletBalance] = useState();
+  const [walletBalance, setWalletBalance] = useState("");
+  const [savingsBalance, setSavingsBalance] = useState("");
+  const [investmentBalance, setInvestmentBalance] = useState("");
 
-  // useEffect(() => {
-  //   const getWalletBalance = async () => {
-  //     try {
-  //       const { data } = await axios.get("/api/wallet/get-balance",
-  //         {headers: {
-  //           Authorization: ``
-  //         }}
-  //       );
-  //       setWalletBalance(data.balance); // Assuming the balance is inside data.balance
-  //     } catch (error) {
-  //       console.error("Error fetching wallet balance:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const getWalletBalance = async () => {
+      try {
+        const response = await axios.get("/api/wallet/get-balance", {
+          headers: {
+            Authorization: `${userInfo.token}`,
+          },
+        });
+        // console.log(response.data.data);
 
-  //   getWalletBalance();
-  // }, []);
+        setWalletBalance(response.data.data.accountBalance);
+        setSavingsBalance(response.data.data.totalSavingsPlan);
+        setInvestmentBalance(response.data.data.ledgerBalance);
+      } catch (error) {
+        console.error("Error fetching wallet balance:", error);
+      }
+    };
+
+    getWalletBalance();
+  }, []);
 
   // see amount function
   const [show, setShow] = useState(false);
@@ -173,7 +180,7 @@ const Page = () => {
             CardTitle="Wallet Balance"
             hideBalance={handleClick}
             BalanceIcon={show ? <HideIconWhite /> : <ShowIconWhite />}
-            Balance={show ? `₦ ${userInfo.accountBalance}` : "****"}
+            Balance={show ? `₦ ${walletBalance}` : "****"}
             handleClick1={FundOpen}
             handleClick2={WithdrawOpen}
             button1="Fund wallet"
@@ -189,7 +196,7 @@ const Page = () => {
             CardTitle="Savings Balance"
             hideBalance={handleClick}
             BalanceIcon={show ? <HideIconWhite /> : <ShowIconWhite />}
-            Balance={show ? `₦ ${userInfo.savingsBalance}`  : "****"}
+            Balance={show ? `₦ ${savingsBalance}` : "****"}
             handleClick1={""}
             handleClick2={""}
             button1="See Plans"
@@ -205,7 +212,7 @@ const Page = () => {
             CardTitle="Investment Balance"
             hideBalance={handleClick}
             BalanceIcon={show ? <HideIconWhite /> : <ShowIconWhite />}
-            Balance={show ? `₦ ${userInfo.investmentBalance}` : "****"}
+            Balance={show ? `₦ ${investmentBalance}` : "****"}
             handleClick1={""}
             handleClick2={""}
             button1="See Plans"
@@ -501,26 +508,7 @@ const Page = () => {
           </ChildCard>
         </ChildCard>
 
-        <ChildCard CardTitle="" cardStyle="w-[49%] h-[455px]">
-          <CustomCard>
-            <div className="flex items-center justify-between px-2">
-              <h1 className="text-[#5C556C] font-[500] text-[16px]">
-                Transactions
-              </h1>
-
-              <Link
-                href={"#"}
-                className="text-[#8046F2] flex items-center font-[400]"
-              >
-                See all
-              </Link>
-            </div>
-
-            <div className="w-full h-[420px] flex justify-center items-center">
-              <Image alt="" src={noTransaction} className="w-[200px]" />
-            </div>
-          </CustomCard>
-        </ChildCard>
+        <TransactionsCard/>
       </div>
 
       {/* modal contents */}

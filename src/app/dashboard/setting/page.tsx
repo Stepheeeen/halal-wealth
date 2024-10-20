@@ -38,6 +38,7 @@ import { toast } from "react-toastify";
 import { userInfo } from "@/app/constants";
 import Link from "next/link";
 import TransactionPinModal from "@/components/reusable/modal/TransactionPin";
+import Modal from "@/components/reusable/modal/ResetPin";
 
 const page = () => {
   const [editProfile, setEditProfile] = useState(false);
@@ -206,6 +207,33 @@ const page = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = async () => {
+    try {
+      const response = await axios.get(
+        `/api/onboarding/forgot-pin?email=${userInfo.emailAddress}`,
+        {
+          headers: {
+            Authorization: `${userInfo.token}`,
+          },
+        }
+      );
+      console.log(response.data);
+      if (response.data.status === "2000") {
+        toast.success(
+          `Reset PIN otp has been sent to ${userInfo.emailAddress} successfully!`
+        );
+        localStorage.setItem("resetPinId", response.data.data.requestId);
+        setIsModalOpen(true);
+      } else {
+        toast.error(response.data.description);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <DashboardContainer PageTItle="Settings">
@@ -213,10 +241,10 @@ const page = () => {
         <Card Title="Profile" height="315px">
           <div className="grid place-items-center p-3 w-full text-[#14013A]">
             <Image alt="" src={profile} className="w-[60px] mb-4" />
-            <p className="font-[500] mb-[3px] capitalize">{userInfo.firstName} {userInfo.lastName}</p>
-            <p className="text-[#5C556C] font-[450]">
-              {userInfo.emailAddress}
+            <p className="font-[500] mb-[3px] capitalize">
+              {userInfo.firstName} {userInfo.lastName}
             </p>
+            <p className="text-[#5C556C] font-[450]">{userInfo.emailAddress}</p>
 
             <div className="w-[30%]">
               <DefaultButton
@@ -629,9 +657,12 @@ const page = () => {
 
           <p className="text-center text-[13px] font-[500] my-12">
             Forgot your PIN?
-            <Link href={""} className={`text-[#8046F2] ml-1`}>
+            <p
+              onClick={openModal}
+              className={`text-[#8046F2] ml-1 cursor-pointer`}
+            >
               Reset PIN
-            </Link>
+            </p>
           </p>
         </div>
       </CustomModal>
@@ -660,6 +691,8 @@ const page = () => {
           />
         </div>
       </CustomModal>
+
+      <Modal closeModal={closeModal} isOpen={isModalOpen} />
     </DashboardContainer>
   );
 };
