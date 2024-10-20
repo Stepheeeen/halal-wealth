@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import ChartLg from '../../../../public/assets/images/chart-Contain.png'
 import { CustomModal } from "@/components/reusable/modal/modal";
 import ProgressBar from "@/components/reusable/progressBar/progressBar";
+import { userInfo } from "@/app/constants";
 
 const Page = () => {
   const [show, setShow] = useState(false);
@@ -86,7 +87,7 @@ const Page = () => {
         CardTitle="Investment Total"
         hideBalance={handleClick}
         BalanceIcon={show ? <HideIcon /> : <ShowIcon />}
-        Balance={show ? "₦ 100,000" : "****"}
+        Balance={show ? `₦ ${userInfo.savingsBalance}` : "****"}
         handleClick1=""
         handleClick2=""
         button1=""

@@ -7,6 +7,7 @@ import { NotificationIcon } from '../../../../public/assets/icons';
 import { CustomModal } from '@/components/reusable/modal/modal';
 import profile from '../../../../public/assets/images/profileImage.svg'
 import noNotification from '../../../../public/assets/images/noNotification.png'
+import { userInfo } from '@/app/constants';
 
 const Navbar = ({ PageTitle, }: { PageTitle: string; }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,11 +30,11 @@ const Navbar = ({ PageTitle, }: { PageTitle: string; }) => {
         <div className='flex items-center ml-[25px]'>
           <Image alt='' src={profile} className='mr-[10px] w-[50px]'/>
         <div>
-          <h1 className='font-[500] text-[16px] mb-[-3px]'>
-            Freeborn
+          <h1 className='font-[500] text-[16px] mb-[-3px] lowercase'>
+            {userInfo.firstName} {userInfo.lastName}
           </h1>
           <p className='text-[14px] font-[400] text-[#5C556C]'>
-            freeborn@gmail.com
+            {userInfo.emailAddress}
           </p>
         </div>
         </div>

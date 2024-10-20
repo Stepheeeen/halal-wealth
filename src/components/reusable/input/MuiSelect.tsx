@@ -16,7 +16,7 @@ interface SelectProps {
     MuiCss: string;
     MuiBg: string;
     value: string;              // Add value prop to handle the selected value
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;  // Add onChange prop
+    onChange: any;  // Add onChange prop
 }
 
 const Select: React.FC<SelectProps> = ({

@@ -41,6 +41,7 @@ const SignUp = () => {
       console.log(response.data);
       toast.success(response.data.description);
       localStorage.setItem("userEmail", email);
+      localStorage.setItem("requestId", response.data.data.requestId1)
       // Handle success, maybe redirect or display success message
     } catch (err: any) {
       toast.error(err.response.data.description);

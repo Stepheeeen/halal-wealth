@@ -75,10 +75,15 @@ const SignUp = () => {
           },
         }
       );
-
-      toast.success(response.data.description);
+      if (response.data.status === "4000") {
+        toast.error(response.data.description);
+      } else {
+        toast.success(response.data.description);
+      }
+      console.log();
       router.push("/auth/otp");
       localStorage.setItem("userEmail", emailAddress);
+      localStorage.setItem("requestId", response.data.data.requestId1)
     } catch (err: any) {
       toast.error(err.response.data.description);
       console.error("Signup failed:", err);

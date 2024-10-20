@@ -32,10 +32,14 @@ const ConfirmEmailOTP = () => {
   // Handle OTP submission
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const request_id = localStorage.getItem("requestId")
+    console.log(request_id)
     try {
       const res = await axios.post(
         "/api/onboarding/verify-email",
-        { otp },
+        { otp,
+          requestId: request_id,
+         },
         {
           headers: {
             AnonymousId: "web",

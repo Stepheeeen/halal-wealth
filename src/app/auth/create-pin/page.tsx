@@ -25,7 +25,7 @@ const CreatePin = () => {
     
     try {
       setLoading(true);
-      const response = await axios.post("/api/onboarding/set-pin", {
+      const response = await axios.post("https://sandbox.api.halalwealth.co/services/onboarding/set-pin", {
         transactionPin: pin,
       });
 

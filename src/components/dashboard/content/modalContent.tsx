@@ -31,6 +31,8 @@ import {
 import Select from "../../reusable/input/MuiSelect";
 import axios from "axios";
 import TransactionPinModal from "@/components/reusable/modal/TransactionPin";
+import { userInfo } from "@/app/constants";
+import { useRouter } from "next/router";
 
 export const FundWallet = ({
   TransferOpen,
@@ -118,7 +120,7 @@ export const BankTransfer = () => {
             id="accountNumber"
             className="mr-2 text-[#8046F2] text-[27px] font-[500]"
           >
-            7238290200
+            {userInfo.virtualAccountNumber}
           </h1>
           <button
             ref={buttonRef}
@@ -129,9 +131,9 @@ export const BankTransfer = () => {
             <CopyIcon />
           </button>
         </div>
-        <p className="font-[550] text-[14px] mt-[3px]">
-          <span className="text-[#8046F2]">Halal Wealth</span>
-          /EBOSELE FREEBORN EHIRHERE
+        <p className="font-[550] text-[14px] mt-[3px] text-center">
+          <span className="text-[#8046F2]">Halal Wealth</span>/
+          {userInfo.virtualAccountName}
         </p>
       </div>
 
@@ -217,6 +219,7 @@ export const Withdrawal = ({
   return (
     <div className="mt-[20px]">
       <IconInput
+        name=""
         value={amount}
         onChange={onChange}
         size="lg"
@@ -238,7 +241,9 @@ export const Withdrawal = ({
           Wallet balance
         </p>
         <span className="w-[4px] h-[4px] rounded-full bg-[#14013A] mx-1"></span>
-        <h1 className="text-[#17B26A] font-[570]">NGN 100,000</h1>
+        <h1 className="text-[#17B26A] font-[570]">
+          NGN {userInfo.accountBalance}
+        </h1>
       </div>
 
       <DefaultButton
@@ -306,22 +311,33 @@ export const Withdrawal = ({
           />
         </div>
       </CustomModal>
+      <ToastContainer />
     </div>
   );
 };
 
 export const AirtimeAndData = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [network, setNetwork] = useState(""); // Track selected network
+  const [network, setNetwork] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [amount, setAmount] = useState("");
-  const [pinModalOpen, setPinModalOpen] = useState(false); // PIN modal state
-  const [transactionPin, setTransactionPin] = useState(""); // Store transaction PIN
+  const [dataAmount, setDataAmount] = useState(""); // Amount for data bundles
+  const [pinModalOpen, setPinModalOpen] = useState(false);
+  const [transactionPin, setTransactionPin] = useState("");
+  const [dataPlans, setDataPlans] = useState<any[]>([]); // Ensure this is initialized as an array
+  const [selectedDataPlan, setSelectedDataPlan] = useState<any | null>(null);
+  const [id, setId] = useState(""); // For the amount of the selected data plan
 
-  const handleTabsChange = (index: any) => {
+  // Handle tab changes between "Airtime" and "Data Bundles"
+  const handleTabsChange = (index: number) => {
     setSelectedIndex(index);
+    if (index === 1) {
+      setSelectedDataPlan(""); // Reset when switching to Data Bundles tab
+      setDataAmount(""); // Also reset data amount
+    }
   };
 
+  // Options for network billers
   const selectBillers = [
     { value: "mtn", label: "MTN" },
     { value: "glo", label: "Glo" },
@@ -329,43 +345,129 @@ export const AirtimeAndData = () => {
     { value: "9mobile", label: "9Mobile" },
   ];
 
-  const handleNetworkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNetwork(event.target.value);
+  // Handle network selection change
+  const handleNetworkChange = async (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedNetwork = event.target.value;
+    setNetwork(selectedNetwork);
+
+    // Fetch data plans if the Data Bundles tab is selected
+    if (selectedIndex === 1) {
+      await fetchDataPlans(selectedNetwork);
+    }
   };
 
-  // Open PIN modal
+  const fetchDataPlans = async (network: string) => {
+    try {
+      const response = await axios.get(
+        `/api/bills/data-plan?network=${network}`,
+        {
+          headers: {
+            Authorization: `${userInfo.token}`,
+          },
+        }
+      );
+
+      console.log("API Response: ", response.data); // Log the full response for debugging
+
+      const plans = response.data.data.data; // Access the array of data plans
+
+      if (Array.isArray(plans) && plans.length > 0) {
+        setDataPlans(plans); // Set data plans if it's a non-empty array
+      } else {
+        console.error("Data plans are not in the expected format:", plans);
+        setDataPlans([]); // Reset if not in the correct format
+      }
+    } catch (error) {
+      console.error("Error fetching data plans:", error);
+      toast.error("Error fetching data plans.");
+    }
+  };
+
+  // Open transaction pin modal
   const openPinModal = () => {
     setPinModalOpen(true);
   };
 
-  // Close PIN modal
+  // Close transaction pin modal
   const closePinModal = () => {
     setPinModalOpen(false);
   };
 
-  // Handle form submission
-  const handleSubmit = (pin: any) => {
-    setTransactionPin(pin); // Store PIN after modal submission
-    makeAirtimePurchase(pin);
+  // Handle form submission based on selected tab (Airtime or Data)
+  const handleSubmit = (pin: string) => {
+    setTransactionPin(pin);
+    if (selectedIndex === 0) {
+      makeAirtimePurchase(pin);
+    } else {
+      makeDataPurchase(pin);
+    }
   };
 
-  // API call to purchase airtime
-  const makeAirtimePurchase = async (pin: any) => {
+  // Make airtime purchase
+  const makeAirtimePurchase = async (pin: string) => {
     try {
-      const response = await axios.post("/api/bills/airtime", {
-        amount,
-        beneficiary: phoneNumber,
-        network,
-        transactionPin: pin,
-      });
-
-      console.log("Transaction successful:", response.data);
-      // You can add toast notifications here to show success
+      const response = await axios.post(
+        "/api/bills/airtime",
+        {
+          amount,
+          beneficiary: phoneNumber,
+          network,
+          transactionPin: pin,
+          deviceId: "web",
+        },
+        {
+          headers: {
+            Authorization: `${userInfo.token}`,
+          },
+        }
+      );
+      if (response.data.status === "2000") {
+        toast.success(response.data.description);
+        // router.push("/dashboard/home");
+      } else {
+        toast.error(response.data.description);
+      }
     } catch (error) {
-      console.error("Error processing transaction:", error);
-      // Show error toast
+      console.error("Error processing airtime transaction:", error);
+      toast.error("Error processing airtime transaction.");
     } finally {
-      closePinModal(); // Close the modal after transaction
+      closePinModal();
+    }
+  };
+
+  // Make data bundle purchase
+  const makeDataPurchase = async (pin: string) => {
+    try {
+      const response = await axios.post(
+        "/api/bills/data",
+        {
+          amount: selectedDataPlan, // Use dataAmount for data bundles
+          beneficiary: phoneNumber,
+          network,
+          transactionPin: pin,
+          deviceId: "web",
+          id: id, // Use selected data plan ID
+        },
+        {
+          headers: {
+            Authorization: `${userInfo.token}`,
+          },
+        }
+      );
+      console.log(selectedDataPlan.price, selectedDataPlan.id);
+      if (response.data.status === "2000") {
+        toast.success(response.data.description);
+        // router.push("/dashboard/home");
+      } else {
+        toast.error(response.data.description);
+      }
+    } catch (error) {
+      console.error("Error processing data transaction:", error);
+      toast.error("Error processing data transaction.");
+    } finally {
+      closePinModal();
     }
   };
 
@@ -394,37 +496,35 @@ export const AirtimeAndData = () => {
         </TabList>
 
         <TabPanels className="w-full p-3">
+          {/* Airtime Tab */}
           <TabPanel className="font-[400] text-[15px]">
             <Select
+              MuiCss=""
               selectText="Select Network"
               MuiBg="#F9FAFB"
               selectProviders={selectBillers}
-              MuiCss=""
               value={network}
               onChange={handleNetworkChange}
             />
             <IconInput
               RighIcon={""}
-              handleClick={""}
-              name=""
               value={phoneNumber}
-              onChange={(e: any) => setPhoneNumber(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPhoneNumber(e.target.value)
+              }
               size="lg"
               type="text"
-              icon={
-                <div className="mt-[-10px]">
-                  <NumberIcon />
-                </div>
-              }
+              iconStyle="mt-[-14px]"
+              icon={<NumberIcon />}
               CustomStyle="pl-[55px] bg-[#F9FAFB] font-[400] mb-3"
               label="Phone number"
             />
             <IconInput
               RighIcon={""}
-              handleClick={""}
-              name=""
               value={amount}
-              onChange={(e: any) => setAmount(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setAmount(e.target.value)
+              }
               size="lg"
               type="text"
               icon={<NairaIcon />}
@@ -435,71 +535,85 @@ export const AirtimeAndData = () => {
               type="solid"
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[47%]"
-              onClick={openPinModal} // Open PIN modal on click
+              onClick={openPinModal}
             />
           </TabPanel>
 
+          {/* Data Bundles Tab */}
           <TabPanel className="font-[400] text-[15px]">
             <Select
-              onChange={()=>{}}
-              value=""
-              selectText="Select Network"
-              MuiBg="#F9FAFB"
-              selectProviders={selectBillers}
               MuiCss=""
-            />
-            <Select
-              onChange={()=>{}}
-              value=""
               selectText="Select Network"
               MuiBg="#F9FAFB"
               selectProviders={selectBillers}
-              MuiCss="mt-5"
+              value={network}
+              onChange={handleNetworkChange}
             />
+            <select
+              onChange={(e: any) => {
+                const selectedIndex = e.target.selectedIndex;
+                const selectedOptionId = e.target.options[selectedIndex].id;
+                setId(selectedOptionId);
+                setSelectedDataPlan(e.target.value)
+              }}
+              className="mb-4 block w-full p-3 border border-gray-300 rounded-lg"
+            >
+              <option value="">
+                Select Data Plan
+              </option>
+              {Array.isArray(dataPlans) && dataPlans.length > 0 ? (
+                dataPlans.map((plan: any) => (
+                  <option value={plan.price} id={plan.id}>
+                    {plan.name} - {plan.description}
+                  </option>
+                ))
+              ) : (
+                <option value="" disabled>
+                  No data plans available
+                </option>
+              )}
+            </select>
+
             <IconInput
-              name=""
-              value={""}
-              onChange={""}
-              size="lg"
-              type="text"
-              icon={
-                <div className="mt-[-10px]">
-                  <NumberIcon />
-                </div>
-              }
               RighIcon={""}
-              handleClick={""}
-              CustomStyle="pl-[55px] bg-[#F9FAFB] font-[400] mb-3"
-              label="Phone number"
-            />
-            <IconInput
-              name=""
-              value={""}
-              onChange={""}
+              value={selectedDataPlan} 
+              onChange={() => {}}
               size="lg"
               type="text"
               icon={<NairaIcon />}
-              RighIcon={""}
-              handleClick={""}
               CustomStyle="pl-[55px] bg-[#F9FAFB]"
               label="Amount"
+              disabled={true}
             />
 
+            <IconInput
+              RighIcon={""}
+              iconStyle="mt-[-14px]"
+              value={phoneNumber}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPhoneNumber(e.target.value)
+              }
+              size="lg"
+              type="text"
+              icon={<NumberIcon />}
+              CustomStyle="pl-[55px] bg-[#F9FAFB] font-[400] mb-3"
+              label="Phone number"
+            />
             <DefaultButton
               type="solid"
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[25%]"
-              onClick={""}
+              onClick={openPinModal}
             />
           </TabPanel>
         </TabPanels>
       </Tabs>
 
-      {/* PIN modal integration */}
+      {/* Transaction Pin Modal */}
       <TransactionPinModal
         isOpen={pinModalOpen}
+        onSubmit={handleSubmit}
         onClose={closePinModal}
-        onSubmit={handleSubmit} // Handle submission when PIN is entered
       />
     </div>
   );
@@ -535,12 +649,16 @@ export const Internet = () => {
         MuiCss="mb-4"
       />
       <Select
+        onChange={() => {}}
+        value=""
         MuiBg="#F9FAFB"
         selectText="Select Plan"
         selectProviders={selectBillers}
         MuiCss="my-3"
       />
       <DefaultInput
+        name=""
+        onChange={() => {}}
         CustomStyle="mb-3"
         label="Smile account number"
         size=""
@@ -548,6 +666,7 @@ export const Internet = () => {
         value="Placeholder"
       />
       <IconInput
+        name=""
         value={""}
         onChange={""}
         size="lg"
@@ -591,18 +710,24 @@ export const CableTV = () => {
   return (
     <div className="w-full h-[100vh] mt-[-10px]">
       <Select
+        onChange={() => {}}
+        value=""
         MuiBg="#F9FAFB"
         selectText="Select Biller"
         selectProviders={selectBillers}
         MuiCss="mb-4"
       />
       <Select
+        onChange={() => {}}
+        value=""
         MuiBg="#F9FAFB"
         selectText="Select Plan"
         selectProviders={selectBillers}
         MuiCss="my-3"
       />
       <DefaultInput
+        name=""
+        onChange={() => {}}
         CustomStyle="mb-3"
         label="Decoder number"
         size=""
@@ -610,6 +735,7 @@ export const CableTV = () => {
         value="Placeholder"
       />
       <IconInput
+        name=""
         value={""}
         onChange={""}
         size="lg"
@@ -653,18 +779,24 @@ export const Electricity = () => {
   return (
     <div className="w-full h-[100vh] mt-[-10px]">
       <Select
+        onChange={() => {}}
+        value=""
         MuiBg="#F9FAFB"
         selectText="Select Biller"
         selectProviders={selectBillers}
         MuiCss="mb-4"
       />
       <Select
+        onChange={() => {}}
+        value=""
         MuiBg="#F9FAFB"
         selectText="Select Plan"
         selectProviders={selectBillers}
         MuiCss="my-3"
       />
       <DefaultInput
+        name=""
+        onChange={() => {}}
         CustomStyle="mb-3"
         label="Meter number"
         size=""
@@ -672,6 +804,7 @@ export const Electricity = () => {
         value="Placeholder"
       />
       <IconInput
+        name=""
         value={""}
         onChange={""}
         size="lg"

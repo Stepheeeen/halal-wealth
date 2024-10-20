@@ -61,6 +61,9 @@ const IconInput = ({
   handleClick,
   onChange,
   name,
+  disabled,
+  iconStyle,
+  placeholder
 }: {
   icon: any;
   type: string;
@@ -72,6 +75,9 @@ const IconInput = ({
   handleClick: any;
   onChange: any;
   name: string;
+  disabled: boolean;
+  iconStyle: string;
+  placeholder: string;
 }) => {
   return (
     <>
@@ -79,18 +85,20 @@ const IconInput = ({
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
-          className="h-full flex items-center pl-3"
+          className="h-full flex items-center justify-center pl-3 mb-[50%]"
         >
-          <span className="">{icon}</span>
+          <span className={iconStyle}>{icon}</span>
         </InputLeftElement>
         <Input
-          placeholder={value}
+          placeholder={placeholder}
+          value={value}
           size={size}
           variant="filled"
           type={type}
           name={name}
           onChange={onChange}
           className={` px-4 py-2 w-full rounded-md bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-blue-500 h-[50px] ${CustomStyle}`}
+          disabled={disabled}
         />
         <InputRightElement
           className="h-full flex items-center cursor-pointer pr-3 pb-3"

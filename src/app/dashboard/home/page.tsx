@@ -48,22 +48,27 @@ import {
 } from "@/components/dashboard/content/modalContent";
 import { DefaultPinInput } from "@/components/reusable/input/Input";
 import axios from "axios";
+import { userInfo } from "@/app/constants";
 
 const Page = () => {
-  const [walletBalance, setWalletBalance] = useState();
+  // const [walletBalance, setWalletBalance] = useState();
 
-  useEffect(() => {
-    const getWalletBalance = async () => {
-      try {
-        const { data } = await axios.get("/api/wallet/get-balance");
-        setWalletBalance(data.balance); // Assuming the balance is inside data.balance
-      } catch (error) {
-        console.error("Error fetching wallet balance:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const getWalletBalance = async () => {
+  //     try {
+  //       const { data } = await axios.get("/api/wallet/get-balance",
+  //         {headers: {
+  //           Authorization: ``
+  //         }}
+  //       );
+  //       setWalletBalance(data.balance); // Assuming the balance is inside data.balance
+  //     } catch (error) {
+  //       console.error("Error fetching wallet balance:", error);
+  //     }
+  //   };
 
-    getWalletBalance();
-  }, []);
+  //   getWalletBalance();
+  // }, []);
 
   // see amount function
   const [show, setShow] = useState(false);
@@ -168,7 +173,7 @@ const Page = () => {
             CardTitle="Wallet Balance"
             hideBalance={handleClick}
             BalanceIcon={show ? <HideIconWhite /> : <ShowIconWhite />}
-            Balance={show ? walletBalance : "****"}
+            Balance={show ? `₦ ${userInfo.accountBalance}` : "****"}
             handleClick1={FundOpen}
             handleClick2={WithdrawOpen}
             button1="Fund wallet"
@@ -184,7 +189,7 @@ const Page = () => {
             CardTitle="Savings Balance"
             hideBalance={handleClick}
             BalanceIcon={show ? <HideIconWhite /> : <ShowIconWhite />}
-            Balance={show ? "₦ 100,000" : "****"}
+            Balance={show ? `₦ ${userInfo.savingsBalance}`  : "****"}
             handleClick1={""}
             handleClick2={""}
             button1="See Plans"
@@ -200,7 +205,7 @@ const Page = () => {
             CardTitle="Investment Balance"
             hideBalance={handleClick}
             BalanceIcon={show ? <HideIconWhite /> : <ShowIconWhite />}
-            Balance={show ? "₦ 100,000" : "****"}
+            Balance={show ? `₦ ${userInfo.investmentBalance}` : "****"}
             handleClick1={""}
             handleClick2={""}
             button1="See Plans"
@@ -395,7 +400,7 @@ const Page = () => {
             text="Savings total"
             type="solid"
             childDiv="flex flex-col-reverse balanceDiv"
-            title="NGN 40,000"
+            title={`NGN ${userInfo.savingsBalance}`}
           />
 
           <ChildCard
