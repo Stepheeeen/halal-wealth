@@ -201,27 +201,80 @@ export const FundWithCard = () => {
   );
 };
 
-export const Withdrawal = ({
-  onChange,
-  SelectBankOpen,
-  SelectBankClose,
-  selectBank,
-  HandleInputPinOpen,
-  amount,
-}: {
-  onChange: any;
-  selectBank: boolean;
-  SelectBankClose: any;
-  SelectBankOpen: any;
-  HandleInputPinOpen: any;
-  amount: any;
-}) => {
+export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
+  const [amount, setAmount] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const [pinModalOpen, setPinModalOpen] = useState(false);
+  // Open transaction pin modal
+  const openPinModal = () => {
+    if (userInfo.accountBalance <= amount ) {
+      toast.error("Insufficient Balance");
+      setPinModalOpen(false);
+    } else {
+      setPinModalOpen(true);
+    }
+  };
+
+  // Close transaction pin modal
+  const closePinModal = () => {
+    setPinModalOpen(false);
+  };
+
+  const handleSubmit = async (pin: string) => {
+    // Check if the amount is greater than the user's account balance
+
+    try {
+      const response = await axios.post(
+        "/api/wallet/withdraw-fund",
+        {
+          account_number: accountNumber,
+          amount: amount,
+          reason: "",
+          transactionPin: pin,
+        },
+        {
+          headers: {
+            Authorization: userInfo.token,
+            anonymousId: "123456",
+          },
+        }
+      );
+
+      // Check the response status and show appropriate messages
+      if (response.data.status === "2000") {
+        toast.success(response.data.description);
+      } else {
+        toast.error(response.data.description);
+      }
+    } catch (error) {
+      // Handle error with a user-friendly message
+      toast.error("An error occurred while processing your request.");
+      console.error(error); // Log the error for debugging
+    } finally {
+      setPinModalOpen(false); // Close the modal regardless of success or failure
+    }
+  };
+
   return (
     <div className="mt-[20px]">
+      <DefaultInput
+        name=""
+        value={accountNumber}
+        onChange={(e: any) => {
+          setAccountNumber(e.target.value);
+        }}
+        size="lg"
+        type="text"
+        CustomStyle="bg-[#F9FAFB] mb-4"
+        label="Account Number"
+      />
       <IconInput
         name=""
+        disabled={false}
+        iconStyle=""
+        placeholder="0"
         value={amount}
-        onChange={onChange}
+        onChange={(e: any) => setAmount(e.target.value)}
         size="lg"
         type="text"
         icon={<NairaIcon />}
@@ -241,76 +294,21 @@ export const Withdrawal = ({
           Wallet balance
         </p>
         <span className="w-[4px] h-[4px] rounded-full bg-[#14013A] mx-1"></span>
-        <h1 className="text-[#17B26A] font-[570]">
-          NGN {userInfo.accountBalance}
-        </h1>
+        <h1 className="text-[#17B26A] font-[570]">NGN {accountBalance}</h1>
       </div>
 
       <DefaultButton
         type="solid"
         text="Continue"
         customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-14"
-        onClick={SelectBankOpen}
+        onClick={openPinModal}
       />
-
-      <CustomModal
-        ModalStyling=""
-        isOpen={selectBank}
-        modalTitle="Select destination bank account"
-        onClose={SelectBankClose}
-      >
-        <div className="">
-          <div className="w-full">
-            <CustomButton
-              ButtonStyling="w-[96%] flex items-center justify-between text-start"
-              Context={
-                <div className="ml-[-7px] mr-[3px]">
-                  <BankIcon />
-                </div>
-              }
-              childDiv="ml-3 savingsDiv custom text-[#5C556C]"
-              customStyle="font-[500] py-5 border bg-[#F9FAFB] border-[#F2F4F7] border-1 hover:border-[#D5C1FB] hover:bg-[#F5F1FE] rounded"
-              icon={""}
-              onClick={""}
-              text="Ebosele Freeborn - 0211150982"
-              title="Guaranty trust bank"
-              type=""
-            />
-            <CustomButton
-              ButtonStyling="w-[96%] flex items-center justify-between text-start"
-              Context={
-                <div className="ml-[-7px] mr-[3px]">
-                  <BankIcon />
-                </div>
-              }
-              childDiv="ml-3 savingsDiv custom text-[#5C556C]"
-              customStyle="font-[500] py-5 border bg-[#F9FAFB] border-[#F2F4F7] border-1 hover:border-[#D5C1FB] hover:bg-[#F5F1FE] rounded mt-3"
-              icon={""}
-              onClick={""}
-              text="Ebosele Freeborn - 0211150982"
-              title="Guaranty trust bank"
-              type=""
-            />
-          </div>
-
-          <Button
-            variant="solid"
-            className={`px-3 py-2 rounded font-[470] text-[15.5px] text-[#8046F2] my-2 mb-5`}
-          >
-            Add new card{" "}
-            <span>
-              <PurpleFundWalletIcon />
-            </span>
-          </Button>
-
-          <DefaultButton
-            type="solid"
-            text="Continue"
-            customStyle="bg-[#8046F2] text-white font-medium"
-            onClick={HandleInputPinOpen}
-          />
-        </div>
-      </CustomModal>
+      {/* Transaction Pin Modal */}
+      <TransactionPinModal
+        isOpen={pinModalOpen}
+        onSubmit={handleSubmit}
+        onClose={closePinModal}
+      />
       <ToastContainer />
     </div>
   );
@@ -554,13 +552,11 @@ export const AirtimeAndData = () => {
                 const selectedIndex = e.target.selectedIndex;
                 const selectedOptionId = e.target.options[selectedIndex].id;
                 setId(selectedOptionId);
-                setSelectedDataPlan(e.target.value)
+                setSelectedDataPlan(e.target.value);
               }}
               className="mb-4 block w-full p-3 border border-gray-300 rounded-lg"
             >
-              <option value="">
-                Select Data Plan
-              </option>
+              <option value="">Select Data Plan</option>
               {Array.isArray(dataPlans) && dataPlans.length > 0 ? (
                 dataPlans.map((plan: any) => (
                   <option value={plan.price} id={plan.id}>
@@ -576,7 +572,7 @@ export const AirtimeAndData = () => {
 
             <IconInput
               RighIcon={""}
-              value={selectedDataPlan} 
+              value={selectedDataPlan}
               onChange={() => {}}
               size="lg"
               type="text"

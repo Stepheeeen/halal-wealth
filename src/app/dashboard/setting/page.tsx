@@ -53,6 +53,8 @@ const page = () => {
   const [show, setShow] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [pinModalOpen, setPinModalOpen] = useState(false);
+  const [verifyBvn, setVerifyBvn] = useState(false);
+  const [bvn, setBvn] = useState("");
   const closePinModal = () => {
     setPinModalOpen(false);
   };
@@ -199,6 +201,34 @@ const page = () => {
         closePinModal();
       }
     } catch (error: any) {}
+  };
+  const handleBvn = () => {
+    setVerifyBvn(true);
+  };
+  const handleVerifyBvn = async () => {
+    try {
+      const response = await axios.post(
+        "/api/wallet/verify-bvn",
+        {
+          bvn,
+        },
+        {
+          headers: {
+            Authorization: userInfo.token,
+          },
+        }
+      );
+      console.log(response.data);
+      if (response.data.status === "2000") {
+        toast.success(`Bvn Verification ${response.data.description}`);
+      } else {
+        toast.error(response.data.description);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setVerifyBvn(false)
+    }
   };
 
   // modals
@@ -369,6 +399,7 @@ const page = () => {
             setIdentityVerification(false);
             setIssueID(true);
           }}
+          handleBvn={handleBvn}
         />
       </CustomModal>
 
@@ -516,6 +547,33 @@ const page = () => {
         }}
       >
         hello
+      </CustomModal>
+      <CustomModal
+        ModalStyling="overflow-x-hidden overflow-y-scroll"
+        isOpen={verifyBvn}
+        modalTitle="Verify BVN"
+        onClose={() => {
+          setVerifyBvn(false);
+        }}
+      >
+        <DefaultInput
+          size="lg"
+          value={bvn}
+          name=""
+          onChange={(e: any) => {
+            setBvn(e.target.value);
+          }}
+          type="text"
+          CustomStyle="mb-4 border"
+          label="BVN"
+        />
+
+        <DefaultButton
+          type="solid"
+          text="Verify"
+          customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-8"
+          onClick={handleVerifyBvn}
+        />
       </CustomModal>
 
       <CustomModal

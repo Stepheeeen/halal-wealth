@@ -67,7 +67,7 @@ const IconInput = ({
 }: {
   icon: any;
   type: string;
-  value: string;
+  value: any;
   size: string;
   CustomStyle: string;
   label: string;

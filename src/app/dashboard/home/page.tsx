@@ -549,12 +549,7 @@ const Page = () => {
         onClose={WithdrawClose}
       >
         <Withdrawal
-          onChange={(e: any) => setAmount(e.target.value)}
-          SelectBankClose={SelectBankClose}
-          SelectBankOpen={SelectBankOpen}
-          selectBank={selectBank}
-          HandleInputPinOpen={HandleInputPinOpen}
-          amount={amount}
+          accountBalance={walletBalance}
         />
       </CustomModal>
 
@@ -598,7 +593,7 @@ const Page = () => {
         <Electricity />
       </CustomModal>
 
-      {/* PIN modal */}
+      {/* PIN modal
       <CustomModal
         ModalStyling=""
         isOpen={pin}
@@ -629,7 +624,7 @@ const Page = () => {
             onClick={HandleSucessOpen}
           />
         </div>
-      </CustomModal>
+      </CustomModal> */}
 
       {/* Success modal */}
       <SuccessModal

@@ -2,31 +2,31 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { BackIcon, NairaIcon } from "../../../../../public/assets/icons";
+import { BackIcon } from "../../../../../public/assets/icons";
 import { DefaultButton } from "@/components/reusable/button/Button";
-import { IconInput } from "@/components/reusable/input/Input";
+import { DefaultInput } from "@/components/reusable/input/Input";
 import InvestContainer from "../../invest/page";
 
 const Page = () => {
   const router = useRouter();
-  const [amount, setAmount] = useState<number | undefined>(undefined);
+  const [planName, setPlanName] = useState("");
 
-  //   const storedData = JSON.parse(localStorage.getItem("newSavings") || "{}");
-
-  function saveObject(key: string, newObject: Record<string, any>) {
+  // Function to save an object in localStorage
+  const saveObject = (key: string, newObject: object) => {
+    // Get the existing data from localStorage, or default to an empty string if null
     const existingDataString = localStorage.getItem(key);
     const existingData = existingDataString
       ? JSON.parse(existingDataString)
       : {}; // Parse only if it's not null
+
     const updatedData = { ...existingData, ...newObject };
     localStorage.setItem(key, JSON.stringify(updatedData));
-  }
+  };
 
+  // Function to handle routing
   const handleRoute = () => {
-    if (amount) {
-      saveObject("newSavings", { amount: Number(amount) }); // Convert amount to number before saving
-    }
-    router.push("/dashboard/savings/duration");
+    saveObject("newSavings", { planName: planName }); // Store data
+    router.push("/dashboard/savings/how-much"); // Navigate to the new page
   };
 
   return (
@@ -39,32 +39,34 @@ const Page = () => {
       </div>
 
       <div className="w-[95%] flex items-center justify-between p-4">
-        <h1 className="text-[45px] w-[45%] text-wrap font-[480]">
-          How much do you want to start with?
+        <h1 className="text-[54px] w-[45%] text-wrap font-[480]">
+          What are you saving for?
         </h1>
 
         <div className="mt-[20px] ml-3 w-[45%]">
           <h1 className="text-[18px] font-[600] text-[#14013A] w-[95%] mb-3">
-            Amount
+            Give your custom savings plan a name
           </h1>
-          <IconInput
-            value={amount}
+
+          <DefaultInput
+            CustomStyle=""
+            value={planName}
             onChange={(e: any) => {
-              setAmount(e.target.value);
+              setPlanName(e.target.value);
             }}
-            size="lg"
+            label="plan name"
+            size="md"
             type="text"
-            icon={<NairaIcon />}
-            RighIcon={""}
-            handleClick={() => {}}
-            CustomStyle="pl-[55px] bg-[#F9FAFB]"
-            label=""
           />
+
+          <p className="text-[14px] font-[500] text-[#5C556C] w-[95%] mt-3">
+            Give your plan a name depending on what you’re saving for.
+          </p>
 
           <DefaultButton
             type="solid"
             text="Continue"
-            customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-14"
+            customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
             onClick={handleRoute}
           />
         </div>

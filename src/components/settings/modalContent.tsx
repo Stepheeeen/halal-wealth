@@ -117,14 +117,15 @@ export const EditProfile = () => {
   );
 };
 
-export const IdentityVerification = ({ onClick3 }: { onClick3: any }) => {
+export const IdentityVerification = ({ onClick3, handleBvn }: { onClick3: any; handleBvn: any }) => {
+  
   const Identity = [
     { text: "Email Address", badge: <BadgeButton />, onClick: "" },
     {
       text: "Bank verification Number(BVN)",
       badge: <BadgeButtonPending />,
       style: "w-[30%]",
-      onClick: "",
+      onClick: handleBvn,
     },
     {
       text: "Upload Government issued ID",
