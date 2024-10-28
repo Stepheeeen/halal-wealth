@@ -8,7 +8,7 @@ import {
 } from "@/components/reusable/button/Button";
 import { CustomModal } from "@/components/reusable/modal/modal";
 import { DefaultPinInput } from "@/components/reusable/input/Input";
-import InvestContainer from "../../invest/page";
+ 
 import { useRouter } from "next/navigation";
 import TransactionPinModal from "@/components/reusable/modal/TransactionPin";
 import axios from "axios";

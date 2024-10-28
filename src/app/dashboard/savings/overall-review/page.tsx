@@ -5,7 +5,8 @@ import { BackIcon, WalletIcon } from '../../../../../public/assets/icons';
 import { CustomButton, DefaultButton } from '@/components/reusable/button/Button';
 import { CustomModal } from '@/components/reusable/modal/modal';
 import { DefaultPinInput } from '@/components/reusable/input/Input';
-import InvestContainer from '../../invest/page';
+import DashboardContainer from '@/components/dashboard/dashboardContainer';
+ 
 
 const Page = () => {
     const [open, setOpen] = useState(false);

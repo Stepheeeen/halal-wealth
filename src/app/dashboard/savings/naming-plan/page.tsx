@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { BackIcon } from '../../../../../public/assets/icons';
 import { DefaultButton } from '@/components/reusable/button/Button';
 import { DefaultInput } from '@/components/reusable/input/Input';
-import InvestContainer from '../../invest/page';
+import DashboardContainer from '@/components/dashboard/dashboardContainer';
 
 const Page = () => {
     const router = useRouter()

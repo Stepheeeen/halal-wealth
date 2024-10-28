@@ -13,7 +13,7 @@ import {
   DefaultButton,
 } from "@/components/reusable/button/Button";
 import { CustomModal } from "@/components/reusable/modal/modal";
-import InvestContainer from "../../invest/page";
+ 
 import { useRouter } from "next/navigation";
 import { userInfo } from "@/app/constants";
 import DashboardContainer from "@/components/dashboard/dashboardContainer";

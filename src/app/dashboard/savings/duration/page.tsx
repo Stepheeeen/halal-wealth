@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { DefaultButton } from "@/components/reusable/button/Button";
-import InvestContainer from "../../invest/page";
+ 
 import DashboardContainer from "@/components/dashboard/dashboardContainer";
 
 interface Duration {
