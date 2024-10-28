@@ -110,8 +110,8 @@ const Page = () => {
                 )}
 
                 <DefaultButton
-                  disabled={false}
-                  isLoading={false}
+                  disabled
+                  isLoading
                   type="solid"
                   text="Continue"
                   customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-5"

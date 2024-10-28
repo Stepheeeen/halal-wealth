@@ -123,7 +123,7 @@ const SignIn = () => {
         label="Email address"
       />
       <IconInput
-        disabled={false}
+        disabled
         iconStyle=""
         placeholder=""
         onChange={(e: any) => setPassword(e.target.value)}

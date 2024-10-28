@@ -65,7 +65,7 @@ const NewPassword = () => {
       loading={isLoading} // Pass isLoading to AuthContainer
     >
       <IconInput
-        disabled={false}
+        disabled
         iconStyle=""
         name=""
         value={password}
@@ -83,7 +83,7 @@ const NewPassword = () => {
       />
 
       <IconInput
-        disabled={false}
+        disabled
         iconStyle=""
         name=""
         value={confirmPassword}

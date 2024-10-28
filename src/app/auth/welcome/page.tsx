@@ -28,7 +28,7 @@ const Welcome = () => {
       altOnClick={""}
     >
       <IconInput
-        disabled={false}
+        disabled
         iconStyle=""
         name=""
         placeholder=""
