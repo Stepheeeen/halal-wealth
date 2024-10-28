@@ -52,7 +52,9 @@ export const EditProfile = () => {
       <div className="w-[40%]">
         <DefaultButton
           customStyle="bg-[#F5F1FE] border border-[#E6DAFC] w-[100px] text-[#8046F2] font-[550] text-[14px] mt-2"
-          onClick={""}
+          onClick={() => {}}
+          disabled
+          isLoading
           text="Edit Profile"
           type="solid"
         />
@@ -60,6 +62,8 @@ export const EditProfile = () => {
 
       <div className="w-full mt-2">
         <DefaultInput
+          name=""
+          onChange={() => {}}
           size="lg"
           value={userInfo.firstName}
           type="text"
@@ -67,6 +71,8 @@ export const EditProfile = () => {
           label="First name"
         />
         <DefaultInput
+          name=""
+          onChange={() => {}}
           size="lg"
           value={userInfo.lastName}
           type="text"
@@ -74,6 +80,8 @@ export const EditProfile = () => {
           label="Last name"
         />
         <DefaultInput
+          name=""
+          onChange={() => {}}
           size="lg"
           value={userInfo.emailAddress}
           type="email"
@@ -81,12 +89,16 @@ export const EditProfile = () => {
           label="Email Address"
         />
         <OptionsSelect
+          name={""}
+          onChange={() => {}}
           CustomStyle="mb-4 border"
           label="Gender"
           options={options}
         />
 
         <DefaultInput
+          name=""
+          onChange={() => {}}
           size="lg"
           value="placeholder"
           type="date"
@@ -94,6 +106,9 @@ export const EditProfile = () => {
           label="Date of birth"
         />
         <IconInput
+          iconStyle=""
+          name=""
+          placeholder=""
           onChange={""}
           value={userInfo.phoneNumber}
           disabled={true}
@@ -111,14 +126,21 @@ export const EditProfile = () => {
         type="solid"
         text="Save Changes"
         customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
-        onClick={""}
+        onClick={() => {}}
+        disabled
+        isLoading
       />
     </div>
   );
 };
 
-export const IdentityVerification = ({ onClick3, handleBvn }: { onClick3: any; handleBvn: any }) => {
-  
+export const IdentityVerification = ({
+  onClick3,
+  handleBvn,
+}: {
+  onClick3: any;
+  handleBvn: any;
+}) => {
   const Identity = [
     { text: "Email Address", badge: <BadgeButton />, onClick: "" },
     {

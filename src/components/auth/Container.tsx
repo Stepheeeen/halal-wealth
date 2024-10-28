@@ -68,6 +68,7 @@ const AuthContainer = ({
             </p>
           </div>
           <DefaultButton
+            disabled
             // isLoading={loading}
             // disabled={false}
             isLoading={loading}
@@ -78,6 +79,8 @@ const AuthContainer = ({
           />
           <div className={customStyle}>
             <DefaultButton
+              disabled
+              isLoading
               type="solid"
               text={altText}
               customStyle="mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium"

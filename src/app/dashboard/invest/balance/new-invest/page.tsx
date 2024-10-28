@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,16 +11,10 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { DefaultCard } from "@/components/reusable/card/Card";
-import {
-  BackIcon,
-  NextIconPurple,
-} from "../../../../../../public/assets/icons";
+import { BackIcon } from "../../../../../../public/assets/icons";
 import Chart from "../../../../../../public/assets/images/chart.png";
 import ChartLg from "../../../../../../public/assets/images/chart-Lg.png";
-import {
-  CustomButton,
-  DefaultButton,
-} from "@/components/reusable/button/Button";
+import { DefaultButton } from "@/components/reusable/button/Button";
 import DashboardContainer from "@/components/dashboard/dashboardContainer";
 
 const Page = () => {
@@ -57,9 +52,9 @@ const Page = () => {
               <div className="w-[12%]">
                 <DefaultButton
                   customStyle="w-auto bg-[#8046F2] text-white font-medium px-8 py-2 mt-[-20px] mr-3"
-                  onClick={()=>{}}
-                  disabled={false}
-                  isLoading={false}
+                  onClick={() => {}}
+                  disabled
+                  isLoading
                   text="Invest"
                   type="solid"
                 />
