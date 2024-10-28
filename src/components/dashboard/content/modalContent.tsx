@@ -195,19 +195,19 @@ export const FundWithCard = () => {
         type="solid"
         text="Continue"
         customStyle="bg-[#8046F2] text-white font-medium"
-        onClick={""}
+        onClick={()=>{}}
       />
     </div>
   );
 };
-
 export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
   const [amount, setAmount] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [pinModalOpen, setPinModalOpen] = useState(false);
-  // Open transaction pin modal
+  const [loading, setLoading] = useState(false); // Add loading state
+
   const openPinModal = () => {
-    if (userInfo.accountBalance <= amount ) {
+    if (userInfo.accountBalance <= amount) {
       toast.error("Insufficient Balance");
       setPinModalOpen(false);
     } else {
@@ -215,14 +215,12 @@ export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
     }
   };
 
-  // Close transaction pin modal
   const closePinModal = () => {
     setPinModalOpen(false);
   };
 
   const handleSubmit = async (pin: string) => {
-    // Check if the amount is greater than the user's account balance
-
+    setLoading(true); // Set loading to true when submitting
     try {
       const response = await axios.post(
         "/api/wallet/withdraw-fund",
@@ -240,18 +238,17 @@ export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
         }
       );
 
-      // Check the response status and show appropriate messages
       if (response.data.status === "2000") {
         toast.success(response.data.description);
       } else {
         toast.error(response.data.description);
       }
     } catch (error) {
-      // Handle error with a user-friendly message
       toast.error("An error occurred while processing your request.");
-      console.error(error); // Log the error for debugging
+      console.error(error);
     } finally {
-      setPinModalOpen(false); // Close the modal regardless of success or failure
+      setLoading(false); // Set loading to false after processing
+      setPinModalOpen(false);
     }
   };
 
@@ -264,7 +261,7 @@ export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
           setAccountNumber(e.target.value);
         }}
         size="lg"
-        type="text"
+        type="number"
         CustomStyle="bg-[#F9FAFB] mb-4"
         label="Account Number"
       />
@@ -276,18 +273,16 @@ export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
         value={amount}
         onChange={(e: any) => setAmount(e.target.value)}
         size="lg"
-        type="text"
+        type="number"
         icon={<NairaIcon />}
         RighIcon={""}
         handleClick={""}
         CustomStyle="pl-[55px] bg-[#F9FAFB]"
         label="Amount"
       />
-
       <p className="text-[14px] font-[450] text-[#5C556C] text-center w-[95%] mt-2">
         +NGN 50 processing fee
       </p>
-
       <div className=" flex items-center justify-center w-[95%] text-[16px] mt-6">
         <WalletIcon />
         <p className=" text-[15px] font-[450] text-[#5C556C] ml-1">
@@ -296,10 +291,10 @@ export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
         <span className="w-[4px] h-[4px] rounded-full bg-[#14013A] mx-1"></span>
         <h1 className="text-[#17B26A] font-[570]">NGN {accountBalance}</h1>
       </div>
-
       <DefaultButton
         type="solid"
         text="Continue"
+        isLoading={loading} // Pass loading state to DefaultButton
         customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-14"
         onClick={openPinModal}
       />
@@ -319,23 +314,22 @@ export const AirtimeAndData = () => {
   const [network, setNetwork] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [amount, setAmount] = useState("");
-  const [dataAmount, setDataAmount] = useState(""); // Amount for data bundles
+  const [dataAmount, setDataAmount] = useState("");
   const [pinModalOpen, setPinModalOpen] = useState(false);
   const [transactionPin, setTransactionPin] = useState("");
-  const [dataPlans, setDataPlans] = useState<any[]>([]); // Ensure this is initialized as an array
+  const [dataPlans, setDataPlans] = useState<any[]>([]);
   const [selectedDataPlan, setSelectedDataPlan] = useState<any | null>(null);
-  const [id, setId] = useState(""); // For the amount of the selected data plan
+  const [id, setId] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state
 
-  // Handle tab changes between "Airtime" and "Data Bundles"
   const handleTabsChange = (index: number) => {
     setSelectedIndex(index);
     if (index === 1) {
-      setSelectedDataPlan(""); // Reset when switching to Data Bundles tab
-      setDataAmount(""); // Also reset data amount
+      setSelectedDataPlan("");
+      setDataAmount("");
     }
   };
 
-  // Options for network billers
   const selectBillers = [
     { value: "mtn", label: "MTN" },
     { value: "glo", label: "Glo" },
@@ -343,14 +337,12 @@ export const AirtimeAndData = () => {
     { value: "9mobile", label: "9Mobile" },
   ];
 
-  // Handle network selection change
   const handleNetworkChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedNetwork = event.target.value;
     setNetwork(selectedNetwork);
 
-    // Fetch data plans if the Data Bundles tab is selected
     if (selectedIndex === 1) {
       await fetchDataPlans(selectedNetwork);
     }
@@ -367,35 +359,29 @@ export const AirtimeAndData = () => {
         }
       );
 
-      console.log("API Response: ", response.data); // Log the full response for debugging
-
-      const plans = response.data.data.data; // Access the array of data plans
+      const plans = response.data.data.data;
 
       if (Array.isArray(plans) && plans.length > 0) {
-        setDataPlans(plans); // Set data plans if it's a non-empty array
+        setDataPlans(plans);
       } else {
-        console.error("Data plans are not in the expected format:", plans);
-        setDataPlans([]); // Reset if not in the correct format
+        setDataPlans([]);
       }
     } catch (error) {
-      console.error("Error fetching data plans:", error);
       toast.error("Error fetching data plans.");
     }
   };
 
-  // Open transaction pin modal
   const openPinModal = () => {
     setPinModalOpen(true);
   };
 
-  // Close transaction pin modal
   const closePinModal = () => {
     setPinModalOpen(false);
   };
 
-  // Handle form submission based on selected tab (Airtime or Data)
   const handleSubmit = (pin: string) => {
     setTransactionPin(pin);
+    setLoading(true); // Set loading to true when submitting
     if (selectedIndex === 0) {
       makeAirtimePurchase(pin);
     } else {
@@ -403,7 +389,6 @@ export const AirtimeAndData = () => {
     }
   };
 
-  // Make airtime purchase
   const makeAirtimePurchase = async (pin: string) => {
     try {
       const response = await axios.post(
@@ -423,30 +408,28 @@ export const AirtimeAndData = () => {
       );
       if (response.data.status === "2000") {
         toast.success(response.data.description);
-        // router.push("/dashboard/home");
       } else {
         toast.error(response.data.description);
       }
     } catch (error) {
-      console.error("Error processing airtime transaction:", error);
       toast.error("Error processing airtime transaction.");
     } finally {
+      setLoading(false); // Set loading to false after processing
       closePinModal();
     }
   };
 
-  // Make data bundle purchase
   const makeDataPurchase = async (pin: string) => {
     try {
       const response = await axios.post(
         "/api/bills/data",
         {
-          amount: selectedDataPlan, // Use dataAmount for data bundles
+          amount: selectedDataPlan,
           beneficiary: phoneNumber,
           network,
           transactionPin: pin,
           deviceId: "web",
-          id: id, // Use selected data plan ID
+          id: id,
         },
         {
           headers: {
@@ -454,17 +437,15 @@ export const AirtimeAndData = () => {
           },
         }
       );
-      console.log(selectedDataPlan.price, selectedDataPlan.id);
       if (response.data.status === "2000") {
         toast.success(response.data.description);
-        // router.push("/dashboard/home");
       } else {
         toast.error(response.data.description);
       }
     } catch (error) {
-      console.error("Error processing data transaction:", error);
       toast.error("Error processing data transaction.");
     } finally {
+      setLoading(false); // Set loading to false after processing
       closePinModal();
     }
   };
@@ -494,330 +475,128 @@ export const AirtimeAndData = () => {
         </TabList>
 
         <TabPanels className="w-full p-3">
-          {/* Airtime Tab */}
-          <TabPanel className="font-[400] text-[15px]">
-            <Select
-              MuiCss=""
-              selectText="Select Network"
-              MuiBg="#F9FAFB"
-              selectProviders={selectBillers}
-              value={network}
-              onChange={handleNetworkChange}
-            />
-            <IconInput
-              RighIcon={""}
+          <TabPanel className="font-[400] text-[16px]">
+            <DefaultInput
+              name=""
               value={phoneNumber}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setPhoneNumber(e.target.value)
-              }
+              onChange={(e: any) => {
+                setPhoneNumber(e.target.value);
+              }}
               size="lg"
-              type="text"
-              iconStyle="mt-[-14px]"
-              icon={<NumberIcon />}
-              CustomStyle="pl-[55px] bg-[#F9FAFB] font-[400] mb-3"
-              label="Phone number"
+              type="number"
+              CustomStyle="bg-[#F9FAFB] mb-4"
+              label="Phone Number"
             />
-            <IconInput
-              RighIcon={""}
-              value={amount}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setAmount(e.target.value)
-              }
-              size="lg"
-              type="text"
-              icon={<NairaIcon />}
-              CustomStyle="pl-[55px] bg-[#F9FAFB]"
-              label="Amount"
-            />
-            <DefaultButton
-              type="solid"
-              text="Continue"
-              customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[47%]"
-              onClick={openPinModal}
-            />
-          </TabPanel>
-
-          {/* Data Bundles Tab */}
-          <TabPanel className="font-[400] text-[15px]">
-            <Select
-              MuiCss=""
-              selectText="Select Network"
-              MuiBg="#F9FAFB"
-              selectProviders={selectBillers}
+            <label className="text-[14px] mt-2 font-[450] mb-2">
+              Select Network
+            </label>
+            <select
+              className="w-full p-3 bg-[#F9FAFB] mb-4 rounded border border-gray-300"
               value={network}
               onChange={handleNetworkChange}
-            />
-            <select
-              onChange={(e: any) => {
-                const selectedIndex = e.target.selectedIndex;
-                const selectedOptionId = e.target.options[selectedIndex].id;
-                setId(selectedOptionId);
-                setSelectedDataPlan(e.target.value);
-              }}
-              className="mb-4 block w-full p-3 border border-gray-300 rounded-lg"
             >
-              <option value="">Select Data Plan</option>
-              {Array.isArray(dataPlans) && dataPlans.length > 0 ? (
-                dataPlans.map((plan: any) => (
-                  <option value={plan.price} id={plan.id}>
-                    {plan.name} - {plan.description}
-                  </option>
-                ))
-              ) : (
-                <option value="" disabled>
-                  No data plans available
+              <option value="" disabled>
+                Select a network
+              </option>
+              {selectBillers.map((biller, index) => (
+                <option key={index} value={biller.value}>
+                  {biller.label}
                 </option>
-              )}
+              ))}
             </select>
 
             <IconInput
-              RighIcon={""}
-              value={selectedDataPlan}
-              onChange={() => {}}
+              name=""
+              disabled={false}
+              iconStyle=""
+              placeholder="0"
+              value={amount}
+              onChange={(e: any) => setAmount(e.target.value)}
               size="lg"
-              type="text"
+              type="number"
               icon={<NairaIcon />}
+              RighIcon={""}
+              handleClick={""}
               CustomStyle="pl-[55px] bg-[#F9FAFB]"
               label="Amount"
-              disabled={true}
-            />
-
-            <IconInput
-              RighIcon={""}
-              iconStyle="mt-[-14px]"
-              value={phoneNumber}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setPhoneNumber(e.target.value)
-              }
-              size="lg"
-              type="text"
-              icon={<NumberIcon />}
-              CustomStyle="pl-[55px] bg-[#F9FAFB] font-[400] mb-3"
-              label="Phone number"
             />
             <DefaultButton
               type="solid"
               text="Continue"
-              customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[25%]"
+              isLoading={loading} // Pass loading state to DefaultButton
+              customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-14"
               onClick={openPinModal}
+            />
+            <TransactionPinModal
+              isOpen={pinModalOpen}
+              onSubmit={handleSubmit}
+              onClose={closePinModal}
+            />
+          </TabPanel>
+
+          <TabPanel className="font-[400] text-[16px]">
+            <DefaultInput
+              name=""
+              value={phoneNumber}
+              onChange={(e: any) => {
+                setPhoneNumber(e.target.value);
+              }}
+              size="lg"
+              type="number"
+              CustomStyle="bg-[#F9FAFB] mb-4"
+              label="Phone Number"
+            />
+            <label className="text-[14px] font-[450] mb-2">
+              Select Network
+            </label>
+            <select
+              className="w-full mb-4 p-3 bg-[#F9FAFB] rounded border border-gray-300"
+              value={network}
+              onChange={handleNetworkChange}
+            >
+              <option value="" disabled>
+                Select a network
+              </option>
+              {selectBillers.map((biller, index) => (
+                <option key={index} value={biller.value}>
+                  {biller.label}
+                </option>
+              ))}
+            </select>
+
+            <label className="text-[14px] font-[450] mb-2">
+              Select Data Plan
+            </label>
+            <select
+              className="w-full mb-4 p-3 bg-[#F9FAFB] rounded border border-gray-300"
+              value={selectedDataPlan}
+              onChange={(e: any) => setSelectedDataPlan(e.target.value)}
+            >
+              <option value="" disabled>
+                Select a data plan
+              </option>
+              {dataPlans.map((plan) => (
+                <option key={plan.id} value={plan.price}>
+                  {plan.name} - {plan.price}
+                </option>
+              ))}
+            </select>
+
+            <DefaultButton
+              type="solid"
+              text="Continue"
+              isLoading={loading} // Pass isLoading state to DefaultButton
+              customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-14"
+              onClick={openPinModal}
+            />
+            <TransactionPinModal
+              isOpen={pinModalOpen}
+              onSubmit={handleSubmit}
+              onClose={closePinModal}
             />
           </TabPanel>
         </TabPanels>
       </Tabs>
-
-      {/* Transaction Pin Modal */}
-      <TransactionPinModal
-        isOpen={pinModalOpen}
-        onSubmit={handleSubmit}
-        onClose={closePinModal}
-      />
-    </div>
-  );
-};
-
-export const Internet = () => {
-  const selectBillers = [
-    {
-      value: "USD",
-      label: "IKEDC",
-    },
-    {
-      value: "EUR",
-      label: "Gotv",
-    },
-    {
-      value: "BTC",
-      label: "Startimes",
-    },
-    {
-      value: "JPY",
-      label: "Strong",
-    },
-  ];
-  return (
-    <div className="w-full h-[100vh] mt-[-10px]">
-      <Select
-        onChange={() => {}}
-        value=""
-        MuiBg="#F9FAFB"
-        selectText="Select Biller"
-        selectProviders={selectBillers}
-        MuiCss="mb-4"
-      />
-      <Select
-        onChange={() => {}}
-        value=""
-        MuiBg="#F9FAFB"
-        selectText="Select Plan"
-        selectProviders={selectBillers}
-        MuiCss="my-3"
-      />
-      <DefaultInput
-        name=""
-        onChange={() => {}}
-        CustomStyle="mb-3"
-        label="Smile account number"
-        size=""
-        type="solid"
-        value="Placeholder"
-      />
-      <IconInput
-        name=""
-        value={""}
-        onChange={""}
-        size="lg"
-        type="text"
-        icon={<NairaIcon />}
-        RighIcon={""}
-        handleClick={""}
-        CustomStyle="pl-[55px] bg-[#F9FAFB]"
-        label="Amount"
-      />
-
-      <DefaultButton
-        type="solid"
-        text="Continue"
-        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
-        onClick={""}
-      />
-    </div>
-  );
-};
-
-export const CableTV = () => {
-  const selectBillers = [
-    {
-      value: "USD",
-      label: "IKEDC",
-    },
-    {
-      value: "EUR",
-      label: "Gotv",
-    },
-    {
-      value: "BTC",
-      label: "Startimes",
-    },
-    {
-      value: "JPY",
-      label: "Strong",
-    },
-  ];
-  return (
-    <div className="w-full h-[100vh] mt-[-10px]">
-      <Select
-        onChange={() => {}}
-        value=""
-        MuiBg="#F9FAFB"
-        selectText="Select Biller"
-        selectProviders={selectBillers}
-        MuiCss="mb-4"
-      />
-      <Select
-        onChange={() => {}}
-        value=""
-        MuiBg="#F9FAFB"
-        selectText="Select Plan"
-        selectProviders={selectBillers}
-        MuiCss="my-3"
-      />
-      <DefaultInput
-        name=""
-        onChange={() => {}}
-        CustomStyle="mb-3"
-        label="Decoder number"
-        size=""
-        type="solid"
-        value="Placeholder"
-      />
-      <IconInput
-        name=""
-        value={""}
-        onChange={""}
-        size="lg"
-        type="text"
-        icon={<NairaIcon />}
-        RighIcon={""}
-        handleClick={""}
-        CustomStyle="pl-[55px] bg-[#F9FAFB]"
-        label="Amount"
-      />
-
-      <DefaultButton
-        type="solid"
-        text="Continue"
-        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
-        onClick={""}
-      />
-    </div>
-  );
-};
-
-export const Electricity = () => {
-  const selectBillers = [
-    {
-      value: "USD",
-      label: "IKEDC",
-    },
-    {
-      value: "EUR",
-      label: "Gotv",
-    },
-    {
-      value: "BTC",
-      label: "Startimes",
-    },
-    {
-      value: "JPY",
-      label: "Strong",
-    },
-  ];
-  return (
-    <div className="w-full h-[100vh] mt-[-10px]">
-      <Select
-        onChange={() => {}}
-        value=""
-        MuiBg="#F9FAFB"
-        selectText="Select Biller"
-        selectProviders={selectBillers}
-        MuiCss="mb-4"
-      />
-      <Select
-        onChange={() => {}}
-        value=""
-        MuiBg="#F9FAFB"
-        selectText="Select Plan"
-        selectProviders={selectBillers}
-        MuiCss="my-3"
-      />
-      <DefaultInput
-        name=""
-        onChange={() => {}}
-        CustomStyle="mb-3"
-        label="Meter number"
-        size=""
-        type="solid"
-        value="Placeholder"
-      />
-      <IconInput
-        name=""
-        value={""}
-        onChange={""}
-        size="lg"
-        type="text"
-        icon={<NairaIcon />}
-        RighIcon={""}
-        handleClick={""}
-        CustomStyle="pl-[55px] bg-[#F9FAFB]"
-        label="Amount"
-      />
-
-      <DefaultButton
-        type="solid"
-        text="Continue"
-        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
-        onClick={""}
-      />
     </div>
   );
 };

@@ -97,7 +97,7 @@ const SignUp = () => {
         size="lg"
         value={accountNumber}
         onChange={(e:any) => setAccountNumber(e.target.value)}
-        type="text"
+        type="number"
         CustomStyle="mb-4"
         name="accountNumber"
         label="Account Number"

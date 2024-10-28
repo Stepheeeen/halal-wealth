@@ -11,7 +11,7 @@ import {
 } from "../../../public/assets/icons";
 import Image from "next/image";
 import PieChartImage from "../../../public/assets/images/pieChartImage.png";
-import Chart from "../../../public/assets/images/Chart-Contain.png";
+import Chart from "../../../public/assets/images/chart.png";
 import { ChildCard, DefaultCard } from "../reusable/card/Card";
 import Link from "next/link";
 

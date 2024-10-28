@@ -69,7 +69,7 @@ const SignUp = () => {
       <DefaultInput
         size="lg"
         value={bvn}
-        type="text"
+        type="number"
         name="bvn"
         CustomStyle="mb-4"
         label="BVN"

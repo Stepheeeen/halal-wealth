@@ -19,6 +19,7 @@ import { BalanceCard, ChildCard } from '@/components/reusable/card/Card'
 import ChartLg from '../../../../../public/assets/images/Chart-Contain.png'
 import { CustomButton } from '@/components/reusable/button/Button';
 import { CustomModal } from '@/components/reusable/modal/modal';
+import { userInfo } from '@/app/constants';
 
 const Page = () => {
   const [show, setShow] = useState(false);
@@ -69,7 +70,7 @@ const Page = () => {
           CardTitle='Investment Total'
           hideBalance={handleClick}
           BalanceIcon={show ? <HideIcon /> : <ShowIcon />}
-          Balance={show ? '₦ 100,000' : '****'}
+          Balance={show ? `₦ ${userInfo.investmentBalance}` : '****'}
           button1=''
           button2=''
           buttonIcon1={''}
@@ -136,7 +137,7 @@ const Page = () => {
             CardTitle='Wallet Balance'
             hideBalance={handleClick}
             BalanceIcon={show ? <HideIconWhite /> : <ShowIconWhite />}
-            Balance={show ? '₦ 100,000' : '****'}
+            Balance={show ? `₦ ${userInfo.investmentBalance}` : '****'}
             button1='Fund wallet'
             button2='Withdraw'
             buttonIcon1={<FundWalletIcon />}

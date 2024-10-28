@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardContainer from "@/components/dashboard/dashboardContainer";
 import {
   FundWalletIcon,
@@ -28,6 +28,8 @@ import ProgressBar from "@/components/reusable/progressBar/progressBar";
 import { userInfo } from "@/app/constants";
 
 const Page = () => {
+  // window.location.reload();
+
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const router = useRouter();
