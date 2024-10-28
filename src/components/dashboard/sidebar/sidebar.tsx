@@ -23,6 +23,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("userInfo")
+    localStorage.removeItem("LoginToken")
     router.push("/auth/signin")
     toast.success("Logged Out Successfully!")
   }

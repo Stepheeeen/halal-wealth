@@ -43,27 +43,31 @@ const Page = () => {
 
   const handleCreatePlan = async (pin: string) => {
     try {
-      const response = await axios.post("/api/savings/savings-plan", {
-        amount: SavingsReview.amount,
-        channel: ["card", "ussd"],
-        duration: SavingsReview.duration,
-        frequency: SavingsReview.frequency,
-        paymentMethod: SavingsReview.paymentMethod,
-        planName: SavingsReview.planName,
-        transactionPin: pin,
-      }, {
-        headers: {
+      const response = await axios.post(
+        "/api/savings/savings-plan",
+        {
+          amount: SavingsReview.amount,
+          channel: ["card", "ussd"],
+          duration: SavingsReview.duration,
+          frequency: SavingsReview.frequency,
+          paymentMethod: SavingsReview.paymentMethod,
+          planName: SavingsReview.planName,
+          transactionPin: pin,
+        },
+        {
+          headers: {
             Authorization: userInfo.token,
-            anonymousId: "123456"
+            anonymousId: "123456",
+          },
         }
-      });
-      console.log(response.data)
-      if(response.data.status === "2000"){
-        toast.success(response.data.description)
-        router.push("/dashboard/savings")
-        localStorage.removeItem("newSavings")
+      );
+      console.log(response.data);
+      if (response.data.status === "2000") {
+        toast.success(response.data.description);
+        router.push("/dashboard/savings");
+        localStorage.removeItem("newSavings");
       } else {
-        toast.error(response.data.description)
+        toast.error(response.data.description);
       }
     } catch (error) {
       console.error(error);

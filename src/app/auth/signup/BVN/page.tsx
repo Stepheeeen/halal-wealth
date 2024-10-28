@@ -5,7 +5,6 @@ import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../../public/assets/images/DefaultImage.png";
 import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
 import {
-  CountryIcon,
   HideIcon,
   ShowIcon,
 } from "../../../../../public/assets/icons";
@@ -26,25 +25,24 @@ const SignUp = () => {
 
   // Handle form submission
   const handleSubmit = async (e: any) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     setIsLoading(true);
     setError(null);
 
     try {
-      console.log("I was fired");
       const response = await axios.post("/api/onboarding/verify-email-signup", {
         bvn: bvn,
         emailAddress: email,
         phoneNumber: phone,
         password: password,
-      }); // Replace with your API endpoint
-      console.log(response.data);
+      });
       toast.success(response.data.description);
       localStorage.setItem("userEmail", email);
-      localStorage.setItem("requestId", response.data.data.requestId1)
-      // Handle success, maybe redirect or display success message
+      localStorage.setItem("requestId", response.data.data.requestId1);
+      router.push("/auth/otp");
     } catch (err: any) {
       toast.error(err.response.data.description);
+      setError("Signup failed, please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -59,15 +57,14 @@ const SignUp = () => {
       path="#"
       link="Privacy Policy, Terms of Use, and Investment Disclaimer."
       underline="underline"
-      btnText={isLoading ? "Creating account..." : "Create account"}
+      btnText={"Create account"}
       altText="Already have an account?"
       customStyle=""
       display="hidden"
       href=""
-      onClick={handleSubmit} // Form submission handler
-      altOnClick={() => {
-        router.push("/auth/signin");
-      }}
+      loading={isLoading}
+      onClick={handleSubmit}
+      altOnClick={() => router.push("/auth/signin")}
     >
       <DefaultInput
         size="lg"
@@ -106,7 +103,7 @@ const SignUp = () => {
         size="lg"
         CustomStyle="mb-4"
         type={show ? "text" : "password"}
-        icon={""}
+        icon=""
         handleClick={handleClick}
         RighIcon={show ? <HideIcon /> : <ShowIcon />}
         label="Password"

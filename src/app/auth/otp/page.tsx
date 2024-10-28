@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 const ConfirmEmailOTP = () => {
   const router = useRouter();
   const [otp, setOtp] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
   const [countdown, setCountdown] = useState(29); // Countdown starting at 29 seconds
   const [canResend, setCanResend] = useState(false); // To manage the resend link availability
 
@@ -31,6 +32,7 @@ const ConfirmEmailOTP = () => {
 
   // Handle OTP submission
   const handleSubmit = async (e: any) => {
+    setIsLoading(true)
     e.preventDefault();
     const request_id = localStorage.getItem("requestId")
     console.log(request_id)
@@ -48,6 +50,7 @@ const ConfirmEmailOTP = () => {
       );
       toast.success(res.statusText);
       router.push("/auth/create-pin");
+      setIsLoading(false)
     } catch (error: any) {
       toast.error(error.response.statusText);
     }
@@ -55,6 +58,7 @@ const ConfirmEmailOTP = () => {
 
   // Handle Resend OTP
   const handleResendOTP = async () => {
+    setIsLoading(true)
     const email = localStorage.getItem("userEmail")
     console.log(email)
     try {
@@ -63,8 +67,11 @@ const ConfirmEmailOTP = () => {
       toast.success("OTP resent successfully", response.data);
       setCountdown(29); // Reset the countdown
       setCanResend(false); // Disable the link again
+      
     } catch (error) {
       toast.error("Failed to resend OTP");
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -94,6 +101,7 @@ const ConfirmEmailOTP = () => {
       customStyle="hidden"
       display=""
       href=""
+      loading={isLoading}
       onClick={handleSubmit}
       altOnClick={""}
     >

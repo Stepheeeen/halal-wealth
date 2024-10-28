@@ -21,6 +21,7 @@ const AuthContainer = ({
   href,
   onClick,
   altOnClick,
+  loading, // Added loading prop
 }: {
   src: StaticImageData | string;
   children: ReactNode;
@@ -37,8 +38,9 @@ const AuthContainer = ({
   href: string;
   onClick: any;
   altOnClick: any;
+  loading: boolean; // Type for loading prop
 }) => {
-  const router = useRouter(); // Declare router correctly
+  const router = useRouter();
 
   return (
     <div className="w-[100%] flex items-center">
@@ -47,7 +49,6 @@ const AuthContainer = ({
       </div>
       <div className="w-[53%] flex justify-center items-center flex-col">
         <div className="w-[70%]">
-          {/* Replacing Link with onClick for back navigation */}
           <button onClick={() => router.back()}>
             <Image
               src={Back}
@@ -67,8 +68,11 @@ const AuthContainer = ({
             </p>
           </div>
           <DefaultButton
+            // isLoading={loading}
+            disabled={false}
+            isLoading={loading}
             type="solid"
-            text={btnText}
+            text={btnText} // Conditional loading text
             customStyle="bg-[#8046F2] text-white font-medium"
             onClick={onClick}
           />
@@ -76,7 +80,7 @@ const AuthContainer = ({
             <DefaultButton
               type="solid"
               text={altText}
-              customStyle={`mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium`}
+              customStyle="mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium"
               onClick={altOnClick}
             />
           </div>

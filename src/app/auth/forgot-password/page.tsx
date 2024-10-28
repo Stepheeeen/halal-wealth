@@ -61,9 +61,10 @@ const Welcome = () => {
       path="#"
       link=""
       underline=""
-      btnText={loading ? "Loading..." : "Continue"} // Show loading state on button
+      btnText={"Continue"} // Show loading state on button
       altText=""
       customStyle="hidden"
+      loading={loading}
       display=""
       href=""
       onClick={handleSubmit} // Pass handleSubmit to the button

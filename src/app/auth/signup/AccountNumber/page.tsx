@@ -16,9 +16,7 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [banks, setBanks] = useState<{ bankCode: string; bankName: string }[]>(
-    []
-  );
+  const [banks, setBanks] = useState<{ bankCode: string; bankName: string }[]>([]);
   const router = useRouter();
 
   // Fetch banks from API
@@ -37,16 +35,8 @@ const SignUp = () => {
   const handleClick = () => setShow((prevShow) => !prevShow);
 
   const handleSignup = async () => {
-    if (
-      !accountNumber ||
-      !bankCode ||
-      !emailAddress ||
-      !password ||
-      !phoneNumber
-    ) {
-      toast.error(
-        "Please fill out all fields and ensure the account number is valid."
-      );
+    if (!accountNumber || !bankCode || !emailAddress || !password || !phoneNumber) {
+      toast.error("Please fill out all fields and ensure the account number is valid.");
       return;
     }
 
@@ -66,24 +56,17 @@ const SignUp = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        "/api/onboarding/verify-email-signup",
-        signupData,
-        {
-          headers: {
-            AnonymousId: "web",
-          },
-        }
-      );
+      const response = await axios.post("/api/onboarding/verify-email-signup", signupData, {
+        headers: { AnonymousId: "web" },
+      });
       if (response.data.status === "4000") {
         toast.error(response.data.description);
       } else {
         toast.success(response.data.description);
       }
-      console.log();
       router.push("/auth/otp");
       localStorage.setItem("userEmail", emailAddress);
-      localStorage.setItem("requestId", response.data.data.requestId1)
+      localStorage.setItem("requestId", response.data.data.requestId1);
     } catch (err: any) {
       toast.error(err.response.data.description);
       console.error("Signup failed:", err);
@@ -101,58 +84,44 @@ const SignUp = () => {
       path="#"
       link="Privacy Policy, Terms of Use, and Investment Disclaimer."
       underline="underline"
-      btnText={isLoading ? "Creating account..." : "Create account"}
+      btnText="Create account"
       altText="Already have an account?"
       customStyle=""
       display="hidden"
       href=""
       onClick={handleSignup}
-      altOnClick={() => {
-        router.push("/auth/signin");
-      }}
+      loading={isLoading}  // Pass isLoading prop here
+      altOnClick={() => router.push("/auth/signin")}
     >
       <DefaultInput
         size="lg"
         value={accountNumber}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setAccountNumber(e.target.value)
-        }
+        onChange={(e:any) => setAccountNumber(e.target.value)}
         type="text"
         CustomStyle="mb-4"
         name="accountNumber"
         label="Account Number"
       />
 
-      <label
-        htmlFor="bankCode"
-        className="mb-2 block text-sm font-medium text-gray-700"
-      >
+      <label htmlFor="bankCode" className="mb-2 block text-sm font-medium text-gray-700">
         Select Bank
       </label>
       <select
         id="bankCode"
         value={bankCode}
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-          setBankCode(e.target.value)
-        }
+        onChange={(e:any) => setBankCode(e.target.value)}
         className="mb-4 block w-full p-3 border border-gray-300 rounded-lg"
       >
-        <option value="" disabled>
-          Select a bank
-        </option>
+        <option value="" disabled>Select a bank</option>
         {banks.map((bank) => (
-          <option key={bank.bankCode} value={bank.bankCode}>
-            {bank.bankName}
-          </option>
+          <option key={bank.bankCode} value={bank.bankCode}>{bank.bankName}</option>
         ))}
       </select>
 
       <DefaultInput
         size="lg"
         value={emailAddress}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setEmailAddress(e.target.value)
-        }
+        onChange={(e:any) => setEmailAddress(e.target.value)}
         type="email"
         CustomStyle="mb-4"
         name="emailAddress"
@@ -162,9 +131,7 @@ const SignUp = () => {
       <DefaultInput
         size="lg"
         value={phoneNumber}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setPhoneNumber(e.target.value)
-        }
+        onChange={(e:any) => setPhoneNumber(e.target.value)}
         type="tel"
         CustomStyle="mb-4"
         name="phoneNumber"
@@ -173,9 +140,7 @@ const SignUp = () => {
 
       <IconInput
         icon=""
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setPassword(e.target.value)
-        }
+        onChange={(e:any) => setPassword(e.target.value)}
         value={password}
         size="lg"
         CustomStyle="mb-4"

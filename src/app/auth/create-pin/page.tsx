@@ -8,35 +8,32 @@ import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreatePin = () => {
-  const [pin, setPin] = useState(""); // State to capture the PIN
-  const [loading, setLoading] = useState(false); // Optional loading state
+  const [pin, setPin] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Handle the PIN input change
-  const handlePinChange = (value:any) => {
+  const handlePinChange = (value: any) => {
     setPin(value);
   };
 
-  // Handle form submission
   const handleSubmit = async () => {
     if (pin.length !== 4) {
       toast.error("PIN must be 4 digits long.");
       return;
     }
-    
+
     try {
-      setLoading(true);
+      setIsLoading(true);
       const response = await axios.post("https://sandbox.api.halalwealth.co/services/onboarding/set-pin", {
         transactionPin: pin,
       });
 
-      toast.success(response.data.message);  // Success toast
+      toast.success(response.data.message);
       console.log("PIN set successfully:", response.data);
-      // You can redirect or show a success message after PIN is set
-    } catch (error:any) {
+    } catch (error: any) {
       console.error("Error setting PIN:", error);
-      toast.error(error.message);  // Error toast
+      toast.error(error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -50,20 +47,22 @@ const CreatePin = () => {
         path="#"
         link=""
         underline=""
-        btnText={loading ? "Processing..." : "Continue"}
+        btnText={"Continue"}
         altText=""
         customStyle="hidden"
         display=""
         href="/auth/method"
-        onClick={handleSubmit}  // Trigger the submit function when clicking Continue
-        altOnClick={""}
+        onClick={handleSubmit}
+        altOnClick=""
+        loading={isLoading}  // Pass isLoading to AuthContainer
       >
         <DefaultPinInput
           length={4}
-          onChange={handlePinChange}  // Capture the PIN input
+          onChange={handlePinChange}
           value={pin}
         />
       </AuthContainer>
+      <ToastContainer />
     </>
   );
 };

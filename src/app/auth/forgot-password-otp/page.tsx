@@ -10,50 +10,51 @@ import { useRouter } from "next/navigation";
 const ForgotPasswordOTP = () => {
   const [otp, setOtp] = useState("");
   const router = useRouter();
-  const [countdown, setCountdown] = useState(29); // Countdown starting at 29 seconds
-  const [canResend, setCanResend] = useState(false); // To manage the resend link availability
+  const [countdown, setCountdown] = useState(29);
+  const [canResend, setCanResend] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Update OTP input value
   const handleChange = (value: any) => {
     setOtp(value);
   };
 
-  // Countdown logic
   useEffect(() => {
     let timer: any;
     if (countdown > 0) {
       timer = setTimeout(() => setCountdown(countdown - 1), 1000);
     } else {
-      setCanResend(true); // Enable the resend link when countdown reaches 0
+      setCanResend(true);
     }
     return () => clearTimeout(timer);
   }, [countdown]);
 
-  // Handle OTP submission
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
     const request_id = localStorage.getItem("requestId");
     console.log(request_id);
+
     try {
       localStorage.setItem("resetPin", otp);
       router.push("/auth/new-password");
     } catch (error: any) {
       toast.error(error.response.statusText);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // Handle Resend OTP
   const handleResendOTP = async () => {
     const email = localStorage.getItem("userEmail");
     console.log(email);
+
     try {
-      // Your resend OTP logic here (e.g., API call to resend OTP)
       const response = await axios.get(
         `/api/onboarding/forgot-password?email=${email}`
       );
       toast.success("OTP resent successfully", response.data);
-      setCountdown(29); // Reset the countdown
-      setCanResend(false); // Disable the link again
+      setCountdown(29);
+      setCanResend(false);
     } catch (error) {
       toast.error("Failed to resend OTP");
     }
@@ -79,13 +80,14 @@ const ForgotPasswordOTP = () => {
         )
       }
       underline=""
-      btnText="Continue"
+      btnText={"Continue"}
       altText=""
       customStyle="hidden"
       display=""
+      loading={isLoading}
       href=""
       onClick={handleSubmit}
-      altOnClick={""}
+      altOnClick=""
     >
       <DefaultPinInput length={6} otp onChange={handleChange} />
     </AuthContainer>

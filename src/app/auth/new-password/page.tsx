@@ -12,13 +12,17 @@ const NewPassword = () => {
   const [show, setShow] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const handleClick = () => setShow(!show);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
-      toast.error("passwords do not match");
+      toast.error("Passwords do not match");
+      return;
     }
+
+    setIsLoading(true);
     try {
       const response = await axios.post("/api/onboarding/reset-password", {
         emailAddress: localStorage.getItem("resetEmail"),
@@ -26,17 +30,20 @@ const NewPassword = () => {
         password,
         requestId: localStorage.getItem("resetRequestId"),
       });
-      console.log(response.data);
       if (response.data.status === "2000") {
         toast.success(response.data.description);
         localStorage.removeItem("resetEmail");
         localStorage.removeItem("resetPin");
         localStorage.removeItem("resetRequestId");
-        router.push("/auth/signin")
+        router.push("/auth/signin");
       } else {
         toast.error(response.data.description);
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("An error occurred while resetting your password.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -48,13 +55,14 @@ const NewPassword = () => {
       path="#"
       link=""
       underline=""
-      btnText="Continue"
+      btnText={"Continue"}
       altText=""
       customStyle="hidden"
       display=""
       href=""
       onClick={handleSubmit}
-      altOnClick={""}
+      altOnClick={undefined}
+      loading={isLoading} // Pass isLoading to AuthContainer
     >
       <IconInput
         value={password}
@@ -65,7 +73,7 @@ const NewPassword = () => {
         size="lg"
         CustomStyle="mb-4"
         type={show ? "text" : "password"}
-        icon={""}
+        icon=""
         handleClick={handleClick}
         RighIcon={show ? <HideIcon /> : <ShowIcon />}
         label="Enter new password"
@@ -80,7 +88,7 @@ const NewPassword = () => {
         size="lg"
         CustomStyle=""
         type={show ? "text" : "password"}
-        icon={""}
+        icon=""
         handleClick={handleClick}
         RighIcon={show ? <HideIcon /> : <ShowIcon />}
         label="Confirm new password"
