@@ -1,7 +1,8 @@
-import React, { ReactNode, } from "react";
+import React, { ReactNode } from "react";
 import Image, { StaticImageData } from "next/image";
 import { DefaultButton } from "../reusable/button/Button";
-import Back from "../../../public/assets/images/Back.png"
+import Back from "../../../public/assets/images/Back.png";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const AuthContainer = ({
@@ -20,13 +21,14 @@ const AuthContainer = ({
   href,
   onClick,
   altOnClick,
+  loading, // Added loading prop
 }: {
   src: StaticImageData | string;
   children: ReactNode;
   title: string;
   text: string;
   terms: string;
-  path: any;
+  path: string;
   link: any;
   underline: string;
   btnText: string;
@@ -36,8 +38,10 @@ const AuthContainer = ({
   href: string;
   onClick: any;
   altOnClick: any;
-
+  loading: boolean; // Type for loading prop
 }) => {
+  const router = useRouter();
+
   return (
     <div className="w-[100%] flex items-center">
       <div className="w-[47%] flex items-center p-2">
@@ -45,9 +49,13 @@ const AuthContainer = ({
       </div>
       <div className="w-[53%] flex justify-center items-center flex-col">
         <div className="w-[70%]">
-          <Link href={href}>
-            <Image src={Back} alt="authentication image" className={`h-[30px] w-[70px] ${display}`} />
-          </Link>
+          <button onClick={() => router.back()}>
+            <Image
+              src={Back}
+              alt="Go back"
+              className={`h-[30px] w-[70px] ${display}`}
+            />
+          </button>
           <h1 className="font-semibold text-[34px]">{title}</h1>
           <p className="font-medium leading-loose">{text}</p>
           <form className="mt-8">{children}</form>
@@ -60,16 +68,22 @@ const AuthContainer = ({
             </p>
           </div>
           <DefaultButton
+            disabled
+            // isLoading={loading}
+            // disabled={false}
+            isLoading={loading}
             type="solid"
-            text={btnText}
+            text={btnText} // Conditional loading text
             customStyle="bg-[#8046F2] text-white font-medium"
             onClick={onClick}
           />
           <div className={customStyle}>
             <DefaultButton
+              disabled
+              isLoading
               type="solid"
               text={altText}
-              customStyle={`mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium`}
+              customStyle="mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium"
               onClick={altOnClick}
             />
           </div>

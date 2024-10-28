@@ -5,20 +5,26 @@ import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
 import { useRouter } from "next/navigation";
 
 const BVN = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selected, setSelected] = useState("BVN");
-  const router = useRouter()
+  const router = useRouter();
 
   const handleRoute = () => {
-    if (selected === 'BVN') {
-      router.push('signup/BVN')
-      console.log('bvn')
-    } else if (selected === 'AccountNumber') {
-      router.push('signup/AccountNumber')
-      console.log('account number')
-    } else {
-      alert('please select an option')
+    if (!selected) {
+      alert("Please select an option");
+      return;
     }
+
+    setIsLoading(true);
+
+    if (selected === "BVN") {
+      router.push("signup/BVN");
+      console.log("bvn");
+    } else if (selected === "AccountNumber") {
+      router.push("signup/AccountNumber");
+      console.log("account number");
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -27,19 +33,20 @@ const BVN = () => {
         src={DefaultImage}
         title="Signup"
         text="Kindly select signup method"
-        terms={""}
+        terms=""
         path="#"
         link=""
         underline=""
-        btnText="Continue"
+        btnText={"Continue"}
         altText=""
         customStyle="hidden"
+        loading={isLoading}
         display="hidden"
         href=""
         onClick={handleRoute}
-        altOnClick={""}
+        altOnClick=""
       >
-        <div className="w-full max-w-lg py-4">
+        <div className="w-full py-4">
           <div
             onClick={() => setSelected("BVN")}
             className={`px-3 py-6 mb-4 border rounded-lg cursor-pointer ${
@@ -85,16 +92,8 @@ const BVN = () => {
               </span>
             </div>
           </div>
-
-          {/* <DefaultButton
-            type="solid"
-            text="Continue"
-            customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[20px]"
-            
-          /> */}
         </div>
       </AuthContainer>
-      {/* <DefaultModal isOpen={isOpen} onClose={handleClose} onOpen={handleOpen} /> */}
     </>
   );
 };
