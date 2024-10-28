@@ -105,6 +105,8 @@ const Page = () => {
             </div>
 
             <DefaultButton
+              disabled={false}
+              isLoading={false}
               type="solid"
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-5"
@@ -140,7 +142,9 @@ const Page = () => {
               type="solid"
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium"
-              onClick={""}
+              onClick={()=>{}}
+              disabled={false}
+              isLoading={false}
             />
           </div>
         </CustomModal>

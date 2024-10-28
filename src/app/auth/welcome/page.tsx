@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { useState } from "react";
 import AuthContainer from "@/components/auth/Container";
@@ -11,6 +11,7 @@ const Welcome = () => {
   const handleClick = () => setShow(!show);
   return (
     <AuthContainer
+      loading={false}
       src={DefaultImage}
       title="Welcome back, Freeborn!"
       text="Enter your password to continue to your password"
@@ -27,7 +28,11 @@ const Welcome = () => {
       altOnClick={""}
     >
       <IconInput
-        onChange={''}
+        disabled={false}
+        iconStyle=""
+        name=""
+        placeholder=""
+        onChange={""}
         value="password"
         size="lg"
         CustomStyle="mb-4"

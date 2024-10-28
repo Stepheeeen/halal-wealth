@@ -227,7 +227,7 @@ const Page = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setVerifyBvn(false)
+      setVerifyBvn(false);
     }
   };
 
@@ -278,6 +278,8 @@ const Page = () => {
 
             <div className="w-[30%]">
               <DefaultButton
+                disabled
+                isLoading
                 customStyle="bg-[#F5F1FE] border border-[#E6DAFC] w-[100px] text-[#8046F2] font-[550] text-[14px] mt-2"
                 onClick={() => {
                   setEditProfile(true);
@@ -463,6 +465,8 @@ const Page = () => {
           </div>
 
           <DefaultButton
+            disabled
+            isLoading
             type="solid"
             text="Continue"
             customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[49%]"
@@ -497,6 +501,8 @@ const Page = () => {
             <Image alt="" src={NIN} className="mb-4" />
 
             <DefaultInput
+              name=""
+              onChange={() => {}}
               size="lg"
               value="placeholder"
               type="text"
@@ -508,7 +514,9 @@ const Page = () => {
               type="solid"
               text="Submit"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[80px]"
-              onClick={""}
+              onClick={() => {}}
+              disabled
+              isLoading
             />
           </div>
         ) : (
@@ -521,6 +529,8 @@ const Page = () => {
             <Image alt="" src={License} className="mb-6" />
 
             <DefaultInput
+              name=""
+              onChange={() => {}}
               size="lg"
               value="placeholder"
               type="text"
@@ -532,7 +542,9 @@ const Page = () => {
               type="solid"
               text="Submit"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[90px]"
-              onClick={""}
+              onClick={() => {}}
+              disabled
+              isLoading
             />
           </div>
         )}
@@ -569,6 +581,8 @@ const Page = () => {
         />
 
         <DefaultButton
+          disabled
+          isLoading
           type="solid"
           text="Verify"
           customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-8"
@@ -593,6 +607,8 @@ const Page = () => {
 
           <div className="w-full mt-2">
             <DefaultInput
+              name=""
+              onChange={() => {}}
               size="lg"
               value="placeholder"
               type="text"
@@ -600,6 +616,8 @@ const Page = () => {
               label="First name"
             />
             <DefaultInput
+              name=""
+              onChange={() => {}}
               size="lg"
               value="placeholder"
               type="text"
@@ -607,6 +625,10 @@ const Page = () => {
               label="Last name"
             />
             <IconInput
+              disabled
+              iconStyle=""
+              name=""
+              placeholder=""
               onChange={""}
               value="000-000-0000"
               size="lg"
@@ -618,6 +640,8 @@ const Page = () => {
               label="Phone number"
             />
             <DefaultInput
+              name=""
+              onChange={() => {}}
               size="lg"
               value="placeholder"
               type="text"
@@ -625,11 +649,15 @@ const Page = () => {
               label="Email Address"
             />
             <OptionsSelect
+              name={""}
+              onChange={() => {}}
               CustomStyle="mb-4 border"
               label="Relationship"
               options={relationship}
             />
             <OptionsSelect
+              name={""}
+              onChange={() => {}}
               CustomStyle="mb-4 border"
               label="Gender"
               options={options}
@@ -640,7 +668,9 @@ const Page = () => {
             type="solid"
             text="Save Changes"
             customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
-            onClick={""}
+            onClick={() => {}}
+            disabled
+            isLoading
           />
         </div>
       </CustomModal>
@@ -655,6 +685,8 @@ const Page = () => {
       >
         <div className="mt-8"></div>
         <IconInput
+          disabled
+          iconStyle=""
           onChange={(e: any) => setNewPassword(e.target.value)}
           placeholder="password"
           name="password"
@@ -669,6 +701,8 @@ const Page = () => {
         />
 
         <DefaultButton
+          disabled
+          isLoading
           type="solid"
           text="Continue"
           customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[90px]"
@@ -707,6 +741,8 @@ const Page = () => {
           </div>
 
           <DefaultButton
+            disabled
+            isLoading
             type="solid"
             text="Continue"
             customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[90px]"
@@ -742,6 +778,8 @@ const Page = () => {
           </div>
 
           <DefaultButton
+            disabled
+            isLoading
             type="solid"
             text="Reset"
             customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[90px]"

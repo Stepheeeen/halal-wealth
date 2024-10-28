@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { BackIcon, NairaIcon } from "../../../../../public/assets/icons";
 import { DefaultButton } from "@/components/reusable/button/Button";
 import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
- 
+
 import DashboardContainer from "@/components/dashboard/dashboardContainer";
 
 const Page = () => {
@@ -16,47 +16,51 @@ const Page = () => {
   };
 
   return (
-        <DashboardContainer PageTItle="Invest">
+    <DashboardContainer PageTItle="Invest">
       <div className="w-full overflow-x-auto mt-2 whitespace-nowrap bg-white shadow-sm rounded-lg p-3">
+        <div
+          onClick={() => router.back()}
+          className="flex items-center mt-2 ml-2"
+        >
+          <BackIcon /> <span className="font-medium ml-1">Back</span>
+        </div>
 
-      <div
-        onClick={() => router.back()}
-        className="flex items-center mt-2 ml-2"
-      >
-        <BackIcon /> <span className="font-medium ml-1">Back</span>
-      </div>
+        <div className="w-[95%] flex items-center justify-between p-4">
+          <h1 className="text-[45px] w-[45%] text-wrap font-[480]">
+            How much do you want to start with?
+          </h1>
 
-      <div className="w-[95%] flex items-center justify-between p-4">
-        <h1 className="text-[45px] w-[45%] text-wrap font-[480]">
-          How much do you want to start with?
-        </h1>
+          <div className="mt-[20px] ml-3 w-[45%]">
+            <IconInput
+              disabled
+              iconStyle=""
+              name=""
+              placeholder=""
+              value={"Placeholder"}
+              onChange={() => {}}
+              size="lg"
+              type="text"
+              icon={<NairaIcon />}
+              RighIcon={""}
+              handleClick={() => {}}
+              CustomStyle="pl-[55px] bg-[#F9FAFB]"
+              label="Amount"
+            />
 
-        <div className="mt-[20px] ml-3 w-[45%]">
-          <IconInput
-            value={"Placeholder"}
-            onChange={() => {}}
-            size="lg"
-            type="text"
-            icon={<NairaIcon />}
-            RighIcon={""}
-            handleClick={() => {}}
-            CustomStyle="pl-[55px] bg-[#F9FAFB]"
-            label="Amount"
-          />
+            <p className="text-[14px] font-[500] text-[#5C556C] w-[95%] mt-3"></p>
 
-          <p className="text-[14px] font-[500] text-[#5C556C] w-[95%] mt-3"></p>
-
-          <DefaultButton
-            type="solid"
-            text="Continue"
-            customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
-            onClick={handleRoute}
-          />
+            <DefaultButton
+              disabled
+              isLoading
+              type="solid"
+              text="Continue"
+              customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
+              onClick={handleRoute}
+            />
+          </div>
         </div>
       </div>
-    </div>
-</DashboardContainer>
-
+    </DashboardContainer>
   );
 };
 

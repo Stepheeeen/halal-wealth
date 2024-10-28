@@ -16,7 +16,9 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [banks, setBanks] = useState<{ bankCode: string; bankName: string }[]>([]);
+  const [banks, setBanks] = useState<{ bankCode: string; bankName: string }[]>(
+    []
+  );
   const router = useRouter();
 
   // Fetch banks from API
@@ -35,8 +37,16 @@ const SignUp = () => {
   const handleClick = () => setShow((prevShow) => !prevShow);
 
   const handleSignup = async () => {
-    if (!accountNumber || !bankCode || !emailAddress || !password || !phoneNumber) {
-      toast.error("Please fill out all fields and ensure the account number is valid.");
+    if (
+      !accountNumber ||
+      !bankCode ||
+      !emailAddress ||
+      !password ||
+      !phoneNumber
+    ) {
+      toast.error(
+        "Please fill out all fields and ensure the account number is valid."
+      );
       return;
     }
 
@@ -56,9 +66,13 @@ const SignUp = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("/api/onboarding/verify-email-signup", signupData, {
-        headers: { AnonymousId: "web" },
-      });
+      const response = await axios.post(
+        "/api/onboarding/verify-email-signup",
+        signupData,
+        {
+          headers: { AnonymousId: "web" },
+        }
+      );
       if (response.data.status === "4000") {
         toast.error(response.data.description);
       } else {
@@ -90,38 +104,45 @@ const SignUp = () => {
       display="hidden"
       href=""
       onClick={handleSignup}
-      loading={isLoading}  // Pass isLoading prop here
+      loading={isLoading} // Pass isLoading prop here
       altOnClick={() => router.push("/auth/signin")}
     >
       <DefaultInput
         size="lg"
         value={accountNumber}
-        onChange={(e:any) => setAccountNumber(e.target.value)}
+        onChange={(e: any) => setAccountNumber(e.target.value)}
         type="number"
         CustomStyle="mb-4"
         name="accountNumber"
         label="Account Number"
       />
 
-      <label htmlFor="bankCode" className="mb-2 block text-sm font-medium text-gray-700">
+      <label
+        htmlFor="bankCode"
+        className="mb-2 block text-sm font-medium text-gray-700"
+      >
         Select Bank
       </label>
       <select
         id="bankCode"
         value={bankCode}
-        onChange={(e:any) => setBankCode(e.target.value)}
+        onChange={(e: any) => setBankCode(e.target.value)}
         className="mb-4 block w-full p-3 border border-gray-300 rounded-lg"
       >
-        <option value="" disabled>Select a bank</option>
+        <option value="" disabled>
+          Select a bank
+        </option>
         {banks.map((bank) => (
-          <option key={bank.bankCode} value={bank.bankCode}>{bank.bankName}</option>
+          <option key={bank.bankCode} value={bank.bankCode}>
+            {bank.bankName}
+          </option>
         ))}
       </select>
 
       <DefaultInput
         size="lg"
         value={emailAddress}
-        onChange={(e:any) => setEmailAddress(e.target.value)}
+        onChange={(e: any) => setEmailAddress(e.target.value)}
         type="email"
         CustomStyle="mb-4"
         name="emailAddress"
@@ -131,7 +152,7 @@ const SignUp = () => {
       <DefaultInput
         size="lg"
         value={phoneNumber}
-        onChange={(e:any) => setPhoneNumber(e.target.value)}
+        onChange={(e: any) => setPhoneNumber(e.target.value)}
         type="tel"
         CustomStyle="mb-4"
         name="phoneNumber"
@@ -139,8 +160,11 @@ const SignUp = () => {
       />
 
       <IconInput
+        disabled={false}
+        iconStyle=""
+        placeholder=""
         icon=""
-        onChange={(e:any) => setPassword(e.target.value)}
+        onChange={(e: any) => setPassword(e.target.value)}
         value={password}
         size="lg"
         CustomStyle="mb-4"

@@ -57,7 +57,9 @@ const Page = () => {
               <div className="w-[12%]">
                 <DefaultButton
                   customStyle="w-auto bg-[#8046F2] text-white font-medium px-8 py-2 mt-[-20px] mr-3"
-                  onClick={""}
+                  onClick={()=>{}}
+                  disabled={false}
+                  isLoading={false}
                   text="Invest"
                   type="solid"
                 />

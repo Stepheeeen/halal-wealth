@@ -4,10 +4,7 @@ import axios from "axios";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../../public/assets/images/DefaultImage.png";
 import { DefaultInput, IconInput } from "@/components/reusable/input/Input";
-import {
-  HideIcon,
-  ShowIcon,
-} from "../../../../../public/assets/icons";
+import { HideIcon, ShowIcon } from "../../../../../public/assets/icons";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
@@ -42,7 +39,7 @@ const SignUp = () => {
       router.push("/auth/otp");
     } catch (err: any) {
       toast.error(err.response.data.description);
-      setError("Signup failed, please try again.");
+      // setError("Signup failed, please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -97,6 +94,9 @@ const SignUp = () => {
       />
 
       <IconInput
+        disabled={false}
+        iconStyle=""
+        placeholder=""
         onChange={(e: any) => setPassword(e.target.value)}
         value={password}
         name="password"

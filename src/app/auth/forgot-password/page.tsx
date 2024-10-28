@@ -71,6 +71,7 @@ const Welcome = () => {
       altOnClick={""}
     >
       <DefaultInput
+        CustomStyle=""
         name="email"
         onChange={handleChange}
         size="lg"

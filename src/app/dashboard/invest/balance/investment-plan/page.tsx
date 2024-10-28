@@ -40,6 +40,10 @@ const Page = () => {
 
           <div className="mt-[20px] ml-3 w-[45%]">
             <IconInput
+              disabled={false}
+              iconStyle=""
+              name=""
+              placeholder=""
               value={""}
               onChange={() => {}}
               size="lg"
@@ -65,6 +69,8 @@ const Page = () => {
             </div>
 
             <DefaultButton
+              disabled={false}
+              isLoading={false}
               type="solid"
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-14"
@@ -124,7 +130,9 @@ const Page = () => {
               type="solid"
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[70px]"
-              onClick={""}
+              onClick={()=>{}}
+              disabled={false}
+              isLoading={false}
             />
           </div>
         </CustomModal>

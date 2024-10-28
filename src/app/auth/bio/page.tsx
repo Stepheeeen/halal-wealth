@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import AuthContainer from "@/components/auth/Container";
 import DefaultImage from "../../../../public/assets/images/DefaultImage.png";
@@ -40,6 +40,7 @@ const Bio = () => {
 
   return (
     <AuthContainer
+      loading={false}
       src={DefaultImage}
       title="Tell us about yourself"
       text="We would like to know you better"

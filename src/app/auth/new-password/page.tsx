@@ -65,6 +65,9 @@ const NewPassword = () => {
       loading={isLoading} // Pass isLoading to AuthContainer
     >
       <IconInput
+        disabled={false}
+        iconStyle=""
+        name=""
         value={password}
         onChange={(e: any) => {
           setPassword(e.target.value);
@@ -80,6 +83,9 @@ const NewPassword = () => {
       />
 
       <IconInput
+        disabled={false}
+        iconStyle=""
+        name=""
         value={confirmPassword}
         onChange={(e: any) => {
           setConfirmPassword(e.target.value);
