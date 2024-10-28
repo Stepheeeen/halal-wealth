@@ -40,7 +40,7 @@ import Link from "next/link";
 import TransactionPinModal from "@/components/reusable/modal/TransactionPin";
 import Modal from "@/components/reusable/modal/ResetPin";
 
-const page = () => {
+const Page = () => {
   const [editProfile, setEditProfile] = useState(false);
   const [identityVerification, setIdentityVerification] = useState(false);
   const [manageBank, setManageBank] = useState(false);
@@ -755,4 +755,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

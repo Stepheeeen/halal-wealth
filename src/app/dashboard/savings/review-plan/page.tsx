@@ -14,6 +14,7 @@ import TransactionPinModal from "@/components/reusable/modal/TransactionPin";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { userInfo } from "@/app/constants";
+import DashboardContainer from "@/components/dashboard/dashboardContainer";
 
 const Page = () => {
   const [open, setOpen] = useState(false);
@@ -75,7 +76,9 @@ const Page = () => {
   };
 
   return (
-    <InvestContainer>
+        <DashboardContainer PageTItle="Invest">
+      <div className="w-full overflow-x-auto mt-2 whitespace-nowrap bg-white shadow-sm rounded-lg p-3">
+
       <div
         onClick={() => router.back()}
         className="flex items-center mt-2 ml-2"
@@ -146,7 +149,9 @@ const Page = () => {
         onClose={handleClose}
         onSubmit={handleCreatePlan}
       />
-    </InvestContainer>
+    </div>
+</DashboardContainer>
+
   );
 };
 

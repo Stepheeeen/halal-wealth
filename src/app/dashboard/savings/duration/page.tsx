@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { DefaultButton } from "@/components/reusable/button/Button";
 import InvestContainer from "../../invest/page";
+import DashboardContainer from "@/components/dashboard/dashboardContainer";
 
 interface Duration {
   id: number;
@@ -58,7 +59,9 @@ const Page = () => {
   };
 
   return (
-    <InvestContainer>
+        <DashboardContainer PageTItle="Invest">
+      <div className="w-full overflow-x-auto mt-2 whitespace-nowrap bg-white shadow-sm rounded-lg p-3">
+
       <div
         onClick={() => router.back()}
         className="flex items-center mt-2 ml-2"
@@ -117,7 +120,9 @@ const Page = () => {
           </div>
         </div>
       </div>
-    </InvestContainer>
+    </div>
+</DashboardContainer>
+
   );
 };
 

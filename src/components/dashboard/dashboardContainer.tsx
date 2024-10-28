@@ -1,3 +1,4 @@
+"use client"
 import React, { ReactNode, useEffect } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import Sidebar from "./sidebar/sidebar";

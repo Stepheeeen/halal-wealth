@@ -16,6 +16,7 @@ import { CustomModal } from "@/components/reusable/modal/modal";
 import InvestContainer from "../../invest/page";
 import { useRouter } from "next/navigation";
 import { userInfo } from "@/app/constants";
+import DashboardContainer from "@/components/dashboard/dashboardContainer";
 
 const Page = () => {
   const [open, setOpen] = useState(false);
@@ -39,7 +40,9 @@ const Page = () => {
   const handleCloseModal = () => setOpen(false); // Function to close modal
 
   return (
-    <InvestContainer>
+        <DashboardContainer PageTItle="Invest">
+      <div className="w-full overflow-x-auto mt-2 whitespace-nowrap bg-white shadow-sm rounded-lg p-3">
+
       <div
         onClick={() => router.back()}
         className="flex items-center mt-2 ml-2"
@@ -167,7 +170,9 @@ const Page = () => {
           </div>
         </div>
       </CustomModal>
-    </InvestContainer>
+    </div>
+</DashboardContainer>
+
   );
 };
 

@@ -15,7 +15,9 @@ const Page = () => {
     }
 
     return (
-        <InvestContainer>
+            <DashboardContainer PageTItle="Invest">
+      <div className="w-full overflow-x-auto mt-2 whitespace-nowrap bg-white shadow-sm rounded-lg p-3">
+
             <Link href={'/dashboard/invest/balance'} className='flex items-center mt-2 ml-2'>
                 <BackIcon /> <span className='font-medium ml-1'>Back</span>
             </Link>
@@ -45,7 +47,9 @@ const Page = () => {
                     />
                 </div>
             </div>
-        </InvestContainer>
+        </div>
+</DashboardContainer>
+
     );
 }
 

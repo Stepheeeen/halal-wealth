@@ -12,7 +12,7 @@ import PesBlack from '../../../../public/assets/images/PES-black.png'
 import { CustomButton, DefaultButton } from '@/components/reusable/button/Button'
 import { MyAssets } from '@/components/asset-financing/TabPanel'
 
-const page = () => {
+const Page = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState('3 months');
@@ -337,4 +337,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
