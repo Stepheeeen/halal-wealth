@@ -23,7 +23,10 @@ const Page = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const SavingsReview = JSON.parse(localStorage.getItem("newSavings") || "{}");
+  const SavingsReview =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("newSavings") || "{}")
+      : {};
 
   const List = [
     { text: "Plan name", value: SavingsReview.planName },

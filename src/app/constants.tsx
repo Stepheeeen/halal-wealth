@@ -1,2 +1,2 @@
-export const token = localStorage.getItem("LoginToken")
-export const userInfo = JSON.parse(localStorage.getItem("userInfo") || '{}');
+export const token = typeof window !== "undefined" ? localStorage.getItem("LoginToken") : null;
+export const userInfo = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("userInfo") || '{}') : {};
