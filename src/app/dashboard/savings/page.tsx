@@ -22,7 +22,7 @@ import eid from "../../../../public/assets/images/eid.png";
 import { CustomButton } from "@/components/reusable/button/Button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import ChartLg from "../../../../public/assets/images/chart-Contain.png";
+import ChartLg from "../../../../public/assets/images/Chart-Contain.png"
 import { CustomModal } from "@/components/reusable/modal/modal";
 import ProgressBar from "@/components/reusable/progressBar/progressBar";
 import { userInfo } from "@/app/constants";
