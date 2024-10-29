@@ -11,26 +11,30 @@ import { userInfo } from "@/app/constants";
 const TransactionPinModal = ({ isOpen, onClose, onSubmit }) => {
   const [pin, setPin] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const openModal = async () => {
     try {
-      const response = await axios.get(`/api/onboarding/forgot-pin?email=${userInfo.emailAddress}`,
+      const response = await axios.get(
+        `/api/onboarding/forgot-pin?email=${userInfo.emailAddress}`,
         {
           headers: {
-            Authorization: `${userInfo.token}`
-          }
+            Authorization: `${userInfo.token}`,
+          },
         }
-      )
-      console.log(response.data)
-      if(response.data.status === "2000") {
-        toast.success(`Reset PIN otp has been sent to ${userInfo.emailAddress} successfully!`)
-        localStorage.setItem("resetPinId", response.data.data.requestId)
-        setIsModalOpen(true)
+      );
+      console.log(response.data);
+      if (response.data.status === "2000") {
+        toast.success(
+          `Reset PIN otp has been sent to ${userInfo.emailAddress} successfully!`
+        );
+        localStorage.setItem("resetPinId", response.data.data.requestId);
+        setIsModalOpen(true);
       } else {
-        toast.error(response.data.description)
+        toast.error(response.data.description);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
   const closeModal = () => setIsModalOpen(false);
@@ -40,11 +44,13 @@ const TransactionPinModal = ({ isOpen, onClose, onSubmit }) => {
   };
 
   const handleSubmit = () => {
+    setLoading(true);
     if (pin.length !== 4) {
       toast.error("Please enter a 4-digit PIN");
       return;
     }
     onSubmit(pin);
+    setLoading(false);
   };
 
   return (
@@ -71,7 +77,10 @@ const TransactionPinModal = ({ isOpen, onClose, onSubmit }) => {
             </div>
             <p className="text-center text-[13px] font-[500] my-12">
               Forgot your PIN?
-              <p onClick={openModal} className={`text-[#8046F2] ml-1 cursor-pointer`}>
+              <p
+                onClick={openModal}
+                className={`text-[#8046F2] ml-1 cursor-pointer`}
+              >
                 Reset PIN
               </p>
             </p>
@@ -82,11 +91,12 @@ const TransactionPinModal = ({ isOpen, onClose, onSubmit }) => {
             text="Continue"
             customStyle="bg-[#8046F2] text-white font-medium"
             onClick={handleSubmit}
+            isLoading={loading}
           />
         </div>
       </CustomModal>
 
-      <Modal closeModal={closeModal} isOpen={isModalOpen}/>
+      <Modal closeModal={closeModal} isOpen={isModalOpen} />
     </>
   );
 };

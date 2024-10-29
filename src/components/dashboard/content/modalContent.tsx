@@ -269,7 +269,7 @@ export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
       />
       <IconInput
         name=""
-        disabled
+        disabled={false}
         iconStyle=""
         placeholder="0"
         value={amount}
@@ -282,10 +282,10 @@ export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
         CustomStyle="pl-[55px] bg-[#F9FAFB]"
         label="Amount"
       />
-      <p className="text-[14px] font-[450] text-[#5C556C] text-center w-[95%] mt-2">
+      <p className="text-[14px] font-[450] text-[#5C556C] text-center w-[95%] mt-2 cursor-default">
         +NGN 50 processing fee
       </p>
-      <div className=" flex items-center justify-center w-[95%] text-[16px] mt-6">
+      <div className=" flex items-center justify-center w-[95%] text-[16px] mt-6 cursor-default">
         <WalletIcon />
         <p className=" text-[15px] font-[450] text-[#5C556C] ml-1">
           Wallet balance
@@ -393,6 +393,7 @@ export const AirtimeAndData = () => {
   };
 
   const makeAirtimePurchase = async (pin: string) => {
+    setLoading(true)
     try {
       const response = await axios.post(
         "/api/bills/airtime",
@@ -409,6 +410,7 @@ export const AirtimeAndData = () => {
           },
         }
       );
+      // console.log(response)
       if (response.data.status === "2000") {
         toast.success(response.data.description);
       } else {
@@ -418,7 +420,7 @@ export const AirtimeAndData = () => {
       toast.error("Error processing airtime transaction.");
     } finally {
       setLoading(false); // Set loading to false after processing
-      closePinModal();
+      // closePinModal();
     }
   };
 
