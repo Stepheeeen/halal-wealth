@@ -78,7 +78,7 @@ const AuthContainer = ({
           <div className={customStyle}>
             <DefaultButton
               disabled
-              isLoading
+              isLoading={false}
               type="solid"
               text={altText}
               customStyle="mt-[5px] text-[#8046F2] bg-[#F9FAFB] font-medium"
