@@ -175,7 +175,7 @@ const MyAssets = () => {
 
               <div className="w-[30%]">
                 <DefaultButton
-                  disabled
+                   disabled={false}
                   isLoading
                   customStyle="bg-[#8046F2] text-white w-auto h-[37px] rounded-[3px] font-[450]"
                   onClick={() => setDetails(i)}
@@ -301,7 +301,7 @@ const MyAssets = () => {
                         <DefaultButton
                           customStyle="bg-[#8046F2] text-white w-auto h-[33px] rounded-[2.5px] font-[450]"
                           onClick={() => {}}
-                          disabled
+                           disabled={false}
                           isLoading
                           text="Pay"
                           type="solid"

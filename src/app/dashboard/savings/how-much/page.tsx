@@ -50,7 +50,7 @@ const Page = () => {
               Amount
             </h1>
             <IconInput
-              disabled
+               disabled={false}
               iconStyle=""
               name=""
               placeholder=""
@@ -68,7 +68,7 @@ const Page = () => {
             />
 
             <DefaultButton
-              disabled
+               disabled={false}
               isLoading
               type="solid"
               text="Continue"

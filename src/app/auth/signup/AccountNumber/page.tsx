@@ -160,7 +160,7 @@ const SignUp = () => {
       />
 
       <IconInput
-        disabled
+         disabled={false}
         iconStyle=""
         placeholder=""
         icon=""

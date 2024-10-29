@@ -369,7 +369,7 @@ const Page = () => {
         </div>
 
         <DefaultButton
-          disabled
+           disabled={false}
           isLoading
           type="solid"
           text="Request asset"
@@ -501,7 +501,7 @@ const Page = () => {
               </div>
 
               <DefaultButton
-                disabled
+                 disabled={false}
                 isLoading
                 type="solid"
                 text="Continue"

@@ -34,7 +34,7 @@ const DefaultModal = ({ isOpen, onClose, onOpen }: DefaultModalProps) => {
         </div>
         <div className="flex flex-col w-full">
           <DefaultButton
-            disabled
+             disabled={false}
             isLoading
             type="solid"
             text="Skip"
@@ -43,7 +43,7 @@ const DefaultModal = ({ isOpen, onClose, onOpen }: DefaultModalProps) => {
           />
 
           <DefaultButton
-            disabled
+             disabled={false}
             isLoading
             type="solid"
             text="Go Back"

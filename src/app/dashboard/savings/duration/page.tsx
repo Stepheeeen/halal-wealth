@@ -110,7 +110,7 @@ const Page = () => {
                 )}
 
                 <DefaultButton
-                  disabled
+                   disabled={false}
                   isLoading
                   type="solid"
                   text="Continue"

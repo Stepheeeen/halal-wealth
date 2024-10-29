@@ -55,7 +55,7 @@ export const EditProfile = () => {
         <DefaultButton
           customStyle="bg-[#F5F1FE] border border-[#E6DAFC] w-[100px] text-[#8046F2] font-[550] text-[14px] mt-2"
           onClick={() => {}}
-          disabled
+           disabled={false}
           isLoading={loading}
           text="Edit Profile"
           type="solid"
@@ -129,7 +129,7 @@ export const EditProfile = () => {
         text="Save Changes"
         customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
         onClick={() => {}}
-        disabled
+         disabled={false}
         isLoading={loading}
       />
     </div>

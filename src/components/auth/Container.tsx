@@ -68,7 +68,7 @@ const AuthContainer = ({
             </p>
           </div>
           <DefaultButton
-            disabled
+             disabled={false}
             isLoading={loading}
             type="solid"
             text={btnText} // Conditional loading text
@@ -77,7 +77,7 @@ const AuthContainer = ({
           />
           <div className={customStyle}>
             <DefaultButton
-              disabled
+               disabled={false}
               isLoading={false}
               type="solid"
               text={altText}

@@ -48,7 +48,7 @@ const Page = () => {
             <p className="text-[14px] font-[500] text-[#5C556C] w-[95%] mt-3"></p>
 
             <DefaultButton
-              disabled
+               disabled={false}
               isLoading
               type="solid"
               text="Continue"

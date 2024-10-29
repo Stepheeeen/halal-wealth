@@ -94,7 +94,7 @@ const SignUp = () => {
       />
 
       <IconInput
-        disabled
+         disabled={false}
         iconStyle=""
         placeholder=""
         onChange={(e: any) => setPassword(e.target.value)}

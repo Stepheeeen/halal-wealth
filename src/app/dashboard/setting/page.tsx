@@ -265,7 +265,6 @@ const Page = () => {
   };
   const closeModal = () => setIsModalOpen(false);
   const [loading, setLoading] = useState(false); // Add loading state
-  
 
   return (
     <DashboardContainer PageTItle="Settings">
@@ -280,7 +279,7 @@ const Page = () => {
 
             <div className="w-[30%]">
               <DefaultButton
-                disabled
+                disabled={false}
                 isLoading={loading}
                 customStyle="bg-[#F5F1FE] border border-[#E6DAFC] w-[100px] text-[#8046F2] font-[550] text-[14px] mt-2"
                 onClick={() => {
@@ -467,7 +466,7 @@ const Page = () => {
           </div>
 
           <DefaultButton
-            disabled
+            disabled={false}
             isLoading
             type="solid"
             text="Continue"
@@ -517,7 +516,7 @@ const Page = () => {
               text="Submit"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[80px]"
               onClick={() => {}}
-              disabled
+              disabled={false}
               isLoading
             />
           </div>
@@ -583,7 +582,7 @@ const Page = () => {
         />
 
         <DefaultButton
-          disabled
+          disabled={false}
           isLoading={loading}
           type="solid"
           text="Verify"
@@ -671,7 +670,7 @@ const Page = () => {
             text="Save Changes"
             customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
             onClick={() => {}}
-            disabled
+            disabled={false}
             isLoading={loading}
           />
         </div>
@@ -703,7 +702,7 @@ const Page = () => {
         />
 
         <DefaultButton
-          disabled
+          disabled={false}
           isLoading={loading}
           type="solid"
           text="Continue"
@@ -743,7 +742,7 @@ const Page = () => {
           </div>
 
           <DefaultButton
-            disabled
+            disabled={false}
             isLoading={loading}
             type="solid"
             text="Continue"
@@ -780,7 +779,7 @@ const Page = () => {
           </div>
 
           <DefaultButton
-            disabled
+            disabled={false}
             isLoading={loading}
             type="solid"
             text="Reset"

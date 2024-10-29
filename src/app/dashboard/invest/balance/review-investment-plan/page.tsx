@@ -106,7 +106,7 @@ const Page = () => {
             </div>
 
             <DefaultButton
-              disabled
+               disabled={false}
               isLoading
               type="solid"
               text="Continue"
@@ -144,7 +144,7 @@ const Page = () => {
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium"
               onClick={()=>{}}
-              disabled
+               disabled={false}
               isLoading={loading}
             />
           </div>

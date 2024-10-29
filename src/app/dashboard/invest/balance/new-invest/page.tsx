@@ -54,7 +54,7 @@ const Page = () => {
                 <DefaultButton
                   customStyle="w-auto bg-[#8046F2] text-white font-medium px-8 py-2 mt-[-20px] mr-3"
                   onClick={() => {}}
-                  disabled
+                   disabled={false}
                   isLoading
                   text="Invest"
                   type="solid"

@@ -41,7 +41,7 @@ const Page = () => {
 
           <div className="mt-[20px] ml-3 w-[45%]">
             <IconInput
-              disabled
+              disabled={false}
               iconStyle=""
               name=""
               placeholder=""
@@ -70,8 +70,8 @@ const Page = () => {
             </div>
 
             <DefaultButton
-              disabled
-              isLoading
+               disabled={false}
+              isLoading={loading}
               type="solid"
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-14"
@@ -92,7 +92,7 @@ const Page = () => {
               <CustomButton
                 ButtonStyling="w-[69%] flex justify-end"
                 Context={
-                  <div className="flex items-center">
+                  <div className="flex items-center ml-[-25px]">
                     <WalletIconPurple /> <p className="ml-1">Wallet</p>
                   </div>
                 }
@@ -132,7 +132,7 @@ const Page = () => {
               text="Continue"
               customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[70px]"
               onClick={()=>{}}
-              disabled
+               disabled={false}
               isLoading={loading}
             />
           </div>

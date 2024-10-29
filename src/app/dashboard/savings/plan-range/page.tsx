@@ -32,7 +32,7 @@ const Page = () => {
 
           <div className="mt-[20px] ml-3 w-[45%]">
             <IconInput
-              disabled
+               disabled={false}
               iconStyle=""
               name=""
               placeholder=""
@@ -50,7 +50,7 @@ const Page = () => {
             <p className="text-[14px] font-[500] text-[#5C556C] w-[95%] mt-3"></p>
 
             <DefaultButton
-              disabled
+               disabled={false}
               isLoading
               type="solid"
               text="Continue"

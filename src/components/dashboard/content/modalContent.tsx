@@ -192,7 +192,7 @@ export const FundWithCard = () => {
       </Button>
 
       <DefaultButton
-        disabled
+         disabled={false}
         isLoading
         type="solid"
         text="Continue"
@@ -294,7 +294,7 @@ export const Withdrawal = ({ accountBalance }: { accountBalance: string }) => {
         <h1 className="text-[#17B26A] font-[570]">NGN {accountBalance}</h1>
       </div>
       <DefaultButton
-        disabled
+         disabled={false}
         type="solid"
         text="Continue"
         isLoading={loading} // Pass loading state to DefaultButton
@@ -526,7 +526,7 @@ export const AirtimeAndData = () => {
               label="Amount"
             />
             <DefaultButton
-              disabled
+               disabled={false}
               type="solid"
               text="Continue"
               isLoading={loading} // Pass loading state to DefaultButton
@@ -589,7 +589,7 @@ export const AirtimeAndData = () => {
             </select>
 
             <DefaultButton
-              disabled
+               disabled={false}
               type="solid"
               text="Continue"
               isLoading={loading} // Pass isLoading state to DefaultButton
@@ -676,7 +676,7 @@ export const Internet = () => {
         text="Continue"
         customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
         onClick={() => {}}
-        disabled
+         disabled={false}
         isLoading={loading}
       />
     </div>
