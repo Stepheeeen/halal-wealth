@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import Image from "next/image";
 import profile from "../../../public/assets/images/profileImage.svg";
 import {
@@ -17,7 +17,7 @@ import { CountryIcon, NextIcon } from "../../../public/assets/icons";
 import { userInfo } from "@/app/constants";
 
 export const ModalContent = () => {
-  return <div>modalContent</div>;
+  return <div></div>;
 };
 
 export const Card = ({
@@ -42,6 +42,8 @@ export const Card = ({
 };
 
 export const EditProfile = () => {
+  const [loading, setLoading] = useState(false); // Add loading state
+
   const options = [
     { value: "Male", text: "Male" },
     { value: "Female", text: "Female" },
@@ -54,7 +56,7 @@ export const EditProfile = () => {
           customStyle="bg-[#F5F1FE] border border-[#E6DAFC] w-[100px] text-[#8046F2] font-[550] text-[14px] mt-2"
           onClick={() => {}}
           disabled
-          isLoading
+          isLoading={loading}
           text="Edit Profile"
           type="solid"
         />
@@ -128,7 +130,7 @@ export const EditProfile = () => {
         customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
         onClick={() => {}}
         disabled
-        isLoading
+        isLoading={loading}
       />
     </div>
   );

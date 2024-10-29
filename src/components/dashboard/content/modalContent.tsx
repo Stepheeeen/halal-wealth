@@ -605,3 +605,230 @@ export const AirtimeAndData = () => {
     </div>
   );
 };
+export const Internet = () => {
+  const [loading, setLoading] = useState(false); // Add loading state
+
+  const selectBillers = [
+    {
+      value: "USD",
+      label: "IKEDC",
+    },
+    {
+      value: "EUR",
+      label: "Gotv",
+    },
+    {
+      value: "BTC",
+      label: "Startimes",
+    },
+    {
+      value: "JPY",
+      label: "Strong",
+    },
+  ];
+  return (
+    <div className="w-full h-[100vh] mt-[-10px]">
+      <Select
+        onChange={() => {}}
+        value=""
+        MuiBg="#F9FAFB"
+        selectText="Select Biller"
+        selectProviders={selectBillers}
+        MuiCss="mb-4"
+      />
+      <Select
+        onChange={() => {}}
+        value=""
+        MuiBg="#F9FAFB"
+        selectText="Select Plan"
+        selectProviders={selectBillers}
+        MuiCss="my-3"
+      />
+      <DefaultInput
+        name=""
+        onChange={() => {}}
+        CustomStyle="mb-3"
+        label="Smile account number"
+        size=""
+        type="solid"
+        value="Placeholder"
+      />
+      <IconInput
+        disabled={false}
+        iconStyle=""
+        name=""
+        placeholder=""
+        value={""}
+        onChange={""}
+        size="lg"
+        type="text"
+        icon={<NairaIcon />}
+        RighIcon={""}
+        handleClick={""}
+        CustomStyle="pl-[55px] bg-[#F9FAFB]"
+        label="Amount"
+      />
+
+      <DefaultButton
+        type="solid"
+        text="Continue"
+        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
+        onClick={() => {}}
+        disabled
+        isLoading={loading}
+      />
+    </div>
+  );
+};
+
+export const CableTV = () => {
+  const [loading, setLoading] = useState(false); // Add loading state
+
+  const selectBillers = [
+    {
+      value: "USD",
+      label: "IKEDC",
+    },
+    {
+      value: "EUR",
+      label: "Gotv",
+    },
+    {
+      value: "BTC",
+      label: "Startimes",
+    },
+    {
+      value: "JPY",
+      label: "Strong",
+    },
+  ];
+  return (
+    <div className="w-full h-[100vh] mt-[-10px]">
+      <Select
+        MuiBg="#F9FAFB"
+        selectText="Select Biller"
+        selectProviders={selectBillers}
+        MuiCss="mb-4"
+        onChange={() => {}}
+        value=""
+      />
+      <Select
+        onChange={() => {}}
+        value=""
+        MuiBg="#F9FAFB"
+        selectText="Select Plan"
+        selectProviders={selectBillers}
+        MuiCss="my-3"
+      />
+      <DefaultInput
+        name=""
+        onChange={() => {}}
+        CustomStyle="mb-3"
+        label="Decoder number"
+        size=""
+        type="solid"
+        value="Placeholder"
+      />
+      <IconInput
+        disabled={false}
+        iconStyle=""
+        name=""
+        placeholder=""
+        value={""}
+        onChange={""}
+        size="lg"
+        type="text"
+        icon={<NairaIcon />}
+        RighIcon={""}
+        handleClick={""}
+        CustomStyle="pl-[55px] bg-[#F9FAFB]"
+        label="Amount"
+      />
+
+      <DefaultButton
+        type="solid"
+        text="Continue"
+        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
+        onClick={() => {}}
+        disabled
+        isLoading={loading}
+      />
+    </div>
+  );
+};
+
+export const Electricity = () => {
+  const [loading, setLoading] = useState(false); // Add loading state
+
+  const selectBillers = [
+    {
+      value: "USD",
+      label: "IKEDC",
+    },
+    {
+      value: "EUR",
+      label: "Gotv",
+    },
+    {
+      value: "BTC",
+      label: "Startimes",
+    },
+    {
+      value: "JPY",
+      label: "Strong",
+    },
+  ];
+  return (
+    <div className="w-full h-[100vh] mt-[-10px]">
+      <Select
+        onChange={() => {}}
+        value=""
+        MuiBg="#F9FAFB"
+        selectText="Select Biller"
+        selectProviders={selectBillers}
+        MuiCss="mb-4"
+      />
+      <Select
+        onChange={() => {}}
+        value=""
+        MuiBg="#F9FAFB"
+        selectText="Select Plan"
+        selectProviders={selectBillers}
+        MuiCss="my-3"
+      />
+      <DefaultInput
+        name=""
+        onChange={() => {}}
+        CustomStyle="mb-3"
+        label="Meter number"
+        size=""
+        type="solid"
+        value="Placeholder"
+      />
+      <IconInput
+        disabled={false}
+        iconStyle=""
+        name=""
+        placeholder=""
+        value={""}
+        onChange={""}
+        size="lg"
+        type="text"
+        icon={<NairaIcon />}
+        RighIcon={""}
+        handleClick={""}
+        CustomStyle="pl-[55px] bg-[#F9FAFB]"
+        label="Amount"
+      />
+
+      <DefaultButton
+        type="solid"
+        text="Continue"
+        customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[46%]"
+        onClick={() => {}}
+        disabled
+        isLoading={loading}
+      />
+    </div>
+  );
+};

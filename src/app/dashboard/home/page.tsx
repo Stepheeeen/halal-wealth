@@ -13,8 +13,11 @@ import { CustomModal, SuccessModal } from "@/components/reusable/modal/modal";
 import {
   AirtimeAndData,
   BankTransfer,
+  CableTV,
+  Electricity,
   FundWallet,
   FundWithCard,
+  Internet,
   Withdrawal,
 } from "@/components/dashboard/content/modalContent";
 
@@ -230,8 +233,7 @@ const Page = () => {
         modalTitle="Cable TV"
         onClose={CableClose}
       >
-        hii
-        {/* <CableTV /> */}
+        <CableTV />
       </CustomModal>
 
       {/* Internet modal */}
@@ -241,8 +243,7 @@ const Page = () => {
         modalTitle="Internet"
         onClose={InternetClose}
       >
-        hii
-        {/* <Internet /> */}
+        <Internet />
       </CustomModal>
 
       {/* Electricity modal */}
@@ -252,8 +253,7 @@ const Page = () => {
         modalTitle="Electricity"
         onClose={ElectricityClose}
       >
-        hii
-        {/* <Electricity /> */}
+        <Electricity />
       </CustomModal>
     </DashboardContainer>
   );

@@ -62,7 +62,7 @@ const Page = () => {
   const handleClick = () => setShow(!show);
   const progress = 20;
   const handleOpenModal = () => {
-    alert("i am a modal");
+    alert("nothing found");
   };
   const Account = [
     {
@@ -264,6 +264,8 @@ const Page = () => {
     }
   };
   const closeModal = () => setIsModalOpen(false);
+  const [loading, setLoading] = useState(false); // Add loading state
+  
 
   return (
     <DashboardContainer PageTItle="Settings">
@@ -279,7 +281,7 @@ const Page = () => {
             <div className="w-[30%]">
               <DefaultButton
                 disabled
-                isLoading
+                isLoading={loading}
                 customStyle="bg-[#F5F1FE] border border-[#E6DAFC] w-[100px] text-[#8046F2] font-[550] text-[14px] mt-2"
                 onClick={() => {
                   setEditProfile(true);
@@ -582,7 +584,7 @@ const Page = () => {
 
         <DefaultButton
           disabled
-          isLoading
+          isLoading={loading}
           type="solid"
           text="Verify"
           customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-8"
@@ -625,7 +627,7 @@ const Page = () => {
               label="Last name"
             />
             <IconInput
-              disabled
+              disabled={false}
               iconStyle=""
               name=""
               placeholder=""
@@ -670,7 +672,7 @@ const Page = () => {
             customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-10"
             onClick={() => {}}
             disabled
-            isLoading
+            isLoading={loading}
           />
         </div>
       </CustomModal>
@@ -685,7 +687,7 @@ const Page = () => {
       >
         <div className="mt-8"></div>
         <IconInput
-          disabled
+          disabled={false}
           iconStyle=""
           onChange={(e: any) => setNewPassword(e.target.value)}
           placeholder="password"
@@ -702,7 +704,7 @@ const Page = () => {
 
         <DefaultButton
           disabled
-          isLoading
+          isLoading={loading}
           type="solid"
           text="Continue"
           customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[90px]"
@@ -742,7 +744,7 @@ const Page = () => {
 
           <DefaultButton
             disabled
-            isLoading
+            isLoading={loading}
             type="solid"
             text="Continue"
             customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[90px]"
@@ -779,7 +781,7 @@ const Page = () => {
 
           <DefaultButton
             disabled
-            isLoading
+            isLoading={loading}
             type="solid"
             text="Reset"
             customStyle="bg-[#8046F2] text-white font-medium h-[45px] mt-[90px]"
