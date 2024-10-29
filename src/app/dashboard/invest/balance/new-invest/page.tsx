@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -18,12 +18,13 @@ import { DefaultButton } from "@/components/reusable/button/Button";
 import DashboardContainer from "@/components/dashboard/dashboardContainer";
 
 const Page = () => {
+  const [loading, setLoading] = useState(false)
   return (
     <DashboardContainer PageTItle="Invest">
       <div className="w-full overflow-x-auto mt-2 whitespace-nowrap bg-white shadow-sm rounded-lg p-3">
         <div>
           <div>
-            <Link href={"]"} className="flex items-center">
+            <Link href={"#"} className="flex items-center">
               <BackIcon /> <span className="font-medium ml-1">Back</span>
             </Link>
             <h1 className="font-[600] text-[30px] my-2">Sukuk bonds</h1>

@@ -19,6 +19,7 @@ import DashboardContainer from "@/components/dashboard/dashboardContainer";
 
 const Page = () => {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -144,7 +145,7 @@ const Page = () => {
               customStyle="bg-[#8046F2] text-white font-medium"
               onClick={()=>{}}
               disabled
-              isLoading
+              isLoading={loading}
             />
           </div>
         </CustomModal>
