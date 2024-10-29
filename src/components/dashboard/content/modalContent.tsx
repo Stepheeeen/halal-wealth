@@ -510,7 +510,7 @@ export const AirtimeAndData = () => {
 
             <IconInput
               name=""
-              disabled
+              disabled={false}
               iconStyle=""
               placeholder="0"
               value={amount}
@@ -581,7 +581,7 @@ export const AirtimeAndData = () => {
               </option>
               {dataPlans.map((plan) => (
                 <option key={plan.id} value={plan.price}>
-                  {plan.name} - {plan.price}
+                  {plan.name} - ₦ {plan.price}
                 </option>
               ))}
             </select>

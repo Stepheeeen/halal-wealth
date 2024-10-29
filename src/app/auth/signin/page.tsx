@@ -123,9 +123,9 @@ const SignIn = () => {
         label="Email address"
       />
       <IconInput
-        disabled
+        disabled={false}
         iconStyle=""
-        placeholder=""
+        placeholder="password"
         onChange={(e: any) => setPassword(e.target.value)}
         name="password"
         value={password}
